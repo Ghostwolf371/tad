@@ -70,22 +70,10 @@ export function HomePageSkeleton() {
         </div>
       </SkeletonSection>
 
-      {/* Featured work — dark band, 2 large + 3 small + CTA */}
+      {/* Featured work — dark band, 3 cards + CTA */}
       <SkeletonSection tone="dark-green" py={skeletonSpacing.pageBeforeWhite}>
         <SectionHeaderSkeleton dark className="max-w-2xl" />
         <div className="mt-10 space-y-8 sm:mt-14 sm:space-y-10 lg:space-y-12">
-          <div className="flex flex-col gap-8 sm:gap-10 lg:gap-12">
-            <SkeletonBar
-              tone="dark"
-              className="aspect-[2/1] w-full rounded-[1.75rem] sm:rounded-[2rem]"
-              animated={false}
-            />
-            <SkeletonBar
-              tone="dark"
-              className="aspect-[2/1] w-full rounded-[1.75rem] sm:rounded-[2rem]"
-              animated={false}
-            />
-          </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-10">
             {Array.from({ length: 3 }, (_, i) => (
               <SkeletonBar

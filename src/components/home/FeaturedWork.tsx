@@ -15,8 +15,8 @@ import { HOME_SECTION_PY_BEFORE_WHITE } from "@/lib/theme/section-spacing";
 import { cn } from "@/lib/utils";
 
 const FEATURED_LAYOUT = {
-  large: ["kings-enterprises", "smart-connexxionz"],
-  small: ["the-coffee-box", "hj-express", "trustbank-amanah"],
+  large: ["kings-enterprises", "smart-connexxionz"] as const,
+  small: ["the-coffee-box", "hj-express", "trustbank-amanah"] as const,
 } as const;
 
 type FeaturedSlug = (typeof FEATURED_LAYOUT.large)[number] | (typeof FEATURED_LAYOUT.small)[number];
@@ -50,12 +50,12 @@ const CARD_ASPECT: Record<FeaturedCardSize, string> = {
   small: "aspect-[4/3] sm:aspect-[3/4]",
 };
 
-/** Large: full image, no crop (export 1200×600, 2:1). Small cards still cover-crop. */
+/** Promo art (3D character + device) — show full frame, no screenshot crop. */
 const CARD_IMAGE_CLASS: Record<FeaturedCardSize, string> = {
   large:
     "media-fill-contain object-contain object-center transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:brightness-[0.92]",
   small:
-    "media-fill-cover object-cover object-top transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] group-hover:brightness-[0.92]",
+    "media-fill-contain object-contain object-center transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:brightness-[0.92]",
 };
 
 function projectBrandVars(palette: Project["palette"]): CSSProperties {
@@ -303,15 +303,17 @@ export default function FeaturedWork() {
       </Reveal>
 
       <div className="relative z-[1] mt-10 space-y-8 sm:mt-14 sm:space-y-10 lg:space-y-12">
-        <div className="flex w-full flex-col gap-8 sm:gap-10 lg:gap-12">
-          {largeProjects.map((project, i) => (
-            <Reveal key={project.slug} delay={i * 0.1} className="w-full">
-              <Parallax speed={i % 2 === 0 ? 0.08 : 0.16}>
-                <FeaturedMediaCard project={project} index={i} size="large" />
-              </Parallax>
-            </Reveal>
-          ))}
-        </div>
+        {largeProjects.length > 0 ? (
+          <div className="flex w-full flex-col gap-8 sm:gap-10 lg:gap-12">
+            {largeProjects.map((project, i) => (
+              <Reveal key={project.slug} delay={i * 0.1} className="w-full">
+                <Parallax speed={i % 2 === 0 ? 0.08 : 0.16}>
+                  <FeaturedMediaCard project={project} index={i} size="large" />
+                </Parallax>
+              </Reveal>
+            ))}
+          </div>
+        ) : null}
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-10 xl:gap-12">
           {smallProjects.map((project, i) => (
