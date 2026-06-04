@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-/** Brand / display type — matches https://tad.sr/ (Montserrat Alternates) */
+/** Brand wordmark only (tad.) — Montserrat Alternates */
 const montserratAlternates = Montserrat_Alternates({
   variable: "--font-montserrat-alternates",
   subsets: ["latin"],

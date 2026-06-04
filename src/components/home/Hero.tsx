@@ -75,7 +75,7 @@ export default function Hero() {
 
           <motion.h1
             {...enter(0.15)}
-            className="font-display text-5xl font-extrabold leading-[1.05] tracking-tight xl:text-7xl"
+            className="text-5xl font-extrabold leading-[1.05] tracking-tight xl:text-7xl"
           >
             <span className="block">We build</span>
             <span className="block text-malachite">out of the box</span>

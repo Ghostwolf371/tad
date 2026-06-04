@@ -17,7 +17,7 @@ export default function ProjectCardPreview({
       project={project}
       className={className}
       aspectClassName="aspect-[16/10] sm:aspect-[16/9]"
-      screenshotFit="contain"
+      screenshotFit="cover"
       interactive
     />
   );

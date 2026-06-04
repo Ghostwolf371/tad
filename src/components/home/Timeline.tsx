@@ -124,7 +124,6 @@ export default function Timeline() {
             as="h2"
             lines={["From kickoff to launch,", "without the black box."]}
             accentLastWord
-            useDisplayFont
             className="mt-4 text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.04] tracking-tight text-white"
           />
         </div>

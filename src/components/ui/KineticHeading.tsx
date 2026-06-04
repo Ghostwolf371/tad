@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 type Props = {
   as?: "h1" | "h2" | "h3";
@@ -12,8 +11,6 @@ type Props = {
   accentLastWord?: boolean;
   /** Wrap the last word of the last line in brand-gradient-text. Wins over accentLastWord. */
   gradientLastWord?: boolean;
-  /** Montserrat Alternates — homepage-scale display titles only (Hero/PageHero use font-display directly). */
-  useDisplayFont?: boolean;
   delay?: number;
   className?: string;
 };
@@ -36,7 +33,6 @@ export default function KineticHeading({
   trigger = "inView",
   accentLastWord = false,
   gradientLastWord = false,
-  useDisplayFont = false,
   delay = 0,
   className,
 }: Props) {
@@ -60,11 +56,9 @@ export default function KineticHeading({
     return line;
   };
 
-  const displayClass = cn(useDisplayFont && "font-display", className);
-
   if (reduceMotion) {
     return (
-      <Tag className={displayClass}>
+      <Tag className={className}>
         {lines.map((line, i) => (
           <span key={i} className="block">
             {renderLineContent(line, i === lastLineIndex)}
@@ -85,7 +79,7 @@ export default function KineticHeading({
 
   return (
     <Tag
-      className={displayClass}
+      className={className}
       {...containerProps}
       transition={{ staggerChildren: 0.08, delayChildren: delay }}
     >

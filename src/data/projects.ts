@@ -17,8 +17,10 @@ export type Project = {
   portfolioCategory: PortfolioCategory;
   link: string;
   image: string;
-  /** Webflow case-study screenshot when available; otherwise cards use `image` SVG */
-  homepageScreenshot?: string;
+  /** Homepage featured-work crops (different aspect than portfolio browser frames). */
+  featuredImage?: string;
+  /** Portfolio grid cards, detail browser frames, and case-study heroes. */
+  portfolioScreenshot?: string;
   /** Extra shots from Webflow portfolio detail pages */
   galleryImages?: string[];
   featured?: boolean;
@@ -32,8 +34,7 @@ export type Project = {
 };
 
 /**
- * Projects without homepageScreenshot have no imagery on Webflow CDN —
- * only brand SVGs in public/projects/. Live-site captures would be a separate pass.
+ * Projects without portfolioScreenshot have no live capture — cards fall back to brand SVGs.
  */
 
 function caseFromDescr(descr: string, title: string) {
@@ -62,7 +63,8 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://www.kings.sr",
     image: "/projects/kings-enterprises.svg",
-    homepageScreenshot: "/projects/screenshots/kings-enterprises-home-promo.png",
+    featuredImage: "/projects/screenshots/kings-enterprises-home-promo.png",
+    portfolioScreenshot: "/projects/screenshots/kings-enterprises.png",
     featured: true,
     palette: { primary: "#FEE15B", secondary: "#FFFF92", text: "#171717" },
     caseStudy: caseFromDescr(
@@ -81,7 +83,8 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://www.smartconnexxionz.com/",
     image: "/projects/smart-connexxionz.svg",
-    homepageScreenshot: "/projects/screenshots/smart-connexxionz-home-promo.png",
+    featuredImage: "/projects/screenshots/smart-connexxionz-home-promo.png",
+    portfolioScreenshot: "/projects/screenshots/smart-connexxionz.png",
     featured: true,
     palette: { primary: "#1EB6EC", secondary: "#9BE2FE", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
@@ -100,7 +103,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://www.queenshotelsuriname.com",
     image: "/projects/queens-hotel.svg",
-    homepageScreenshot: "/projects/screenshots/queens-hotel-homepage.png",
+    portfolioScreenshot: "/projects/screenshots/queens-hotel-homepage.png",
     palette: { primary: "#72000A", secondary: "#320005", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Online bookings and upsell packages for tours, tickets, and activities.",
@@ -118,7 +121,8 @@ export const projects: Project[] = [
     portfolioCategory: "custom-software",
     link: "https://mijneaanvraag.trustbankamanah.com",
     image: "/projects/trustbank-amanah.svg",
-    homepageScreenshot: "/projects/screenshots/trustbank-amanah.png",
+    featuredImage: "/projects/screenshots/trustbank-amanah.png",
+    portfolioScreenshot: "/projects/screenshots/trustbank-amanah.png",
     palette: { primary: "#041C2C", secondary: "#B8956B", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Islamic banking services transforming the financial landscape in Suriname and beyond.",
@@ -136,7 +140,8 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://www.thecoffeeboxsu.com/",
     image: "/projects/elegant-interiors.svg",
-    homepageScreenshot: "/projects/screenshots/the-coffee-box-home-v3.jpg",
+    featuredImage: "/projects/screenshots/the-coffee-box-home-v3.jpg",
+    portfolioScreenshot: "/projects/screenshots/the-coffee-box-home-desktop.png",
     palette: { primary: "#1B4332", secondary: "#E8A87C", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Grill café and specialty coffee brand with bilingual menus, lounge experiences, and multi-location storytelling.",
@@ -154,7 +159,7 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://www.nvdevinas.com/",
     image: "/projects/arrowtrade.svg",
-    homepageScreenshot: "/projects/screenshots/devinas-enterprises-home-v3.jpg",
+    portfolioScreenshot: "/projects/screenshots/devinas-enterprises-home-desktop.png",
     featured: true,
     palette: { primary: "#003B71", secondary: "#E2231A", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
@@ -173,7 +178,8 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://www.hjexpress.sr/en",
     image: "/projects/hj-express.svg",
-    homepageScreenshot: "/projects/screenshots/hj-express.png",
+    featuredImage: "/projects/screenshots/hj-express.png",
+    portfolioScreenshot: "/projects/screenshots/hj-express-home-desktop.png",
     palette: { primary: "#1E4A7A", secondary: "#5B9BD5", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Retail and wholesale e-commerce for household, coffee, and grocery categories across Suriname.",
@@ -191,7 +197,7 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://www.digitalworld.sr/en",
     image: "/projects/digital-world.svg",
-    homepageScreenshot: "/projects/screenshots/digital-world.png",
+    portfolioScreenshot: "/projects/screenshots/digital-world-home-desktop.png",
     featured: true,
     palette: { primary: "#C41E3A", secondary: "#F4A4B0", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
@@ -210,7 +216,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://www.elegantinteriorsnv.com/",
     image: "/projects/elegant-interiors.svg",
-    homepageScreenshot: "/projects/screenshots/elegant-interiors.png",
+    portfolioScreenshot: "/projects/screenshots/elegant-interiors.png",
     palette: { primary: "#1C1C1C", secondary: "#C9A961", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Interior solutions brand site with service lines, project gallery, and conversion-focused contact flows.",
@@ -228,7 +234,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://srananfowru.sr/",
     image: "/projects/sranan-fowru.svg",
-    homepageScreenshot: "/projects/screenshots/sranan-fowru.png",
+    portfolioScreenshot: "/projects/screenshots/sranan-fowru.png",
     palette: { primary: "#00843D", secondary: "#E2231A", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "National poultry brand platform highlighting quality, certifications, products, and community recipes.",
@@ -246,7 +252,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://arrowtradenv.com/",
     image: "/projects/arrowtrade.svg",
-    homepageScreenshot: "/projects/screenshots/arrowtrade.png",
+    portfolioScreenshot: "/projects/screenshots/arrowtrade.png",
     palette: { primary: "#0D9488", secondary: "#99D4CF", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "B2B retail and distribution storefront showcasing brands, popular products, and supplier relationships.",
@@ -258,11 +264,11 @@ export const projects: Project[] = [
 export const featuredProjects = projects.filter((p) => p.featured);
 
 export function hasRealScreenshot(project: Project) {
-  return Boolean(project.homepageScreenshot);
+  return Boolean(project.portfolioScreenshot);
 }
 
 export function getProjectVisual(project: Project) {
-  return project.homepageScreenshot ?? project.image;
+  return project.portfolioScreenshot ?? project.image;
 }
 
 export type ProjectPreviewMode = "cover" | "character" | "popout";
@@ -279,13 +285,13 @@ const PROJECT_PREVIEW_MODES: Partial<Record<string, ProjectPreviewMode>> = {
 export function getProjectPreviewMode(project: Project): ProjectPreviewMode {
   const mapped = PROJECT_PREVIEW_MODES[project.slug];
   if (mapped) return mapped;
-  if (project.homepageScreenshot) return "popout";
+  if (project.portfolioScreenshot) return "popout";
   return "cover";
 }
 
 /** Gallery shots excluding the hero screenshot (no duplicate strips). */
 export function getProjectGallery(project: Project): string[] {
-  const hero = project.homepageScreenshot;
+  const hero = project.portfolioScreenshot;
   const images = project.galleryImages ?? [];
   const unique = [...new Set(images)];
   if (unique.length <= 1) return [];

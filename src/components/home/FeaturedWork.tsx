@@ -10,25 +10,27 @@ import KineticHeading from "@/components/ui/KineticHeading";
 import Parallax from "@/components/ui/Parallax";
 import Reveal from "@/components/ui/Reveal";
 import { projects, type Project } from "@/data/projects";
+import { getProjectFeaturedImage } from "@/lib/projects/images";
 import { HOME_SECTION_PY_BEFORE_WHITE } from "@/lib/theme/section-spacing";
 import { cn } from "@/lib/utils";
 
 const FEATURED_LAYOUT = {
-  large: ["smart-connexxionz", "kings-enterprises"],
-  small: ["devinas-enterprises", "the-coffee-box", "digital-world"],
+  large: ["kings-enterprises", "smart-connexxionz"],
+  small: ["the-coffee-box", "hj-express", "trustbank-amanah"],
 } as const;
 
 type FeaturedSlug = (typeof FEATURED_LAYOUT.large)[number] | (typeof FEATURED_LAYOUT.small)[number];
-type FeaturedProject = Project & { homepageScreenshot: string };
+type FeaturedProject = Project & { featuredImage: string };
 type FeaturedCardSize = "large" | "small";
 
 function getProject(slug: FeaturedSlug): FeaturedProject {
   const project = projects.find((entry) => entry.slug === slug);
-  if (!project || !project.homepageScreenshot) {
+  const featuredImage = project ? getProjectFeaturedImage(project) : undefined;
+  if (!project || !featuredImage) {
     throw new Error(`Missing featured project data for "${slug}"`);
   }
 
-  return { ...project, homepageScreenshot: project.homepageScreenshot };
+  return { ...project, featuredImage };
 }
 
 const largeProjects = FEATURED_LAYOUT.large.map(getProject);
@@ -130,7 +132,7 @@ function FeaturedMediaCard({
     >
       <div className={cn("relative isolate w-full overflow-hidden", CARD_ASPECT[size])}>
         <Image
-          src={project.homepageScreenshot}
+          src={project.featuredImage}
           alt={project.title}
           fill
           unoptimized={isLarge}
@@ -292,7 +294,6 @@ export default function FeaturedWork() {
             as="h2"
             lines={["Selected projects", "we are proud of."]}
             accentLastWord
-            useDisplayFont
             className="mt-4 text-3xl font-semibold leading-[1.03] tracking-normal text-white sm:mt-5 sm:text-4xl md:text-5xl lg:text-6xl"
           />
           <p className="mt-4 max-w-xl text-base leading-8 text-white/75 sm:mt-8 sm:text-lg">

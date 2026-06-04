@@ -39,13 +39,10 @@
   --color-bone-200: #e8e3d8;
   --color-bone-300: #d4ccba;
 
-  /* Inter: body, UI, section titles, cards */
+  /* Inter: body, UI, headings, section titles, cards */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  /* Montserrat Alternates: page/heroes + homepage kinetic titles only (see font-display usage) */
-  --font-display: var(--font-montserrat-alternates), var(--font-inter), ui-sans-serif,
-    system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
-  /* Montserrat Alternates: tad. wordmark only */
+  /* Montserrat Alternates: tad. wordmark only (TadWordmark) */
   --font-brand: var(--font-montserrat-alternates), var(--font-inter), ui-sans-serif,
     system-ui, sans-serif;
 }

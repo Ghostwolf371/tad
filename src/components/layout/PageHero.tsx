@@ -187,7 +187,7 @@ export default function PageHero({
           {titleLines && titleLines.length > 0 ? (
             <motion.h1
               variants={reduceMotion ? undefined : heroTitleBlockVars}
-              className="mt-5 max-w-4xl font-display font-bold tracking-normal text-swamp"
+              className="mt-5 max-w-4xl font-bold tracking-normal text-swamp"
             >
               {titleLines.map((line, i) => (
                 <HeroTitleLine
@@ -206,7 +206,7 @@ export default function PageHero({
           ) : title ? (
             <motion.h1
               variants={reduceMotion ? undefined : heroTitleBlockVars}
-              className="mt-5 max-w-4xl font-display font-bold leading-[1.05] tracking-normal text-swamp"
+              className="mt-5 max-w-4xl font-bold leading-[1.05] tracking-normal text-swamp"
             >
               <HeroTitleLine
                 reduceMotion={reduceMotion}
