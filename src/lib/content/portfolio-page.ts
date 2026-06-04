@@ -15,6 +15,6 @@ export const portfolioPageContent = {
     mixTitle: "Portfolio mix",
     mixSubtitle: "Where client work clusters",
     mixDescription:
-      "Sector share across our featured case studies — part of 150+ projects delivered for operators in Suriname and beyond.",
+      "Sector share across the featured work on this page — hover the chart or breakdown to see how each vertical shows up in the showcase.",
   },
 } as const;

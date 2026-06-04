@@ -32,13 +32,11 @@ const DONUT_GAP = 2.5;
 function PortfolioMixDonut({
   segments,
   segmentTotal,
-  centerValue,
   activeLabel,
   onHover,
 }: {
   segments: MixSegment[];
   segmentTotal: number;
-  centerValue: string;
   activeLabel: string | null;
   onHover: (label: string | null) => void;
 }) {
@@ -114,10 +112,12 @@ function PortfolioMixDonut({
             <p className="label-tech-on-dark text-malachite">
               {portfolioPageContent.stats.mixTitle}
             </p>
-            <p className="mt-1 text-3xl font-semibold tabular-nums text-white">{centerValue}</p>
+            <p className="mt-1 text-4xl font-semibold tabular-nums text-white">
+              {active?.pct ?? 0}%
+            </p>
             <p className="mt-2 text-sm font-medium text-white">{active?.label}</p>
             <p className="mt-0.5 font-mono text-xs text-white/60">
-              {active?.value} · {active?.pct}%
+              {active?.value} of {segmentTotal} featured
             </p>
           </motion.div>
         </AnimatePresence>
@@ -197,14 +197,17 @@ export default function IndustryChart() {
           </p>
           <p className="mt-2 text-sm leading-relaxed text-white/65">{stats.mixDescription}</p>
 
-          <div className="mt-8 flex justify-center py-2">
+          <div className="mt-8 flex flex-col items-center py-2">
             <PortfolioMixDonut
               segments={mixSegments}
               segmentTotal={featuredCount}
-              centerValue={PORTFOLIO_DELIVERED_COUNT}
               activeLabel={activeLabel}
               onHover={setActiveLabel}
             />
+            <p className="mt-4 max-w-[220px] text-center text-xs leading-relaxed text-white/55">
+              <span className="font-semibold text-white/80">{PORTFOLIO_DELIVERED_COUNT}</span>{" "}
+              total delivered · chart reflects our {featuredCount} featured case studies below
+            </p>
           </div>
 
           <ul className="mt-6 flex flex-wrap justify-center gap-2">
