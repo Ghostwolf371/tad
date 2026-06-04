@@ -59,9 +59,9 @@ const CARD_ASPECT: Record<FeaturedCardSize, string> = {
 /** Promo art (3D character + device) — show full frame, no screenshot crop. */
 const CARD_IMAGE_CLASS: Record<FeaturedCardSize, string> = {
   large:
-    "media-fill-contain object-contain object-center transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:brightness-[0.92]",
+    "media-fill-contain object-contain object-center transform-gpu transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] group-hover:brightness-[0.96]",
   small:
-    "media-fill-contain object-contain object-center transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:brightness-[0.92]",
+    "media-fill-contain object-contain object-center transform-gpu transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] group-hover:brightness-[0.96]",
 };
 
 function projectBrandVars(palette: Project["palette"]): CSSProperties {
@@ -121,23 +121,34 @@ function FeaturedMediaCard({
   const hasDistinctMobileArt = Boolean(project.featuredImageMobile);
 
   return (
-    <Link
-      href={`/portfolio/${project.slug}`}
-      style={brandVars}
-      className={cn(
-        "group relative block w-full overflow-hidden",
-        CARD_SHELL[size],
-        "border border-white/10 bg-white/[0.02]",
-        isLarge
-          ? "shadow-glow-green hover:shadow-glow-green--strong"
-          : "shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]",
-        "transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-        "hover:-translate-y-1.5 hover:border-[color:var(--brand-primary)]",
-        !isLarge &&
-          "hover:shadow-[0_32px_80px_rgba(0,0,0,0.45),0_0_28px_color-mix(in_srgb,var(--brand-primary)_42%,transparent),inset_0_1px_0_rgba(255,255,255,0.12)]",
-        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-primary)]",
-      )}
-    >
+    <div className="group relative isolate" style={brandVars}>
+      {/* Ambient glow behind the card, in the project's own colour.
+          Animates via opacity only (compositor-friendly = smooth). */}
+      <div
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute -inset-3 -z-10 opacity-0 blur-[46px] transform-gpu",
+          "transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          "group-hover:opacity-70 group-focus-within:opacity-70",
+          CARD_SHELL[size],
+        )}
+        style={{ backgroundColor: brandLighten(primary, 0.35) }}
+      />
+      <Link
+        href={`/portfolio/${project.slug}`}
+        className={cn(
+          "relative block w-full overflow-hidden transform-gpu will-change-transform",
+          CARD_SHELL[size],
+          "border border-white/10 bg-white/[0.02]",
+          isLarge
+            ? "shadow-glow-green"
+            : "shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]",
+          "transition-[transform,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          "group-hover:-translate-y-1.5 group-hover:border-[color:var(--brand-primary)]",
+          "group-focus-within:-translate-y-1.5 group-focus-within:border-[color:var(--brand-primary)]",
+          "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-primary)]",
+        )}
+      >
       <div className={cn("relative isolate w-full overflow-hidden", CARD_ASPECT[size])}>
         <Image
           src={mobileSrc}
@@ -171,23 +182,25 @@ function FeaturedMediaCard({
           )}
         />
 
+        {/* Persistent legibility scrim — keeps the project info readable on
+            every device (no hover needed). Strengthens slightly on hover. */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-swamp/25 via-transparent to-white/[0.03] transition-opacity duration-500 group-hover:opacity-0"
+          className="absolute inset-0 bg-gradient-to-t from-swamp/95 via-swamp/45 to-transparent transition-opacity duration-500 group-hover:opacity-100"
         />
 
+        {/* Hover-only brand glow in the project's own colour */}
         <div
           aria-hidden
           className={cn(
             "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500",
-            "group-hover:opacity-100 group-focus-visible:opacity-100",
+            "group-hover:opacity-100 group-focus-within:opacity-100",
           )}
         >
-          <div className="absolute inset-0 bg-gradient-to-t from-swamp via-swamp/65 to-swamp/15" />
           <div
             className="absolute inset-0"
             style={{
-              background: `radial-gradient(ellipse 90% 70% at 50% 100%, ${brandTint(primary, "55")} 0%, transparent 62%)`,
+              background: `radial-gradient(ellipse 95% 75% at 50% 100%, ${brandTint(primary, "70")} 0%, transparent 64%)`,
             }}
           />
           <div
@@ -203,7 +216,7 @@ function FeaturedMediaCard({
             "absolute left-4 top-4 z-10 inline-flex items-center font-mono text-[10px] font-medium tracking-[0.22em] text-malachite/70 transition-all duration-500 sm:left-5 sm:top-5",
             "after:ml-1 after:h-px after:w-0 after:bg-malachite/60 after:transition-[width] after:duration-500 after:content-['']",
             "group-hover:text-[color:var(--brand-primary-light)] group-hover:after:w-4",
-            "group-focus-visible:text-[color:var(--brand-primary-light)] group-focus-visible:after:w-4",
+            "group-focus-within:text-[color:var(--brand-primary-light)] group-focus-within:after:w-4",
           )}
           aria-hidden
         >
@@ -218,20 +231,16 @@ function FeaturedMediaCard({
         >
           <div
             className={cn(
-              "min-w-0 flex-1",
-              "border-l-2 border-transparent pl-0",
-              "translate-y-4 opacity-0",
-              "transition-[opacity,transform,border-color,padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-              "group-hover:translate-y-0 group-hover:border-[color:var(--brand-primary)] group-hover:pl-3 group-hover:opacity-100",
-              "group-focus-visible:translate-y-0 group-focus-visible:border-[color:var(--brand-primary)] group-focus-visible:pl-3 group-focus-visible:opacity-100",
+              "min-w-0 flex-1 border-l-2 pl-3",
+              "border-[color:color-mix(in_srgb,var(--brand-primary)_55%,transparent)]",
+              "transition-[border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+              "group-hover:border-[color:var(--brand-primary)]",
+              "group-focus-within:border-[color:var(--brand-primary)]",
             )}
           >
             <div
               className={cn(
-                "flex flex-wrap gap-1.5 translate-y-2 opacity-0",
-                "transition-[opacity,transform] duration-500 delay-75 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                "group-hover:translate-y-0 group-hover:opacity-100",
-                "group-focus-visible:translate-y-0 group-focus-visible:opacity-100",
+                "flex flex-wrap gap-1.5",
                 isLarge && "sm:gap-2",
               )}
             >
@@ -256,10 +265,6 @@ function FeaturedMediaCard({
               className={cn(
                 "font-semibold leading-[1.05] tracking-normal text-white",
                 "drop-shadow-[0_2px_16px_rgba(0,0,0,0.55)]",
-                "translate-y-2 opacity-0",
-                "transition-[opacity,transform] duration-500 delay-150 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                "group-hover:translate-y-0 group-hover:opacity-100",
-                "group-focus-visible:translate-y-0 group-focus-visible:opacity-100",
                 isLarge
                   ? "mt-3 text-[1.65rem] sm:mt-4 sm:text-[2rem]"
                   : "mt-2.5 text-lg sm:mt-3 sm:text-[1.35rem]",
@@ -275,15 +280,15 @@ function FeaturedMediaCard({
               "transition-[transform,border-color,background-color,color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
               "group-hover:border-[color:var(--brand-primary)] group-hover:bg-[color:var(--brand-primary)] group-hover:text-[color:var(--brand-on)]",
               "group-hover:shadow-[0_12px_32px_color-mix(in_srgb,var(--brand-primary)_50%,transparent)]",
-              "group-focus-visible:border-[color:var(--brand-primary)] group-focus-visible:bg-[color:var(--brand-primary)] group-focus-visible:text-[color:var(--brand-on)]",
-              "group-focus-visible:shadow-[0_12px_32px_color-mix(in_srgb,var(--brand-primary)_50%,transparent)]",
+              "group-focus-within:border-[color:var(--brand-primary)] group-focus-within:bg-[color:var(--brand-primary)] group-focus-within:text-[color:var(--brand-on)]",
+              "group-focus-within:shadow-[0_12px_32px_color-mix(in_srgb,var(--brand-primary)_50%,transparent)]",
               isLarge ? "h-11 min-w-[3.25rem] px-5 sm:h-12 sm:min-w-[3.5rem] sm:px-6" : "h-10 min-w-[2.85rem] px-4 sm:h-11 sm:min-w-[3.1rem] sm:px-5",
             )}
             aria-hidden
           >
             <ArrowRight
               className={cn(
-                "shrink-0 transition-transform duration-500 group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5",
+                "shrink-0 transition-transform duration-500 group-hover:translate-x-0.5 group-focus-within:translate-x-0.5",
                 isLarge ? "size-6 sm:size-7" : "size-5 sm:size-6",
               )}
               strokeWidth={2}
@@ -291,7 +296,8 @@ function FeaturedMediaCard({
           </span>
         </div>
       </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 
