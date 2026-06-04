@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import TadWordmark from "@/components/ui/TadWordmark";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const AUTO_ENTER_MS = 7000;
@@ -157,17 +156,16 @@ export default function LaunchScreen() {
 
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center px-6 text-center">
-            <motion.div {...fade(0.1)} className="flex items-center gap-4">
+            <motion.div {...fade(0.1)}>
               <Image
-                src="/brand/logomark.png"
-                alt=""
-                width={80}
-                height={80}
-                className="h-14 w-auto drop-shadow-[0_0_28px_rgba(0,227,87,0.45)] sm:h-[4.25rem]"
+                src="/brand/logo-full-white.png"
+                alt="tad."
+                width={4498}
+                height={1534}
+                className="h-16 w-auto sm:h-20"
                 priority
                 unoptimized
               />
-              <TadWordmark theme="dark" size="xl" />
             </motion.div>
 
             <motion.span
