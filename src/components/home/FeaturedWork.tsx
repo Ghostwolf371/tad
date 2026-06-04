@@ -52,8 +52,8 @@ const CARD_SHELL: Record<FeaturedCardSize, string> = {
  * Small: 4:3 mobile, 3:4 desktop column (1200×1600).
  */
 const CARD_ASPECT: Record<FeaturedCardSize, string> = {
-  large: "aspect-[4/3] sm:aspect-[2/1]",
-  small: "aspect-[4/3] sm:aspect-[3/4]",
+  large: "aspect-[7/6] sm:aspect-[2/1]",
+  small: "aspect-[7/6] sm:aspect-[3/4]",
 };
 
 /** Promo art (3D character + device) — show full frame, no screenshot crop. */
@@ -226,7 +226,7 @@ function FeaturedMediaCard({
         <div
           className={cn(
             "absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-3",
-            isLarge ? "px-5 pb-5 sm:px-7 sm:pb-7" : "px-4 pb-4 sm:px-5 sm:pb-5",
+            isLarge ? "px-4 pb-4 sm:px-7 sm:pb-7" : "px-3.5 pb-3.5 sm:px-5 sm:pb-5",
           )}
         >
           <div
@@ -266,8 +266,8 @@ function FeaturedMediaCard({
                 "font-semibold leading-[1.05] tracking-normal text-white",
                 "drop-shadow-[0_2px_16px_rgba(0,0,0,0.55)]",
                 isLarge
-                  ? "mt-3 text-[1.65rem] sm:mt-4 sm:text-[2rem]"
-                  : "mt-2.5 text-lg sm:mt-3 sm:text-[1.35rem]",
+                  ? "mt-2 text-xl sm:mt-4 sm:text-[2rem]"
+                  : "mt-2 text-base sm:mt-3 sm:text-[1.35rem]",
               )}
             >
               {project.title}
