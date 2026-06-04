@@ -20,17 +20,23 @@ const FEATURED_LAYOUT = {
 } as const;
 
 type FeaturedSlug = (typeof FEATURED_LAYOUT.large)[number] | (typeof FEATURED_LAYOUT.small)[number];
-type FeaturedProject = Project & { featuredImage: string };
+type FeaturedProject = Project & {
+  featuredImage: string;
+  featuredImageMobile?: string;
+};
 type FeaturedCardSize = "large" | "small";
 
 function getProject(slug: FeaturedSlug): FeaturedProject {
   const project = projects.find((entry) => entry.slug === slug);
   const featuredImage = project ? getProjectFeaturedImage(project) : undefined;
+  const featuredImageMobile = project
+    ? getProjectFeaturedImage(project, { mobile: true })
+    : undefined;
   if (!project || !featuredImage) {
     throw new Error(`Missing featured project data for "${slug}"`);
   }
 
-  return { ...project, featuredImage };
+  return { ...project, featuredImage, featuredImageMobile };
 }
 
 const largeProjects = FEATURED_LAYOUT.large.map(getProject);
@@ -42,11 +48,11 @@ const CARD_SHELL: Record<FeaturedCardSize, string> = {
 };
 
 /**
- * Large: 2:1 at all breakpoints. Export promos at 2400×1200 (or 1920×960 min) for sharp retina.
- * Small: taller 3:4 on desktop (1/3 column); export 1200×1600 or 1080×1440.
+ * Large: 4:3 mobile promos, 2:1 desktop banners (2400×1200 or 1920×960).
+ * Small: 4:3 mobile, 3:4 desktop column (1200×1600).
  */
 const CARD_ASPECT: Record<FeaturedCardSize, string> = {
-  large: "aspect-[2/1]",
+  large: "aspect-[4/3] sm:aspect-[2/1]",
   small: "aspect-[4/3] sm:aspect-[3/4]",
 };
 
@@ -111,6 +117,8 @@ function FeaturedMediaCard({
   const displayTags = project.tags.slice(0, isLarge ? 3 : 1);
   const { primary } = project.palette;
   const brandVars = projectBrandVars(project.palette);
+  const mobileSrc = project.featuredImageMobile ?? project.featuredImage;
+  const hasDistinctMobileArt = Boolean(project.featuredImageMobile);
 
   return (
     <Link
@@ -132,8 +140,22 @@ function FeaturedMediaCard({
     >
       <div className={cn("relative isolate w-full overflow-hidden", CARD_ASPECT[size])}>
         <Image
-          src={project.featuredImage}
+          src={mobileSrc}
           alt={project.title}
+          fill
+          unoptimized
+          sizes="100vw"
+          quality={85}
+          priority={index < 5}
+          className={cn(
+            CARD_IMAGE_CLASS[size],
+            hasDistinctMobileArt && "sm:hidden",
+          )}
+        />
+        <Image
+          src={project.featuredImage}
+          alt=""
+          aria-hidden
           fill
           unoptimized={isLarge}
           sizes={
@@ -143,7 +165,10 @@ function FeaturedMediaCard({
           }
           quality={isLarge ? 92 : 75}
           priority={index < 5}
-          className={CARD_IMAGE_CLASS[size]}
+          className={cn(
+            CARD_IMAGE_CLASS[size],
+            hasDistinctMobileArt ? "hidden sm:block" : "block",
+          )}
         />
 
         <div

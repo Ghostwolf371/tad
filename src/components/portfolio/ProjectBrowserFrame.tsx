@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Lock } from "lucide-react";
 import type { Project } from "@/data/projects";
+import PortfolioPhoneMockup from "@/components/portfolio/PortfolioPhoneMockup";
 import {
   formatProjectUrl,
   getProjectPreview,
@@ -28,7 +29,50 @@ export default function ProjectBrowserFrame({
   interactive = false,
 }: ProjectBrowserFrameProps) {
   const preview = getProjectPreview(project);
+  const isPhone = project.portfolioFrame === "phone";
   const siteUrl = formatProjectUrl(project.link);
+
+  const phoneScreenshots =
+    project.galleryImages?.length
+      ? project.galleryImages
+      : preview.kind === "screenshot"
+        ? [preview.src]
+        : [];
+
+  if (isPhone) {
+    return (
+      <div
+        className={cn(
+          "overflow-hidden rounded-xl border border-swamp/10 bg-white shadow-[0_1px_0_rgba(0,30,28,0.06)]",
+          className,
+        )}
+      >
+        <div className={cn("relative min-h-0 overflow-hidden", aspectClassName)}>
+          {phoneScreenshots.length > 0 ? (
+            <PortfolioPhoneMockup
+              screenshots={phoneScreenshots}
+              alt={project.title}
+              palette={project.palette}
+              priority={priority}
+              interactive={interactive}
+              className="h-full"
+            />
+          ) : preview.kind === "brand" ? (
+            <div className="flex h-full min-h-0 items-center justify-center bg-bone-50 px-8 py-10">
+              <div
+                className="relative aspect-[10/19.5] h-[88%] w-auto max-w-[52%] overflow-hidden rounded-2xl p-8 ring-1 ring-swamp/10"
+                style={{
+                  background: `linear-gradient(145deg, ${preview.palette.primary}, ${preview.palette.secondary})`,
+                }}
+              >
+                <Image src={preview.src} alt="" fill className="object-contain p-4" sizes="420px" />
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

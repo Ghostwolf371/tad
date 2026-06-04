@@ -17,10 +17,14 @@ export type Project = {
   portfolioCategory: PortfolioCategory;
   link: string;
   image: string;
-  /** Homepage featured-work crops (different aspect than portfolio browser frames). */
+  /** Homepage featured-work — desktop/tablet (sm+). */
   featuredImage?: string;
+  /** Homepage featured-work — mobile (<sm); portrait promos when provided. */
+  featuredImageMobile?: string;
   /** Portfolio grid cards, detail browser frames, and case-study heroes. */
   portfolioScreenshot?: string;
+  /** Phone mockup for mobile web apps; default is desktop browser chrome. */
+  portfolioFrame?: "browser" | "phone";
   /** Extra shots from Webflow portfolio detail pages */
   galleryImages?: string[];
   featured?: boolean;
@@ -64,6 +68,7 @@ export const projects: Project[] = [
     link: "https://www.kings.sr",
     image: "/projects/kings-enterprises.svg",
     featuredImage: "/projects/screenshots/kings-enterprises-home-promo.png",
+    featuredImageMobile: "/projects/screenshots/kings-enterprises-home-featured-mobile.png",
     portfolioScreenshot: "/projects/screenshots/kings-enterprises.png",
     palette: { primary: "#FEE15B", secondary: "#FFFF92", text: "#171717" },
     caseStudy: caseFromDescr(
@@ -83,6 +88,7 @@ export const projects: Project[] = [
     link: "https://www.smartconnexxionz.com/",
     image: "/projects/smart-connexxionz.svg",
     featuredImage: "/projects/screenshots/smart-connexxionz-home-promo.png",
+    featuredImageMobile: "/projects/screenshots/smart-connexxionz-home-featured-mobile.png",
     portfolioScreenshot: "/projects/screenshots/smart-connexxionz.png",
     palette: { primary: "#1EB6EC", secondary: "#9BE2FE", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
@@ -120,6 +126,7 @@ export const projects: Project[] = [
     link: "https://mijneaanvraag.trustbankamanah.com",
     image: "/projects/trustbank-amanah.svg",
     featuredImage: "/projects/screenshots/trustbank-amanah-home-featured.png",
+    featuredImageMobile: "/projects/screenshots/trustbank-amanah-home-featured-mobile.png",
     portfolioScreenshot: "/projects/screenshots/trustbank-amanah.png",
     featured: true,
     palette: { primary: "#041C2C", secondary: "#B8956B", text: "#FFFFFF" },
@@ -140,6 +147,7 @@ export const projects: Project[] = [
     link: "https://www.thecoffeeboxsu.com/",
     image: "/projects/elegant-interiors.svg",
     featuredImage: "/projects/screenshots/the-coffee-box-home-featured.png",
+    featuredImageMobile: "/projects/screenshots/the-coffee-box-home-featured-mobile.png",
     portfolioScreenshot: "/projects/screenshots/the-coffee-box-home-desktop.png",
     featured: true,
     palette: { primary: "#1B4332", secondary: "#E8A87C", text: "#FFFFFF" },
@@ -178,6 +186,7 @@ export const projects: Project[] = [
     link: "https://www.hjexpress.sr/en",
     image: "/projects/hj-express.svg",
     featuredImage: "/projects/screenshots/hj-express-home-featured.png",
+    featuredImageMobile: "/projects/screenshots/hj-express-home-featured-mobile.png",
     portfolioScreenshot: "/projects/screenshots/hj-express-home-desktop.png",
     featured: true,
     palette: { primary: "#1E4A7A", secondary: "#5B9BD5", text: "#FFFFFF" },
@@ -490,6 +499,52 @@ export const projects: Project[] = [
     caseStudy: caseFromDescr(
       "Church and community site with events, ministry content, and engagement paths.",
       "Philadelphia Church of God"
+    ),
+  },
+  {
+    id: 25,
+    slug: "welink-crm",
+    title: "Welink CRM",
+    heading: "Real Estate, One Dashboard",
+    descr:
+      "Welink CRM gives real estate teams a mobile-first workspace to track listings, purchases, and client updates — with dashboards, filters, and WhatsApp-ready deal cards built for agents on the move.",
+    tags: ["Custom Software", "Mobile App", "CRM"],
+    portfolioCategory: "custom-software",
+    link: "#",
+    image: "/projects/helix-earth.svg",
+    portfolioFrame: "phone",
+    portfolioScreenshot: "/projects/screenshots/welink-crm-dashboard.png",
+    galleryImages: [
+      "/projects/screenshots/welink-crm-dashboard.png",
+      "/projects/screenshots/welink-crm-purchases.png",
+    ],
+    palette: { primary: "#E85D26", secondary: "#FDBA74", text: "#171717" },
+    caseStudy: caseFromDescr(
+      "Mobile CRM for real estate teams — object tracking, purchase pipelines, and field updates in one app.",
+      "Welink CRM"
+    ),
+  },
+  {
+    id: 26,
+    slug: "fitness-pro",
+    title: "Fitness Pro",
+    heading: "Gym Life In Your Pocket",
+    descr:
+      "Fitness Pro is a member app for Pro-Fitness — QR check-in at the door, class promos, notifications, and capacity insights so members stay engaged between visits.",
+    tags: ["Custom Software", "Mobile App", "Fitness"],
+    portfolioCategory: "custom-software",
+    link: "https://profitnessnv.sr/",
+    image: "/projects/helix-earth.svg",
+    portfolioFrame: "phone",
+    portfolioScreenshot: "/projects/screenshots/fitness-pro-home.png",
+    galleryImages: [
+      "/projects/screenshots/fitness-pro-home.png",
+      "/projects/screenshots/fitness-pro-checkin.png",
+    ],
+    palette: { primary: "#DC2626", secondary: "#FCA5A5", text: "#FFFFFF" },
+    caseStudy: caseFromDescr(
+      "Gym member portal with QR check-in, promos, and in-app notifications for Pro-Fitness.",
+      "Fitness Pro"
     ),
   },
 ];

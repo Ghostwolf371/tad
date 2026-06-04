@@ -135,31 +135,39 @@ export default function ProjectDetailView({ project }: { project: Project }) {
           <div className="mt-12 grid gap-5 sm:grid-cols-2">
             {gallery.map((src, i) => (
               <Reveal key={src} delay={i * 0.06}>
-                <div
-                  className={cn(
-                    "group relative overflow-hidden rounded-xl border border-swamp/10 bg-white shadow-[0_1px_0_rgba(0,30,28,0.06)]",
-                    i === 0 && gallery.length > 2 && "sm:col-span-2",
-                  )}
-                >
+                {project.portfolioFrame === "phone" ? (
+                  <ProjectBrowserFrame
+                    project={{ ...project, portfolioScreenshot: src }}
+                    aspectClassName="aspect-[16/10] sm:aspect-[16/9]"
+                    className="shadow-[0_1px_0_rgba(0,30,28,0.06)]"
+                  />
+                ) : (
                   <div
                     className={cn(
-                      "relative overflow-hidden bg-bone-50",
-                      i === 0 && gallery.length > 2 ? "aspect-[21/9]" : "aspect-[16/10]",
+                      "group relative overflow-hidden rounded-xl border border-swamp/10 bg-white shadow-[0_1px_0_rgba(0,30,28,0.06)]",
+                      i === 0 && gallery.length > 2 && "sm:col-span-2",
                     )}
                   >
-                    <Image
-                      src={src}
-                      alt=""
-                      fill
-                      className="object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-                      sizes={
-                        i === 0 && gallery.length > 2
-                          ? "(max-width: 1280px) 100vw, 1280px"
-                          : "(max-width: 768px) 100vw, 50vw"
-                      }
-                    />
+                    <div
+                      className={cn(
+                        "relative overflow-hidden bg-bone-50",
+                        i === 0 && gallery.length > 2 ? "aspect-[21/9]" : "aspect-[16/10]",
+                      )}
+                    >
+                      <Image
+                        src={src}
+                        alt=""
+                        fill
+                        className="object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+                        sizes={
+                          i === 0 && gallery.length > 2
+                            ? "(max-width: 1280px) 100vw, 1280px"
+                            : "(max-width: 768px) 100vw, 50vw"
+                        }
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
               </Reveal>
             ))}
           </div>

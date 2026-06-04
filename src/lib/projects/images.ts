@@ -1,7 +1,13 @@
 import type { Project } from "@/data/projects";
 
 /** Homepage featured-work cards (aspect crops differ from portfolio browser frames). */
-export function getProjectFeaturedImage(project: Project): string | undefined {
+export function getProjectFeaturedImage(
+  project: Project,
+  options?: { mobile?: boolean },
+): string | undefined {
+  if (options?.mobile && project.featuredImageMobile) {
+    return project.featuredImageMobile;
+  }
   return project.featuredImage;
 }
 
