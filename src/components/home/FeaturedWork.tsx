@@ -40,11 +40,11 @@ const CARD_SHELL: Record<FeaturedCardSize, string> = {
 };
 
 /**
- * Large: 16:9 on desktop — export 1920×1080.
+ * Large: 2:1 on desktop (shorter than 16:9) — export 1920×960 or 1920×1080 with top-weighted crop.
  * Small: taller 3:4 on desktop (1/3 column); export 1200×1600 or 1080×1440.
  */
 const CARD_ASPECT: Record<FeaturedCardSize, string> = {
-  large: "aspect-[4/3] sm:aspect-video",
+  large: "aspect-[4/3] sm:aspect-[2/1]",
   small: "aspect-[4/3] sm:aspect-[3/4]",
 };
 
