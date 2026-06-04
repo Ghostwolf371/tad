@@ -84,6 +84,7 @@ export default function ServicesSection() {
               as="h2"
               lines={["Services engineered", "for growth."]}
               accentLastWord
+              useDisplayFont
               delay={0.05}
               className="mt-5 text-4xl font-semibold leading-[1.05] tracking-normal text-swamp sm:text-5xl lg:text-6xl"
             />

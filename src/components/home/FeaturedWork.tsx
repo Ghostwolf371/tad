@@ -278,6 +278,7 @@ export default function FeaturedWork() {
             as="h2"
             lines={["Selected projects", "we are proud of."]}
             accentLastWord
+            useDisplayFont
             className="mt-4 text-3xl font-semibold leading-[1.03] tracking-normal text-white sm:mt-5 sm:text-4xl md:text-5xl lg:text-6xl"
           />
           <p className="mt-4 max-w-xl text-base leading-8 text-white/75 sm:mt-8 sm:text-lg">

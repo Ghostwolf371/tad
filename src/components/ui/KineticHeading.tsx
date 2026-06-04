@@ -12,6 +12,8 @@ type Props = {
   accentLastWord?: boolean;
   /** Wrap the last word of the last line in brand-gradient-text. Wins over accentLastWord. */
   gradientLastWord?: boolean;
+  /** Montserrat Alternates — homepage-scale display titles only (Hero/PageHero use font-display directly). */
+  useDisplayFont?: boolean;
   delay?: number;
   className?: string;
 };
@@ -34,6 +36,7 @@ export default function KineticHeading({
   trigger = "inView",
   accentLastWord = false,
   gradientLastWord = false,
+  useDisplayFont = false,
   delay = 0,
   className,
 }: Props) {
@@ -57,7 +60,7 @@ export default function KineticHeading({
     return line;
   };
 
-  const displayClass = cn("font-display", className);
+  const displayClass = cn(useDisplayFont && "font-display", className);
 
   if (reduceMotion) {
     return (
