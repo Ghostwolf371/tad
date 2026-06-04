@@ -72,6 +72,16 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} ${montserratAlternates.variable}`}
     >
+      <head>
+        {/* Decide BEFORE first paint whether the launch screen shows this session.
+            Prevents the launcher from flashing on refresh once it's been seen, and
+            hides page content from frame 1 for first-time visitors (no content flash). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(!sessionStorage.getItem('tad-launch-seen')){document.documentElement.classList.add('is-launching');}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-white text-swamp flex flex-col overflow-x-hidden">
         <DevServiceWorkerCleanup />
         <SmoothScroll />

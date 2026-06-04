@@ -494,12 +494,45 @@ html.lenis, html.lenis body {
     0 0 60px -10px rgba(0, 227, 87, 0.4);
 }
 
-/* ===== LAUNCH SCREEN — hold the page (and its entrance animations) until the intro reveals it ===== */
-body.is-launching {
+/* ===== LAUNCH SCREEN — hold the page (and its entrance animations) until the intro reveals it =====
+   Applied to <html> by a blocking inline script BEFORE first paint, so the page
+   content is hidden from frame 1 (no content flash) and there is no white flash
+   on refresh. Set on <html> (not <body>) because the script runs in <head>. */
+html.is-launching,
+html.is-launching body {
   overflow: hidden;
 }
-body.is-launching main {
+html.is-launching {
+  background: #04120d;
+}
+html.is-launching main {
   display: none;
+}
+
+/* Slowly panning brand gradient behind the launch aurora (Apple-like motion) */
+@keyframes launch-gradient-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.launch-gradient {
+  background: linear-gradient(
+    120deg,
+    #04120d 0%,
+    #073a26 22%,
+    #04221a 42%,
+    #0a4d32 62%,
+    #04120d 82%,
+    #073a26 100%
+  );
+  background-size: 240% 240%;
+  animation: launch-gradient-pan 16s ease-in-out infinite;
 }
 
 /* ===== COOKIE CONSENT ENTRANCE ===== */
@@ -1309,6 +1342,7 @@ input, textarea, select {
   .animate-orbit,
   .animate-breathe,
   .animate-scanline,
+  .launch-gradient,
   .skeleton-shimmer,
   .skeleton-bar-pulse {
     animation: none;

@@ -19,12 +19,14 @@ const BLOBS = [
 
 export default function LaunchScreen() {
   const reduceMotion = useReducedMotion();
-  const [show, setShow] = useState(true);
+  // Start hidden so the overlay never paints on a refresh once it's been seen
+  // (the inline script in layout already decided via the .is-launching class).
+  const [show, setShow] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // While launching: lock scroll AND hide the page content (via .is-launching),
-  // so the content's whileInView entrance animations don't play hidden behind
-  // the launcher — they fire only once the launcher reveals the page.
+  // Decide on mount: if this session already saw the launcher, stay hidden and
+  // clear the holding class. Otherwise show it and hold the page content until
+  // the intro reveals it (so entrance animations fire only on reveal).
   useEffect(() => {
     let seen = false;
     try {
@@ -33,14 +35,15 @@ export default function LaunchScreen() {
       /* ignore */
     }
     if (seen) {
-      setShow(false);
+      document.documentElement.classList.remove("is-launching");
       return;
     }
-    document.body.classList.add("is-launching");
+    setShow(true);
+    document.documentElement.classList.add("is-launching");
     const timer = window.setTimeout(enter, AUTO_ENTER_MS);
     return () => {
       window.clearTimeout(timer);
-      document.body.classList.remove("is-launching");
+      document.documentElement.classList.remove("is-launching");
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -53,7 +56,7 @@ export default function LaunchScreen() {
     }
     // Reveal the page first, then play the exit so the content's entrance
     // animations run as the launcher lifts away.
-    document.body.classList.remove("is-launching");
+    document.documentElement.classList.remove("is-launching");
     setShow(false);
   };
 
@@ -88,8 +91,8 @@ export default function LaunchScreen() {
       ctx.globalCompositeOperation = "lighter";
       const base = Math.min(w, h);
       for (const b of BLOBS) {
-        const cx = (b.x + Math.sin(t * b.sx + b.ph) * 0.12) * w;
-        const cy = (b.y + Math.cos(t * b.sy + b.ph) * 0.12) * h;
+        const cx = (b.x + Math.sin(t * b.sx + b.ph) * 0.2) * w;
+        const cy = (b.y + Math.cos(t * b.sy + b.ph) * 0.2) * h;
         const rad = b.r * base;
         const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
         g.addColorStop(0, `rgba(${b.color},0.46)`);
@@ -138,6 +141,8 @@ export default function LaunchScreen() {
           role="dialog"
           aria-label="Welcome"
         >
+          {/* Slowly panning brand gradient base (dynamic, Apple-like) */}
+          <div className="launch-gradient pointer-events-none absolute inset-0" aria-hidden />
           {/* Aurora canvas (blurred for a soft, flowing look) */}
           <canvas
             ref={canvasRef}
@@ -162,7 +167,7 @@ export default function LaunchScreen() {
                 alt="tad."
                 width={4498}
                 height={1534}
-                className="h-16 w-auto sm:h-20"
+                className="h-12 w-auto sm:h-14"
                 priority
                 unoptimized
               />
@@ -170,7 +175,7 @@ export default function LaunchScreen() {
 
             <motion.span
               {...fade(0.2)}
-              className="mt-12 inline-flex items-center font-mono text-xs font-medium uppercase tracking-[0.42em] text-white/55"
+              className="mt-10 inline-flex items-center font-mono text-xs font-medium uppercase tracking-[0.42em] text-white/55"
             >
               Our Website
             </motion.span>
