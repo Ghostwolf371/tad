@@ -40,12 +40,20 @@ const CARD_SHELL: Record<FeaturedCardSize, string> = {
 };
 
 /**
- * Large: 2:1 on desktop (shorter than 16:9) — export 1920×960 or 1920×1080 with top-weighted crop.
+ * Large: 2:1 at all breakpoints. Export promos at 2400×1200 (or 1920×960 min) for sharp retina.
  * Small: taller 3:4 on desktop (1/3 column); export 1200×1600 or 1080×1440.
  */
 const CARD_ASPECT: Record<FeaturedCardSize, string> = {
-  large: "aspect-[4/3] sm:aspect-[2/1]",
+  large: "aspect-[2/1]",
   small: "aspect-[4/3] sm:aspect-[3/4]",
+};
+
+/** Large: full image, no crop (export 1200×600, 2:1). Small cards still cover-crop. */
+const CARD_IMAGE_CLASS: Record<FeaturedCardSize, string> = {
+  large:
+    "media-fill-contain object-contain object-center transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:brightness-[0.92]",
+  small:
+    "media-fill-cover object-cover object-top transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] group-hover:brightness-[0.92]",
 };
 
 function projectBrandVars(palette: Project["palette"]): CSSProperties {
@@ -120,14 +128,20 @@ function FeaturedMediaCard({
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-primary)]",
       )}
     >
-      <div className={cn("relative w-full overflow-hidden", CARD_ASPECT[size])}>
+      <div className={cn("relative isolate w-full overflow-hidden", CARD_ASPECT[size])}>
         <Image
           src={project.homepageScreenshot}
           alt={project.title}
           fill
-          sizes={isLarge ? "100vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"}
+          unoptimized={isLarge}
+          sizes={
+            isLarge
+              ? "(min-width: 1536px) 1280px, (min-width: 1024px) 90vw, 100vw"
+              : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          }
+          quality={isLarge ? 92 : 75}
           priority={index < 5}
-          className="object-cover object-top transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] group-hover:brightness-[0.92]"
+          className={CARD_IMAGE_CLASS[size]}
         />
 
         <div

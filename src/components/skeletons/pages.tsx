@@ -77,12 +77,12 @@ export function HomePageSkeleton() {
           <div className="flex flex-col gap-8 sm:gap-10 lg:gap-12">
             <SkeletonBar
               tone="dark"
-              className="aspect-[4/3] w-full rounded-[1.75rem] sm:aspect-[2/1] sm:rounded-[2rem]"
+              className="aspect-[2/1] w-full rounded-[1.75rem] sm:rounded-[2rem]"
               animated={false}
             />
             <SkeletonBar
               tone="dark"
-              className="aspect-[4/3] w-full rounded-[1.75rem] sm:aspect-[2/1] sm:rounded-[2rem]"
+              className="aspect-[2/1] w-full rounded-[1.75rem] sm:rounded-[2rem]"
               animated={false}
             />
           </div>

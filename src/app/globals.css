@@ -108,6 +108,19 @@ html.lenis, html.lenis body {
   object-position: center;
 }
 
+/* Next/Image fill: beat preflight `height: auto` so media fills aspect-ratio frames */
+.media-fill-cover {
+  height: 100% !important;
+  width: 100% !important;
+  object-fit: cover;
+}
+
+.media-fill-contain {
+  height: 100% !important;
+  width: 100% !important;
+  object-fit: contain;
+}
+
 .logo-marquee-item--ink {
   filter: brightness(0);
   opacity: 0.88;
