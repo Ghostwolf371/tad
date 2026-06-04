@@ -77,12 +77,12 @@ export function HomePageSkeleton() {
           <div className="flex flex-col gap-8 sm:gap-10 lg:gap-12">
             <SkeletonBar
               tone="dark"
-              className="aspect-[4/3] w-full rounded-[1.75rem] sm:aspect-[21/9] sm:rounded-[2rem]"
+              className="aspect-[4/3] w-full rounded-[1.75rem] sm:aspect-video sm:rounded-[2rem]"
               animated={false}
             />
             <SkeletonBar
               tone="dark"
-              className="aspect-[4/3] w-full rounded-[1.75rem] sm:aspect-[21/9] sm:rounded-[2rem]"
+              className="aspect-[4/3] w-full rounded-[1.75rem] sm:aspect-video sm:rounded-[2rem]"
               animated={false}
             />
           </div>
@@ -91,7 +91,7 @@ export function HomePageSkeleton() {
               <SkeletonBar
                 key={i}
                 tone="dark"
-                className="aspect-[4/3] w-full rounded-[1.25rem] sm:aspect-[725/1024] sm:rounded-[1.5rem]"
+                className="aspect-[4/3] w-full rounded-[1.25rem] sm:aspect-[3/4] sm:rounded-[1.5rem]"
                 animated={false}
               />
             ))}

@@ -39,12 +39,13 @@ const CARD_SHELL: Record<FeaturedCardSize, string> = {
   small: "rounded-[1.25rem] sm:rounded-[1.5rem]",
 };
 
+/**
+ * Large: 16:9 on desktop — export 1920×1080.
+ * Small: taller 3:4 on desktop (1/3 column); export 1200×1600 or 1080×1440.
+ */
 const CARD_ASPECT: Record<FeaturedCardSize, string> = {
-  // Mobile: one shared ratio so every card is the same height; desktop keeps
-  // its tailored landscape / portrait frames.
-  large: "aspect-[4/3] sm:aspect-[21/9]",
-  /** Shared frame for portrait homepage captures (725×1024 reference) */
-  small: "aspect-[4/3] sm:aspect-[725/1024]",
+  large: "aspect-[4/3] sm:aspect-video",
+  small: "aspect-[4/3] sm:aspect-[3/4]",
 };
 
 function projectBrandVars(palette: Project["palette"]): CSSProperties {
@@ -97,7 +98,6 @@ function FeaturedMediaCard({
   size: FeaturedCardSize;
 }) {
   const isLarge = size === "large";
-  const fitContain = !isLarge;
   const displayTags = project.tags.slice(0, isLarge ? 3 : 1);
   const { primary } = project.palette;
   const brandVars = projectBrandVars(project.palette);
@@ -120,25 +120,14 @@ function FeaturedMediaCard({
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-primary)]",
       )}
     >
-      <div
-        className={cn(
-          "relative w-full overflow-hidden",
-          CARD_ASPECT[size],
-          fitContain && "bg-[color-mix(in_srgb,var(--brand-primary)_28%,#0c1412)]",
-        )}
-      >
+      <div className={cn("relative w-full overflow-hidden", CARD_ASPECT[size])}>
         <Image
           src={project.homepageScreenshot}
           alt={project.title}
           fill
           sizes={isLarge ? "100vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"}
           priority={index < 5}
-          className={cn(
-            "transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:brightness-[0.92]",
-            fitContain
-              ? "object-contain object-top group-hover:scale-[1.02]"
-              : "object-cover object-top group-hover:scale-[1.04]",
-          )}
+          className="object-cover object-top transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] group-hover:brightness-[0.92]"
         />
 
         <div
@@ -314,9 +303,8 @@ export default function FeaturedWork() {
               key={project.slug}
               delay={0.2 + i * 0.08}
               className={cn(
-                "mx-auto w-full max-w-[min(100%,22.5rem)] sm:max-w-none",
-                i === 2 &&
-                  "sm:col-span-2 sm:max-w-[min(100%,22.5rem)] lg:col-span-1 lg:max-w-none",
+                "w-full",
+                i === 2 && "sm:col-span-2 lg:col-span-1",
               )}
             >
               <Parallax speed={i % 2 === 0 ? 0.08 : 0.16}>
