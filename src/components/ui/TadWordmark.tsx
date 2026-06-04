@@ -23,7 +23,7 @@ type TadWordmarkProps = {
   showDot?: boolean;
 };
 
-/** Lowercase "tad." wordmark — always uses brand geometric type */
+/** Lowercase "tad." wordmark — Montserrat geometric type + brand dot (#13E258) */
 export default function TadWordmark({
   className,
   size = "md",
@@ -33,7 +33,7 @@ export default function TadWordmark({
   return (
     <span
       className={cn(
-        "font-sans font-bold lowercase leading-none tracking-normal",
+        "font-brand font-bold lowercase leading-none tracking-tight",
         sizeClasses[size],
         theme === "dark" ? "text-white" : "text-swamp",
         className
@@ -42,10 +42,10 @@ export default function TadWordmark({
       tad
       {showDot && (
         <span
+          aria-hidden
           className={cn(
-            "inline-block rounded-full align-middle",
-            dotSizes[size],
-            theme === "dark" ? "bg-malachite" : "bg-malachite-700"
+            "ml-0.5 inline-block rounded-full bg-brand-dot align-middle",
+            dotSizes[size]
           )}
         />
       )}

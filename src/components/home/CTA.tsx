@@ -122,7 +122,7 @@ export default function CTA({ tone = "white", previousTone }: CTAProps) {
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </ButtonLink>
                 <ButtonLink
-                  href="tel:+5978925686"
+                  href="/book"
                   size="lg"
                   variant={onGreenBand ? "subtle" : "outline"}
                   className={cn(

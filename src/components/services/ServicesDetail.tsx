@@ -79,7 +79,11 @@ export default function ServicesDetail({ sectionIndex = 0 }: ServicesDetailProps
                   >
                     <Icon className="h-5 w-5" strokeWidth={1.75} />
                   </span>
-                  <span className={cn("label-tech", greenCard ? "text-malachite" : "text-malachite-700")}>
+                  <span
+                    className={cn(
+                      greenCard ? "label-tech-on-dark text-malachite" : "label-tech text-malachite-700",
+                    )}
+                  >
                     {String(i + 1).padStart(2, "0")} · {service.tagline.toUpperCase()}
                   </span>
                 </div>

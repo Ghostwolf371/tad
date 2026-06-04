@@ -14,6 +14,7 @@
   --color-swamp-900: #000504;
 
   --color-malachite: #00e357;
+  --color-brand-dot: #13e258;
   --color-section-mint: #f4f7f6;
   --color-section-green: #001715;
   --color-section-dark-green: #001715;
@@ -350,6 +351,80 @@ html.lenis, html.lenis body {
     linear-gradient(to right, rgba(0, 30, 28, 0.045) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 30, 28, 0.045) 1px, transparent 1px);
   background-size: 56px 56px;
+}
+
+/* Package card headers — decorative pattern (replaces index watermark) */
+.package-header-decor {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.package-header-decor__dots {
+  position: absolute;
+  right: -8%;
+  top: -12%;
+  width: 68%;
+  height: 92%;
+  background-image: radial-gradient(
+    circle at 2px 2px,
+    var(--package-dot, rgba(0, 200, 83, 0.14)) 1.5px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 88% 82% at 92% 8%, #000 18%, transparent 72%);
+}
+
+.package-header-decor__arcs {
+  position: absolute;
+  right: -1.5rem;
+  top: -1.5rem;
+  width: 11rem;
+  height: 11rem;
+  color: var(--package-arc, rgba(0, 227, 87, 0.14));
+}
+
+.package-header-decor__mesh {
+  position: absolute;
+  inset: 0;
+  opacity: 0.65;
+  background-image:
+    linear-gradient(
+      118deg,
+      transparent 48%,
+      var(--package-mesh-a, rgba(0, 227, 87, 0.05)) 48%,
+      var(--package-mesh-a, rgba(0, 227, 87, 0.05)) 49.2%,
+      transparent 49.2%
+    ),
+    linear-gradient(
+      152deg,
+      transparent 62%,
+      var(--package-mesh-b, rgba(0, 30, 28, 0.035)) 62%,
+      var(--package-mesh-b, rgba(0, 30, 28, 0.035)) 63.2%,
+      transparent 63.2%
+    );
+}
+
+.package-header-decor--launch {
+  --package-dot: rgba(0, 200, 83, 0.11);
+  --package-arc: rgba(0, 200, 83, 0.12);
+  --package-mesh-a: rgba(0, 200, 83, 0.045);
+  --package-mesh-b: rgba(0, 30, 28, 0.03);
+}
+
+.package-header-decor--scale {
+  --package-dot: rgba(0, 227, 87, 0.2);
+  --package-arc: rgba(0, 227, 87, 0.22);
+  --package-mesh-a: rgba(0, 227, 87, 0.08);
+  --package-mesh-b: rgba(0, 30, 28, 0.04);
+}
+
+.package-header-decor--custom {
+  --package-dot: rgba(0, 30, 28, 0.07);
+  --package-arc: rgba(0, 30, 28, 0.1);
+  --package-mesh-a: rgba(0, 30, 28, 0.04);
+  --package-mesh-b: rgba(0, 30, 28, 0.06);
 }
 
 /* Green marketing bands — grid + center glow (dark-green & vivid mint) */

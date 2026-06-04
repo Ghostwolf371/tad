@@ -100,7 +100,7 @@ function Pill({ client }: { client: ClientLogo }) {
   return (
     <motion.div
       whileHover={{ scale: 1.02, y: -1 }}
-      className="group relative isolate flex shrink-0 cursor-pointer items-center gap-3 rounded-full border border-white/20 bg-white/[0.08] px-5 py-3 shadow-[0_8px_26px_rgba(0,0,0,0.22)] transition-colors duration-300 hover:border-white/30 hover:bg-white/[0.14] hover:shadow-glow-green"
+      className="group relative isolate flex shrink-0 cursor-pointer items-center gap-3 rounded-full border border-swamp/10 bg-white px-5 py-3 shadow-[0_8px_26px_rgba(0,30,28,0.08)] transition-colors duration-300 hover:border-malachite/25 hover:bg-white hover:shadow-glow-green"
       style={
         {
           "--hover-glow": theme.glow,
@@ -113,8 +113,8 @@ function Pill({ client }: { client: ClientLogo }) {
         className={cn(
           "relative z-10 flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border p-1.5",
           pill?.darkBg
-            ? "border-white/15 bg-swamp/70"
-            : "border-white/20 bg-white/20",
+            ? "border-swamp/12 bg-swamp/90"
+            : "border-swamp/10 bg-bone-50",
         )}
       >
         <ClientLogoMark
@@ -125,7 +125,7 @@ function Pill({ client }: { client: ClientLogo }) {
         />
       </span>
 
-      <span className="relative z-10 whitespace-nowrap text-base font-medium text-white/88 transition-colors group-hover:text-white">
+      <span className="relative z-10 whitespace-nowrap text-base font-medium text-swamp/85 transition-colors group-hover:text-swamp">
         {client.name}
       </span>
       <span
@@ -170,18 +170,12 @@ export default function TrustedBy() {
   const bottomRow = clientLogos.slice(6, 12);
 
   return (
-    <HomeSection
-      tone="dark-green"
-      backgroundClassName="bg-canvas-green"
-      edgeTop
-      edgeBottom
-      py={HOME_SECTION_PY_AFTER_DARK}
-    >
+    <HomeSection tone="white" edgeTop py={HOME_SECTION_PY_AFTER_DARK}>
       <Reveal>
         <div className="mx-auto mb-16 max-w-2xl text-center">
           <div className="flex items-center justify-center gap-3">
-            <span className="h-px w-10 bg-malachite" aria-hidden />
-            <span className="label-tech-on-dark">
+            <span className="h-px w-10 bg-malachite-700" aria-hidden />
+            <span className="label-tech text-malachite-700">
               TRUSTED BY AWESOME CLIENTS
             </span>
           </div>
@@ -189,15 +183,10 @@ export default function TrustedBy() {
             as="h2"
             lines={["Brands that trust us to build their digital future"]}
             accentLastWord
-            className="mt-6 text-3xl font-semibold leading-[1.08] tracking-normal text-white sm:text-4xl lg:text-5xl"
+            className="mt-6 text-3xl font-semibold leading-[1.08] tracking-normal text-swamp sm:text-4xl lg:text-5xl"
           />
         </div>
       </Reveal>
-
-      <span
-        aria-hidden
-        className="glow-bloom pointer-events-none absolute left-1/2 top-1/2 z-0 h-[420px] w-[820px] max-w-[120%] -translate-x-1/2 -translate-y-1/2 opacity-70"
-      />
 
       <div className="marquee-edge-mask relative z-[1] overflow-hidden py-2">
         <div className="space-y-5">

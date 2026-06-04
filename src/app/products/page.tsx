@@ -1,6 +1,5 @@
 import PageHero from "@/components/layout/PageHero";
 import ProductsGrid from "@/components/products/ProductsGrid";
-import ProductRoadmap from "@/components/products/ProductRoadmap";
 import PageCTA from "@/components/layout/PageCTA";
 import { productsPageContent } from "@/lib/content/products-page";
 
@@ -22,8 +21,7 @@ export default function ProductsPage() {
         subtitle={hero.subtitle}
       />
       <ProductsGrid sectionIndex={0} />
-      <ProductRoadmap sectionIndex={1} />
-      <PageCTA afterSectionIndex={1} lastSectionTone="dark-green" />
+      <PageCTA afterSectionIndex={0} lastSectionTone="white" tone="white" />
     </>
   );
 }

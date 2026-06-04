@@ -75,30 +75,14 @@ export const aboutContent = {
     intro:
       "The core team behind TAD — the people you'll actually talk to on your project.",
     members: [
-      {
-        name: "Tariq",
-        role: "Founder & Lead Engineer",
-        bio: "Leads architecture and delivery across web, mobile, and platform work.",
-        image: "/team/member-1.png",
-      },
-      {
-        name: "Alex",
-        role: "Head of Design",
-        bio: "Owns brand, UI systems, and the visual language of every product we ship.",
-        image: "/team/member-2.webp",
-      },
-      {
-        name: "Sarah",
-        role: "Project Manager",
-        bio: "Keeps roadmaps clear, stakeholders aligned, and launches on schedule.",
-        image: "/team/member-3.jpeg",
-      },
-      {
-        name: "Jordan",
-        role: "Marketing Strategist",
-        bio: "Connects brand, campaigns, and analytics so growth stays measurable after launch.",
-        image: "/team/member-4.webp",
-      },
+      { name: "Akash Prahladsingh", role: "CEO" },
+      { name: "Surekha Pitai", role: "HRM" },
+      { name: "Arvan Jagroep", role: "Project manager" },
+      { name: "Inaiksi Deochand", role: "Marketing manager" },
+      { name: "Justin Mandikarijo", role: "Full stack developer" },
+      { name: "Rochan Ragghu", role: "Full stack developer" },
+      { name: "Terrence Linger", role: "Full stack developer" },
+      { name: "Azaad Ramkisoen", role: "Designer" },
     ],
   },
   storyImage: "/about/tad-group-trade-show.jpg",

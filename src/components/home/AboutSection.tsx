@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import TadWordmark from "@/components/ui/TadWordmark";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const VIEWPORT = { once: true, amount: 0.08, margin: "0px 0px -48px 0px" } as const;
@@ -18,13 +19,7 @@ export default function AboutSection() {
           transition={{ duration: 0.85, ease: EASE }}
         >
           <div className="text-center lg:text-left">
-            <span className="font-sans text-7xl font-bold lowercase tracking-normal text-swamp sm:text-8xl lg:text-9xl">
-              tad
-              <span
-                aria-hidden
-                className="inline-block h-5 w-5 rounded-full bg-malachite-700 align-middle sm:h-6 sm:w-6"
-              />
-            </span>
+            <TadWordmark size="hero" />
           </div>
         </motion.div>
 

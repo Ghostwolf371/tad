@@ -3,6 +3,10 @@
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "@/data/projects";
+import {
+  PORTFOLIO_DELIVERED_COUNT,
+  portfolioPageContent,
+} from "@/lib/content/portfolio-page";
 import GreenBandStatRibbon from "@/components/layout/GreenBandStatRibbon";
 import { cn } from "@/lib/utils";
 
@@ -27,12 +31,14 @@ const DONUT_GAP = 2.5;
 
 function PortfolioMixDonut({
   segments,
-  total,
+  segmentTotal,
+  centerValue,
   activeLabel,
   onHover,
 }: {
   segments: MixSegment[];
-  total: number;
+  segmentTotal: number;
+  centerValue: string;
   activeLabel: string | null;
   onHover: (label: string | null) => void;
 }) {
@@ -57,7 +63,7 @@ function PortfolioMixDonut({
           strokeWidth={DONUT_STROKE}
         />
         {segments.map((seg) => {
-          const length = (seg.value / total) * DONUT_C;
+          const length = (seg.value / segmentTotal) * DONUT_C;
           const dash = Math.max(0, length - DONUT_GAP);
           const gap = DONUT_C - dash;
           const isActive = !activeLabel || activeLabel === seg.label;
@@ -105,8 +111,10 @@ function PortfolioMixDonut({
             transition={{ duration: 0.2 }}
             className="px-4"
           >
-            <p className="label-tech-on-dark text-malachite">Portfolio mix</p>
-            <p className="mt-1 text-3xl font-semibold tabular-nums text-white">{total}</p>
+            <p className="label-tech-on-dark text-malachite">
+              {portfolioPageContent.stats.mixTitle}
+            </p>
+            <p className="mt-1 text-3xl font-semibold tabular-nums text-white">{centerValue}</p>
             <p className="mt-2 text-sm font-medium text-white">{active?.label}</p>
             <p className="mt-0.5 font-mono text-xs text-white/60">
               {active?.value} · {active?.pct}%
@@ -130,8 +138,9 @@ function getIndustryRows(): IndustryRow[] {
 }
 
 export default function IndustryChart() {
+  const { stats } = portfolioPageContent;
   const rows = useMemo(() => getIndustryRows(), []);
-  const totalProjects = projects.length;
+  const featuredCount = projects.length;
   const topSector = rows[0];
   const [activeLabel, setActiveLabel] = useState<string | null>(null);
 
@@ -145,18 +154,18 @@ export default function IndustryChart() {
     return visible.map((row, i) => ({
       ...row,
       color: SEGMENT_COLORS[i % SEGMENT_COLORS.length],
-      pct: Math.round((row.value / totalProjects) * 100),
+      pct: Math.round((row.value / featuredCount) * 100),
     }));
-  }, [displayRows, otherCount, totalProjects]);
+  }, [displayRows, otherCount, featuredCount]);
 
   return (
     <div className="mt-8 space-y-5 sm:mt-12 sm:space-y-6">
       <GreenBandStatRibbon
         stats={[
           {
-            label: "Delivered",
-            value: String(totalProjects),
-            hint: "Projects shipped across sectors",
+            label: stats.deliveredLabel,
+            value: PORTFOLIO_DELIVERED_COUNT,
+            hint: stats.deliveredHint,
           },
           {
             label: "Industries",
@@ -182,19 +191,17 @@ export default function IndustryChart() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col rounded-2xl border border-white/12 bg-white/[0.06] p-6 backdrop-blur-sm sm:p-8 lg:col-span-5"
         >
-          <p className="label-tech-on-dark text-white/60">Portfolio mix</p>
+          <p className="label-tech-on-dark text-white/60">{stats.mixTitle}</p>
           <p className="mt-3 text-2xl font-semibold leading-tight text-white">
-            Where client work clusters
+            {stats.mixSubtitle}
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-white/65">
-            Hover a segment or sector row to highlight share of the {totalProjects} projects we&apos;ve
-            shipped.
-          </p>
+          <p className="mt-2 text-sm leading-relaxed text-white/65">{stats.mixDescription}</p>
 
           <div className="mt-8 flex justify-center py-2">
             <PortfolioMixDonut
               segments={mixSegments}
-              total={totalProjects}
+              segmentTotal={featuredCount}
+              centerValue={PORTFOLIO_DELIVERED_COUNT}
               activeLabel={activeLabel}
               onHover={setActiveLabel}
             />
@@ -243,7 +250,7 @@ export default function IndustryChart() {
 
           <ol className="divide-y divide-white/10">
             {displayRows.map((row, i) => {
-              const pct = Math.round((row.value / totalProjects) * 100);
+              const pct = Math.round((row.value / featuredCount) * 100);
               const width = Math.max(6, Math.round((row.value / maxValue) * 100));
               const isActive = activeLabel === row.label || (!activeLabel && i === 0);
 

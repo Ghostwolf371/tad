@@ -2,8 +2,6 @@ import PageHero from "@/components/layout/PageHero";
 import PageSection from "@/components/layout/PageSection";
 import HomeSectionHeader from "@/components/home/HomeSectionHeader";
 import BookingWidget from "@/components/contact/BookingWidget";
-import CountdownTimer from "@/components/book/CountdownTimer";
-import PageCTA from "@/components/layout/PageCTA";
 import { bookContent } from "@/lib/content/book";
 import { Zap, Target, ArrowRight } from "lucide-react";
 
@@ -63,10 +61,6 @@ export default function BookPage() {
             })}
           </div>
         </div>
-
-        <div className="mt-10 flex justify-center">
-          <CountdownTimer />
-        </div>
       </PageSection>
 
       <PageSection
@@ -79,7 +73,6 @@ export default function BookPage() {
       >
         <BookingWidget />
       </PageSection>
-      <PageCTA afterSectionIndex={1} lastSectionTone="dark-green" tone="white" />
     </>
   );
 }

@@ -7,7 +7,7 @@ import PageSection from "@/components/layout/PageSection";
 import { PAGE_SECTION_PY } from "@/lib/theme/section-spacing";
 import HomeSectionHeader from "@/components/home/HomeSectionHeader";
 import {
-  greenBandChipClassName,
+  greenBandDeliverableClassName,
   greenBandIconWellClassName,
   greenBandPanelCardClassName,
 } from "@/lib/theme/green-band-surfaces";
@@ -23,7 +23,6 @@ function ProcessStepCard({
   index: number;
 }) {
   const Icon = STEP_ICONS[index] ?? Compass;
-  const featured = index === 0;
 
   return (
     <motion.article
@@ -32,28 +31,45 @@ function ProcessStepCard({
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
-        greenBandPanelCardClassName("group relative flex h-full flex-col", { featured }),
+        greenBandPanelCardClassName(
+          "group relative flex h-full flex-col overflow-hidden transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-malachite/35 hover:bg-white/10 hover:shadow-[0_20px_40px_rgba(0,0,0,0.35)]",
+        ),
       )}
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute -right-1 -top-2 font-mono text-5xl font-bold leading-none text-white/[0.06] lg:text-6xl"
+        className="pointer-events-none absolute right-4 top-4 z-0 font-mono text-6xl font-bold leading-none text-white/[0.06] sm:text-7xl"
       >
         {step.when}
       </span>
 
-      <div className="relative flex items-start justify-between gap-3">
-        <div className={greenBandIconWellClassName(featured)}>
+      <div className="relative flex items-center gap-3">
+        <div className={greenBandIconWellClassName()}>
           <Icon className="h-5 w-5" strokeWidth={1.75} />
         </div>
-        <span className={greenBandChipClassName}>{step.deliverable}</span>
+        <div className="flex min-w-0 items-center gap-3">
+          <span className="h-px w-8 shrink-0 bg-malachite" aria-hidden />
+          <span className="label-tech-on-dark text-malachite">{step.when}</span>
+        </div>
       </div>
 
-      <p className="label-tech-on-dark relative mt-5 text-malachite">Step {step.when}</p>
-      <h3 className="relative mt-2 text-lg font-semibold leading-snug tracking-normal text-white xl:text-xl">
+      <h3 className="relative mt-5 text-lg font-semibold leading-snug tracking-normal text-white sm:mt-6 xl:text-xl">
         {step.title}
       </h3>
       <p className="relative mt-3 flex-1 text-sm leading-relaxed text-white/75">{step.text}</p>
+
+      <div className="relative mt-5 sm:mt-6">
+        <span className={greenBandDeliverableClassName}>{step.deliverable}</span>
+      </div>
+
+      <div
+        aria-hidden
+        className={cn(
+          "relative mt-5 h-px w-full sm:mt-6",
+          "bg-gradient-to-r from-malachite/35 via-white/10 to-transparent",
+          "transition-opacity duration-300 group-hover:from-malachite/55",
+        )}
+      />
     </motion.article>
   );
 }
@@ -74,23 +90,23 @@ export default function ServicesProcess({ sectionIndex = 1 }: ServicesProcessPro
       py={PAGE_SECTION_PY}
       ambient="dark-band"
     >
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-end lg:gap-14">
-        <HomeSectionHeader
-          variant="dark"
-          eyebrow={process.eyebrow}
-          title={process.title}
-          className="max-w-none"
-          titleClassName="leading-[1.04]"
-          descriptionClassName="max-w-xl"
-        />
-        <p className="text-sm leading-relaxed text-white/75 lg:pb-2 lg:text-right lg:text-base">
-          {process.description}
-        </p>
-      </div>
+      <HomeSectionHeader
+        variant="dark"
+        eyebrow={process.eyebrow}
+        title={process.title}
+        description={process.description}
+        className="max-w-3xl"
+        titleClassName="leading-[1.04]"
+        descriptionClassName="mt-4 max-w-2xl sm:mt-5"
+      />
 
-      <ol className="mt-12 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+      <ol className="relative mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-[4.5rem] hidden h-px bg-gradient-to-r from-transparent via-malachite/25 to-transparent lg:block"
+        />
         {SERVICES_PROCESS_STEPS.map((step, i) => (
-          <li key={step.title} className="min-w-0">
+          <li key={step.title} className="relative min-w-0">
             <ProcessStepCard step={step} index={i} />
           </li>
         ))}

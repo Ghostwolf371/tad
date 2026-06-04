@@ -92,7 +92,8 @@ export default function HomeSection({
       data-home-tone={tone}
       data-home-text={textVariant}
       className={cn(
-        "relative isolate overflow-hidden",
+        "relative isolate",
+        tone === "white" ? "overflow-x-clip" : "overflow-hidden",
         HOME_SECTION_TEXT_CLASS[tone],
         py,
         className,

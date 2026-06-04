@@ -3,7 +3,6 @@ import PageSection from "@/components/layout/PageSection";
 import ContactMainSection from "@/components/contact/ContactMainSection";
 import ContactMapSection from "@/components/contact/ContactMapSection";
 import FAQSection from "@/components/contact/FAQSection";
-import PageCTA from "@/components/layout/PageCTA";
 import { contactContent } from "@/lib/content/contact";
 import { PAGE_SECTION_PY } from "@/lib/theme/section-spacing";
 
@@ -44,7 +43,6 @@ export default function ContactPage() {
         <ContactMapSection />
       </PageSection>
       <FAQSection sectionIndex={2} tone="white" previousTone="light-green" />
-      <PageCTA afterSectionIndex={2} lastSectionTone="white" tone="white" />
     </>
   );
 }

@@ -69,16 +69,22 @@ const PRESETS: Record<SectionAmbientPreset, AmbientOrb[]> = {
       className: "left-[-6%] bottom-[10%] h-[50%] w-[38%]",
     },
   ],
-  /** White section — diagonal: top-left + bottom-right (marquee sits in the middle) */
+  /** White section — soft inset washes (no negative offsets; avoids hard clip at edges) */
   "trusted-by": [
     {
       variant: "hero-green",
-      className: "left-[-12%] top-[2%] h-[48%] w-[46%]",
-      opacity: 0.55,
+      className: "left-[6%] top-[14%] h-[min(28rem,58%)] w-[min(32rem,62%)]",
+      opacity: 0.32,
     },
     {
       variant: "hero-malachite",
-      className: "right-[-10%] bottom-[-22%] h-[68%] w-[50%]",
+      className: "right-[6%] bottom-[10%] h-[min(26rem,52%)] w-[min(30rem,58%)]",
+    },
+    {
+      variant: "hero-white",
+      className:
+        "left-1/2 top-1/2 h-[min(36rem,88%)] w-[min(42rem,92%)] -translate-x-1/2 -translate-y-1/2",
+      opacity: 0.18,
     },
   ],
   /** Dark-green band — minimal glow, no white orbs */
@@ -182,7 +188,8 @@ export default function SectionAmbient({ preset, className }: SectionAmbientProp
   return (
     <div
       className={cn(
-        "pointer-events-none absolute inset-0 z-[1] overflow-hidden",
+        "pointer-events-none absolute inset-0 z-[1]",
+        preset === "trusted-by" ? "overflow-visible" : "overflow-hidden",
         className
       )}
       aria-hidden

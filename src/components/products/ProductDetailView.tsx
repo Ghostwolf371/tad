@@ -16,7 +16,6 @@ import {
   PRODUCT_MOCKUP_VARIANT,
 } from "@/components/products/product-visuals";
 import { ButtonLink } from "@/components/ui/Button";
-import PageCTA from "@/components/layout/PageCTA";
 import { heroTitleLines } from "@/lib/hero-title-lines";
 import {
   greenBandPanelCardClassName,
@@ -46,7 +45,6 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   } as CSSProperties;
 
   const showNext = next && next.slug !== product.slug;
-  const lastSectionIndex = showNext ? 3 : 2;
 
   return (
     <div style={accentVars}>
@@ -130,7 +128,11 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               >
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </span>
-              <span className={cn("label-tech", greenCard ? "text-malachite" : "text-malachite-700")}>
+              <span
+                className={cn(
+                  greenCard ? "label-tech-on-dark text-malachite" : "label-tech text-malachite-700",
+                )}
+              >
                 {label.toUpperCase()}
               </span>
             </div>
@@ -254,12 +256,6 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
           </div>
         </PageSection>
       )}
-
-      <PageCTA
-        afterSectionIndex={lastSectionIndex}
-        lastSectionTone={showNext ? "white" : "dark-green"}
-        tone="white"
-      />
     </div>
   );
 }

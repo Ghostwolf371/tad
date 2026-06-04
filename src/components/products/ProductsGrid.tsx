@@ -6,7 +6,7 @@ import { products } from "@/data/products";
 import PageSection from "@/components/layout/PageSection";
 import { PAGE_SECTION_PY } from "@/lib/theme/section-spacing";
 import HomeSectionHeader from "@/components/home/HomeSectionHeader";
-import ProductMockup from "@/components/sections/ProductMockup";
+import ProductMockup, { PRODUCT_MOCKUP_HEIGHT } from "@/components/sections/ProductMockup";
 import {
   PRODUCT_ICONS,
   PRODUCT_LABELS,
@@ -15,10 +15,30 @@ import {
 import { productsPageContent } from "@/lib/content/products-page";
 import { surfaceCardClassName } from "@/lib/theme/surfaces";
 import { cn } from "@/lib/utils";
+import type { Product } from "@/data/products";
 
 type ProductsGridProps = {
   sectionIndex?: number;
 };
+
+function productMockupBandStyle(product: Product, greenCard: boolean) {
+  if (greenCard) {
+    return {
+      backgroundImage: `radial-gradient(ellipse 90% 70% at 12% 0%, ${product.palette.primary}44 0%, transparent 52%), linear-gradient(160deg, #0c1814 0%, #0a1410 42%, #0f1f18 100%)`,
+    };
+  }
+  return {
+    backgroundImage: `radial-gradient(ellipse 85% 65% at 20% 0%, ${product.palette.primary}22 0%, transparent 55%), linear-gradient(165deg, #f4f7f6 0%, #eef5f1 48%, #ffffff 100%)`,
+  };
+}
+
+function isGreenProductCard(productId: string) {
+  return (
+    productId === "hr-plus" ||
+    productId === "invoice-plus" ||
+    productId === "whatsapp-ai"
+  );
+}
 
 export default function ProductsGrid({ sectionIndex = 0 }: ProductsGridProps) {
   const { grid } = productsPageContent;
@@ -28,135 +48,136 @@ export default function ProductsGrid({ sectionIndex = 0 }: ProductsGridProps) {
       index={sectionIndex}
       tone="white"
       previousTone="light-green"
-      nextSectionTone="light-green"
+      nextSectionTone="white"
       py={PAGE_SECTION_PY}
       id="products"
+      className="bg-white"
     >
       <HomeSectionHeader
         eyebrow={grid.eyebrow}
         title={grid.title}
         description={grid.description}
       />
-      <p className="mt-8 text-sm text-swamp/45">{grid.footnote}</p>
 
-      <div className="mt-14 space-y-8 sm:mt-16">
+      <div className="mt-12 grid gap-5 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
         {products.map((product, i) => {
           const Icon = PRODUCT_ICONS[product.id] ?? PRODUCT_ICONS["flex-pos"];
           const mockupVariant = PRODUCT_MOCKUP_VARIANT[product.id] ?? "flex-pos";
           const label = PRODUCT_LABELS[product.id] ?? product.tags[0];
-          const reverse = i % 2 === 1;
-          const greenCard =
-            product.id === "hr-plus" ||
-            product.id === "invoice-plus" ||
-            product.id === "whatsapp-ai";
+          const greenCard = isGreenProductCard(product.id);
 
           return (
             <article
               key={product.id}
               id={product.id}
               className={cn(
-                surfaceCardClassName("scroll-mt-28 overflow-hidden"),
+                surfaceCardClassName(
+                  "group flex h-full scroll-mt-28 flex-col overflow-hidden transition-[border-color,box-shadow,transform] duration-[480ms] ease-[cubic-bezier(0.33,1,0.68,1)] hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none",
+                ),
                 greenCard &&
-                  "border-malachite/25 bg-gradient-to-br from-[#0d281f] via-[#103126] to-[#123a2e] text-white",
-                "grid gap-8 p-6 sm:p-8 lg:grid-cols-2 lg:items-center lg:gap-12",
+                  "border-malachite/25 bg-gradient-to-br from-[#0d281f] via-[#103126] to-[#123a2e] text-white hover:border-malachite/45 hover:shadow-[0_22px_44px_-20px_rgba(0,30,28,0.35),0_0_0_1px_rgba(0,200,83,0.28),0_0_0_3px_rgba(0,200,83,0.1),0_0_18px_-2px_rgba(0,200,83,0.2)]",
+                !greenCard &&
+                  "hover:border-malachite/35 hover:shadow-[0_22px_44px_-20px_rgba(0,30,28,0.12),0_0_0_1px_rgba(0,200,83,0.22),0_0_0_3px_rgba(0,200,83,0.08),0_0_16px_-2px_rgba(0,200,83,0.16)]",
               )}
             >
-              <div
-                className={cn(
-                  reverse && "lg:order-2",
-                  "flex items-center justify-center rounded-xl border p-5 sm:p-6",
-                  greenCard
-                    ? "border-white/20 bg-[#F8F7F2]"
-                    : "border-swamp/8 bg-bone-50/80",
-                )}
+              <Link
+                href={`/products/${product.slug}`}
+                className="flex flex-1 flex-col"
+                aria-label={`Open ${product.name} product`}
               >
-                <Link
-                  href={`/products/${product.slug}`}
-                  aria-label={`Open ${product.name} product`}
-                  className="block h-[18.5rem] w-full max-w-[40rem] sm:h-[19.5rem]"
+                <div
+                  className={cn(
+                    "relative overflow-hidden border-b p-4 sm:p-5",
+                    greenCard ? "border-white/10" : "border-swamp/8",
+                  )}
+                  style={productMockupBandStyle(product, greenCard)}
                 >
-                  <ProductMockup variant={mockupVariant} className="size-full" />
-                </Link>
-              </div>
+                  <div className={cn("mx-auto w-full max-w-[22rem]", PRODUCT_MOCKUP_HEIGHT)}>
+                    <ProductMockup
+                      variant={mockupVariant}
+                      presentation="browser"
+                      theme={greenCard ? "dark" : "light"}
+                      compact
+                      animated={false}
+                      className="size-full transition duration-500 group-hover:translate-y-[-2px]"
+                    />
+                  </div>
+                </div>
 
-              <div className={cn(reverse && "lg:order-1")}>
-                <div className="flex items-center gap-3">
-                  <span
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={cn(
+                        "inline-flex h-9 w-9 items-center justify-center rounded-lg border shadow-sm",
+                        greenCard
+                          ? "border-white/20 bg-white/10 text-malachite"
+                          : "border-swamp/10 bg-bone-50 text-malachite-700",
+                      )}
+                    >
+                      <Icon className="h-4 w-4" strokeWidth={1.75} />
+                    </span>
+                    <span
+                      className={cn(
+                        greenCard
+                          ? "label-tech-on-dark text-malachite"
+                          : "label-tech text-malachite-700",
+                      )}
+                    >
+                      {String(i + 1).padStart(2, "0")} · {label.toUpperCase()}
+                    </span>
+                  </div>
+
+                  <h3
                     className={cn(
-                      "inline-flex h-10 w-10 items-center justify-center rounded-lg border shadow-sm",
-                      greenCard
-                        ? "border-white/20 bg-white/10 text-malachite"
-                        : "border-swamp/10 bg-white text-malachite-700",
+                      "mt-4 text-2xl font-semibold leading-[1.1] tracking-normal",
+                      greenCard ? "text-white" : "text-swamp",
                     )}
                   >
-                    <Icon className="h-5 w-5" strokeWidth={1.75} />
-                  </span>
-                  <span className={cn("label-tech", greenCard ? "text-malachite" : "text-malachite-700")}>
-                    {String(i + 1).padStart(2, "0")} · {label.toUpperCase()}
+                    {product.name}
+                  </h3>
+                  <p
+                    className={cn(
+                      "mt-3 line-clamp-3 text-sm leading-relaxed",
+                      greenCard ? "text-white/78" : "text-swamp/72",
+                    )}
+                  >
+                    {product.descr}
+                  </p>
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {product.tags.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className={cn(
+                          "rounded-full border px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-normal",
+                          greenCard
+                            ? "border-white/20 text-white/70"
+                            : "border-swamp/10 bg-bone-50/80 text-swamp/55",
+                        )}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <span
+                    className={cn(
+                      "mt-auto inline-flex items-center gap-2 pt-6 transition-all group-hover:gap-3",
+                      greenCard
+                        ? "label-tech !text-white/90 group-hover:!text-white"
+                        : "label-tech text-malachite-700",
+                    )}
+                  >
+                    View product <ArrowUpRight className="h-3.5 w-3.5" />
                   </span>
                 </div>
-
-                <h3
-                  className={cn(
-                    "mt-5 text-3xl font-semibold leading-[1.08] tracking-normal sm:text-4xl",
-                    greenCard ? "text-white" : "text-swamp",
-                  )}
-                >
-                  {product.name}
-                </h3>
-                <p className={cn("mt-4 text-base leading-relaxed", greenCard ? "text-white/80" : "text-swamp/75")}>
-                  {product.descr}
-                </p>
-                <p className={cn("mt-4 text-sm leading-relaxed", greenCard ? "text-white/72" : "text-swamp/70")}>
-                  {product.longDescr}
-                </p>
-
-                <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-                  {product.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className={cn(
-                        "flex items-start gap-3 text-sm before:mt-2 before:h-1.5 before:w-1.5 before:shrink-0 before:rounded-full before:bg-malachite",
-                        greenCard ? "text-white/82" : "text-swamp/80",
-                      )}
-                    >
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {product.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className={cn(
-                        "rounded-full border px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-normal",
-                        greenCard
-                          ? "border-white/20 text-white/70"
-                          : "border-swamp/10 text-swamp/50",
-                      )}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <Link
-                  href={`/products/${product.slug}`}
-                  className={cn(
-                    "mt-8 inline-flex items-center gap-2 transition-all hover:gap-3",
-                    greenCard
-                      ? "label-tech !text-white/90 hover:!text-white"
-                      : "label-tech text-malachite-700",
-                  )}
-                >
-                  View product <ArrowUpRight className="h-3.5 w-3.5" />
-                </Link>
-              </div>
+              </Link>
             </article>
           );
         })}
       </div>
+
+      <p className="mt-10 text-center text-sm text-swamp/45 sm:mt-12">{grid.footnote}</p>
     </PageSection>
   );
 }

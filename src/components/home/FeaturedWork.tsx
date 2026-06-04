@@ -279,32 +279,23 @@ export default function FeaturedWork() {
         className="glow-bloom pointer-events-none absolute left-1/2 top-1/2 -z-[1] h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 opacity-60"
       />
 
-      <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-        <Reveal>
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-3">
-              <span className="h-px w-10 bg-malachite" aria-hidden />
-              <span className="label-tech-on-dark">Featured work</span>
-            </div>
-            <KineticHeading
-              as="h2"
-              lines={["Selected projects", "we are proud of."]}
-              accentLastWord
-              className="mt-4 text-3xl font-semibold leading-[1.03] tracking-normal text-white sm:mt-5 sm:text-4xl md:text-5xl lg:text-6xl"
-            />
-            <p className="mt-4 max-w-xl text-base leading-8 text-white/75 sm:mt-8 sm:text-lg">
-              Production builds for clients who needed more than a template.
-            </p>
+      <Reveal>
+        <div className="max-w-2xl">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-10 bg-malachite" aria-hidden />
+            <span className="label-tech-on-dark">Featured work</span>
           </div>
-        </Reveal>
-
-        <Reveal delay={0.08} className="max-w-sm shrink-0">
-          <p className="text-sm leading-7 text-white/60 sm:text-[15px]">
-            Strategy, product thinking, interface design, and engineering brought together in
-            launch-ready systems for brands that needed more than a quick template pass.
+          <KineticHeading
+            as="h2"
+            lines={["Selected projects", "we are proud of."]}
+            accentLastWord
+            className="mt-4 text-3xl font-semibold leading-[1.03] tracking-normal text-white sm:mt-5 sm:text-4xl md:text-5xl lg:text-6xl"
+          />
+          <p className="mt-4 max-w-xl text-base leading-8 text-white/75 sm:mt-8 sm:text-lg">
+            Production builds for clients who needed more than a template.
           </p>
-        </Reveal>
-      </div>
+        </div>
+      </Reveal>
 
       <div className="relative z-[1] mt-10 space-y-8 sm:mt-14 sm:space-y-10 lg:space-y-12">
         <div className="flex w-full flex-col gap-8 sm:gap-10 lg:gap-12">

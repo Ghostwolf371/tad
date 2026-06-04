@@ -4,13 +4,14 @@ import HomeSectionHeader from "@/components/home/HomeSectionHeader";
 import PortfolioGrid from "@/components/portfolio/PortfolioGrid";
 import IndustryChart from "@/components/portfolio/IndustryChart";
 import PageCTA from "@/components/layout/PageCTA";
-import { portfolioPageContent } from "@/lib/content/portfolio-page";
+import {
+  PORTFOLIO_DELIVERED_COUNT,
+  portfolioPageContent,
+} from "@/lib/content/portfolio-page";
 import {
   PAGE_SECTION_PY,
   PAGE_SECTION_PY_BEFORE_WHITE,
 } from "@/lib/theme/section-spacing";
-import { projects } from "@/data/projects";
-
 export const metadata = {
   title: "Portfolio",
   description:
@@ -37,7 +38,7 @@ export default function PortfolioPage() {
             className="max-w-xl"
           />
           <p className="shrink-0 font-mono text-xs font-medium uppercase tracking-[0.2em] text-malachite-700">
-            {projects.length} projects delivered
+            {PORTFOLIO_DELIVERED_COUNT} projects delivered
           </p>
         </div>
         <div className="mt-12">
@@ -51,21 +52,14 @@ export default function PortfolioPage() {
         ambient="dark-band"
         py={PAGE_SECTION_PY_BEFORE_WHITE}
       >
-        <div className="grid gap-6 sm:gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end lg:gap-14">
-          <HomeSectionHeader
-            variant="dark"
-            eyebrow="Industries"
-            title="Clients by industry"
-            description="Where our work lands — from retail and hospitality to fintech, aviation, and beyond."
-            className="max-w-none"
-            titleClassName="leading-[1.04]"
-            descriptionClassName="max-w-xl"
-          />
-          <p className="text-sm leading-relaxed text-white/70 lg:pb-2 lg:text-right lg:text-base">
-            Every project is tagged by sector so you can see how experience transfers across
-            verticals.
-          </p>
-        </div>
+        <HomeSectionHeader
+          variant="dark"
+          eyebrow="Industries"
+          title="Clients by industry"
+          description="Where our work lands — from retail and hospitality to fintech, aviation, and beyond. Every project is tagged by sector so you can see how experience transfers across verticals."
+          className="max-w-3xl"
+          titleClassName="leading-[1.04]"
+        />
         <IndustryChart />
       </PageSection>
       <PageCTA afterSectionIndex={1} lastSectionTone="dark-green" />
