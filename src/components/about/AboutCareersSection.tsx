@@ -2,6 +2,7 @@ import Link from "next/link";
 import PageSection, { type SectionTone } from "@/components/layout/PageSection";
 import HomeSectionHeader from "@/components/home/HomeSectionHeader";
 import { aboutContent } from "@/lib/content/about";
+import { careerRoles } from "@/data/careers";
 import { ButtonLink } from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import { ArrowRight, Briefcase } from "lucide-react";
@@ -15,25 +16,15 @@ type AboutCareersSectionProps = {
 };
 
 const OPEN_ROLES = [
+  ...careerRoles.slice(0, 3).map((role) => ({
+    title: role.title,
+    meta: `${role.employmentType} · ${role.workplace}`,
+    href: `/vacature/${role.slug}` as const,
+  })),
   {
-    title: "Frontend Engineer",
-    meta: "Paramaribo / Remote",
-    href: "/vacature",
-  },
-  {
-    title: "Product Designer",
-    meta: "Paramaribo / Remote",
-    href: "/vacature",
-  },
-  {
-    title: "Marketing Strategist",
-    meta: "Paramaribo",
-    href: "/vacature",
-  },
-  {
-    title: "Open application",
-    meta: "Always welcome",
-    href: "mailto:info@tad.sr?subject=Open%20application%20%E2%80%94%20TAD",
+    title: "View all roles",
+    meta: `${careerRoles.length} openings`,
+    href: "/vacature" as const,
   },
 ] as const;
 

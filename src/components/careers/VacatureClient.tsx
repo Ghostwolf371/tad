@@ -1,15 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import HomeSectionHeader from "@/components/home/HomeSectionHeader";
 import { careersContent } from "@/lib/content/careers";
 import { Send, ArrowRight } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { surfaceCardClassName } from "@/lib/theme/surfaces";
 import { cn } from "@/lib/utils";
-
-const ROLES = ["Engineer", "Designer", "Strategist", "Writer"];
 
 function TalentPool() {
   const [email, setEmail] = useState("");
@@ -54,40 +51,6 @@ function TalentPool() {
   );
 }
 
-/** Intro block — used inside white PageSection */
-export function VacatureIntro() {
-  return (
-    <>
-      <p className="text-center text-sm text-swamp/65">
-        We&apos;re often hiring for:{" "}
-        <span className="font-medium text-malachite-700">{ROLES.join(" · ")}</span>
-      </p>
-
-      <div className="relative mt-10 overflow-hidden rounded-2xl border border-swamp/10 shadow-[0_24px_64px_rgba(0,30,28,0.1)]">
-        <div className="relative aspect-[16/9] w-full sm:aspect-[21/9]">
-          <Image
-            src="/team/group-3.jpeg"
-            alt="TAD team collaboration"
-            fill
-            className="object-cover object-center"
-            sizes="(max-width: 1024px) 100vw, 1024px"
-            priority
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0 bg-gradient-to-t from-swamp/75 via-swamp/25 to-transparent"
-          />
-        </div>
-        <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-          <p className="max-w-2xl text-lg leading-relaxed text-white/90 sm:text-xl">
-            {careersContent.culture}
-          </p>
-        </div>
-      </div>
-    </>
-  );
-}
-
 /** Open roles — elevated card on white section */
 export function VacatureOpenings() {
   return (
@@ -101,7 +64,7 @@ export function VacatureOpenings() {
           variant="light"
           eyebrow="Open roles"
           title={careersContent.openings.title}
-          description={careersContent.openings.empty}
+          description={careersContent.openings.description}
           align="center"
           className="mx-auto max-w-2xl"
         />
@@ -116,14 +79,7 @@ export function VacatureOpenings() {
   );
 }
 
-/** @deprecated — use VacatureCultureSection */
+/** @deprecated — use VacatureOpeningsGrid on /vacature */
 export default function VacatureClient() {
-  return (
-    <>
-      <VacatureIntro />
-      <div className="mt-16">
-        <VacatureOpenings />
-      </div>
-    </>
-  );
+  return <VacatureOpenings />;
 }

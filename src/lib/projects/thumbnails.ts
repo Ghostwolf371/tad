@@ -2,8 +2,8 @@ import type { Project } from "@/data/projects";
 
 /** Optional homepage captures in public/projects/screenshots */
 const SCREENSHOT_BY_SLUG: Partial<Record<string, string>> = {
-  "kings-enterprises": "/projects/screenshots/kings-enterprises-home-v2.jpg",
-  "smart-connexxionz": "/projects/screenshots/smart-connexxionz.png",
+  "kings-enterprises": "/projects/screenshots/kings-enterprises-featured.png",
+  "smart-connexxionz": "/projects/screenshots/smart-connexxionz-featured.png",
   "queens-hotel": "/projects/screenshots/queens-hotel-homepage.png",
   "trustbank-amanah": "/projects/screenshots/trustbank-amanah.png",
   "the-coffee-box": "/projects/screenshots/the-coffee-box-home-v3.jpg",

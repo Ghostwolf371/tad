@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 type Props = {
   as?: "h1" | "h2" | "h3";
@@ -56,9 +57,11 @@ export default function KineticHeading({
     return line;
   };
 
+  const displayClass = cn("font-display", className);
+
   if (reduceMotion) {
     return (
-      <Tag className={className}>
+      <Tag className={displayClass}>
         {lines.map((line, i) => (
           <span key={i} className="block">
             {renderLineContent(line, i === lastLineIndex)}
@@ -79,7 +82,7 @@ export default function KineticHeading({
 
   return (
     <Tag
-      className={className}
+      className={displayClass}
       {...containerProps}
       transition={{ staggerChildren: 0.08, delayChildren: delay }}
     >

@@ -7,8 +7,8 @@ export const careersContent = {
   culture:
     "Thinking outside of the box gets us out of bed every morning. Through thoughtful design, we create delightful digital experiences that make life simpler and more enjoyable. If that resonates with you, we'd love to hear from you.",
   openings: {
-    title: "Open roles",
-    empty:
-      "We don't have any open positions listed right now. Send your CV and portfolio to info@tad.sr — we'll keep you in mind for future opportunities.",
+    title: "Find the career you deserve",
+    description:
+      "We're hiring in Paramaribo across design, development, and leadership. Browse open roles below or send an open application.",
   },
 } as const;

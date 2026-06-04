@@ -71,7 +71,7 @@ export default function HomeSectionHeader({
 
       <h2
         className={cn(
-          "mt-4 text-3xl font-semibold leading-[1.08] tracking-normal sm:mt-5 sm:text-4xl md:text-5xl lg:text-6xl",
+          "font-display mt-4 text-3xl font-bold leading-[1.08] tracking-normal sm:mt-5 sm:text-4xl md:text-5xl lg:text-6xl",
           styles.title,
           titleClassName,
         )}

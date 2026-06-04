@@ -14,8 +14,8 @@ import { HOME_SECTION_PY_BEFORE_WHITE } from "@/lib/theme/section-spacing";
 import { cn } from "@/lib/utils";
 
 const FEATURED_LAYOUT = {
-  large: ["smart-connexxionz", "digital-world"],
-  small: ["devinas-enterprises", "the-coffee-box", "kings-enterprises"],
+  large: ["smart-connexxionz", "kings-enterprises"],
+  small: ["devinas-enterprises", "the-coffee-box", "digital-world"],
 } as const;
 
 type FeaturedSlug = (typeof FEATURED_LAYOUT.large)[number] | (typeof FEATURED_LAYOUT.small)[number];

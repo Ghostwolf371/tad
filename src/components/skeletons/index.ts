@@ -9,6 +9,7 @@ export {
   PortfolioPageSkeleton,
   BookPageSkeleton,
   VacaturePageSkeleton,
+  VacatureRoleDetailSkeleton,
   LegalPageSkeleton,
   ProductDetailSkeleton,
   ProjectDetailSkeleton,

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Montserrat } from "next/font/google";
+import { Inter, JetBrains_Mono, Montserrat_Alternates } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -25,11 +25,11 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-/** Geometric wordmark for “tad.” — matches brand lockup */
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+/** Brand / display type — matches https://tad.sr/ (Montserrat Alternates) */
+const montserratAlternates = Montserrat_Alternates({
+  variable: "--font-montserrat-alternates",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -69,7 +69,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${montserrat.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${montserratAlternates.variable}`}
     >
       <body className="min-h-screen bg-white text-swamp flex flex-col overflow-x-hidden">
         <DevServiceWorkerCleanup />

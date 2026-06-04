@@ -62,7 +62,7 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://www.kings.sr",
     image: "/projects/kings-enterprises.svg",
-    homepageScreenshot: "/projects/screenshots/kings-enterprises-home-v2.jpg",
+    homepageScreenshot: "/projects/screenshots/kings-enterprises-featured.png",
     featured: true,
     palette: { primary: "#FEE15B", secondary: "#FFFF92", text: "#171717" },
     caseStudy: caseFromDescr(
@@ -81,7 +81,7 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://www.smartconnexxionz.com/",
     image: "/projects/smart-connexxionz.svg",
-    homepageScreenshot: "/projects/screenshots/smart-connexxionz.png",
+    homepageScreenshot: "/projects/screenshots/smart-connexxionz-featured.png",
     featured: true,
     palette: { primary: "#1EB6EC", secondary: "#9BE2FE", text: "#FFFFFF" },
     caseStudy: caseFromDescr(

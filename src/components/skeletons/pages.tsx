@@ -647,19 +647,101 @@ export function VacaturePageSkeleton() {
   return (
     <div className="bg-white" aria-busy>
       <PageHeroSkeleton />
-      <SkeletonSection>
+      <SkeletonSection tone="white" className="bg-[#FEFEFE]">
         <SectionHeaderSkeleton />
-        <SkeletonBar className="mt-6 h-4 w-full max-w-3xl" animated={false} />
-        <SkeletonBar className="mt-2 h-4 w-5/6 max-w-2xl" animated={false} />
+        <div className="mt-8 grid gap-5 sm:mt-12 sm:grid-cols-2 md:grid-cols-3">
+          {Array.from({ length: 3 }, (_, i) => (
+            <SkeletonCard key={i} className="p-6 sm:p-8">
+              <SkeletonBar className="h-11 w-11 rounded-xl" animated={false} />
+              <SkeletonBar className="mt-5 h-6 w-4/5 rounded-md" animated={false} />
+              <SkeletonBar className="mt-4 h-4 w-full" animated={false} />
+              <SkeletonBar className="mt-2 h-4 w-5/6" animated={false} />
+            </SkeletonCard>
+          ))}
+        </div>
       </SkeletonSection>
-      <SkeletonSection>
+      <SkeletonSection tone="dark-green">
+        <SectionHeaderSkeleton dark />
+        <div className="mt-8 flex justify-start gap-2">
+          {Array.from({ length: 4 }, (_, i) => (
+            <SkeletonBar key={i} className="h-9 w-24 rounded-full" animated={false} />
+          ))}
+        </div>
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }, (_, i) => (
+            <SkeletonDarkCard key={i} className="p-6">
+              <SkeletonBar className="h-11 w-11 rounded-xl" animated={false} />
+              <SkeletonBar className="mt-5 h-6 w-4/5 rounded-md" animated={false} />
+              <SkeletonBar className="mt-3 h-4 w-full" animated={false} />
+            </SkeletonDarkCard>
+          ))}
+        </div>
+      </SkeletonSection>
+      <SkeletonSection tone="white" className="bg-[#FEFEFE]">
+        <SkeletonCard className="mx-auto max-w-2xl p-10">
+          <SkeletonBar className="mx-auto h-6 w-48 rounded-md" animated={false} />
+          <SkeletonBar className="mx-auto mt-4 h-4 w-full max-w-md" animated={false} />
+          <SkeletonBar className="mx-auto mt-8 h-12 w-full max-w-md rounded-xl" animated={false} />
+        </SkeletonCard>
+      </SkeletonSection>
+    </div>
+  );
+}
+
+export function VacatureRoleDetailSkeleton() {
+  return (
+    <div className="bg-white" aria-busy>
+      <PageHeroSkeleton titleLines={2} />
+      <SkeletonSection tone="white" className="bg-[#FEFEFE]">
+        <div className="flex flex-wrap gap-2">
+          {Array.from({ length: 3 }, (_, i) => (
+            <SkeletonBar key={i} className="h-8 w-36 rounded-full" animated={false} />
+          ))}
+        </div>
+      </SkeletonSection>
+      <SkeletonSection tone="white" className="bg-[#FEFEFE]">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-8">
+            <SkeletonBar className="h-4 w-28 rounded-md" animated={false} />
+            <SkeletonBar className="mt-8 h-4 w-full max-w-2xl" animated={false} />
+            <SkeletonBar className="mt-2 h-4 w-5/6 max-w-xl" animated={false} />
+            <div className="mt-12 grid gap-10 lg:grid-cols-2">
+              {Array.from({ length: 2 }, (_, i) => (
+                <div key={i}>
+                  <SkeletonBar className="h-7 w-40 rounded-md" animated={false} />
+                  <SkeletonBar className="mt-2 h-px w-12" animated={false} />
+                  <div className="mt-6 space-y-3">
+                    {Array.from({ length: 4 }, (_, j) => (
+                      <SkeletonBar key={j} className="h-4 w-full" animated={false} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <SkeletonCard className="mt-10 hidden p-7 lg:col-span-4 lg:mt-0 lg:block">
+            <SkeletonBar className="h-12 w-full rounded-full" animated={false} />
+            <SkeletonBar className="mt-6 h-4 w-full" animated={false} />
+            <SkeletonBar className="mt-2 h-4 w-4/5" animated={false} />
+          </SkeletonCard>
+        </div>
+      </SkeletonSection>
+      <SkeletonSection tone="dark-green">
         <SectionHeaderSkeleton />
-        <div className="mt-10 space-y-4">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          {Array.from({ length: 4 }, (_, i) => (
+            <SkeletonDarkCard key={i} className="h-20 p-5" />
+          ))}
+        </div>
+        <SkeletonBar className="mt-10 h-12 w-48 rounded-full" animated={false} />
+      </SkeletonSection>
+      <SkeletonSection tone="white" className="bg-[#FEFEFE]">
+        <SectionHeaderSkeleton className="mx-auto text-center" />
+        <div className="mt-10 grid gap-5 sm:grid-cols-3">
           {Array.from({ length: 3 }, (_, i) => (
             <SkeletonCard key={i} className="p-6">
-              <SkeletonBar className="h-6 w-48 rounded-md" animated={false} />
+              <SkeletonBar className="h-5 w-4/5 rounded-md" animated={false} />
               <SkeletonBar className="mt-3 h-4 w-full" animated={false} />
-              <SkeletonBar className="mt-2 h-4 w-2/3" animated={false} />
             </SkeletonCard>
           ))}
         </div>

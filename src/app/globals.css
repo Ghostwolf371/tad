@@ -40,10 +40,11 @@
   --color-bone-300: #d4ccba;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-montserrat-alternates), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
-  --font-brand: var(--font-montserrat), var(--font-inter), ui-sans-serif, system-ui,
-    sans-serif;
+  --font-brand: var(--font-montserrat-alternates), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
 }
 
 :root {

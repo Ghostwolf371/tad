@@ -23,7 +23,7 @@ type TadWordmarkProps = {
   showDot?: boolean;
 };
 
-/** Lowercase "tad." wordmark — Montserrat geometric type + brand dot (#13E258) */
+/** Lowercase "tad." wordmark — Montserrat Alternates + brand dot (#13E258) */
 export default function TadWordmark({
   className,
   size = "md",

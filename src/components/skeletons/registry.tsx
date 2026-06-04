@@ -11,6 +11,7 @@ import {
   ProjectDetailSkeleton,
   ServicesPageSkeleton,
   VacaturePageSkeleton,
+  VacatureRoleDetailSkeleton,
 } from "@/components/skeletons/pages";
 
 export type PageSkeletonComponent = ComponentType;
@@ -27,6 +28,7 @@ const ROUTE_SKELETONS: Array<{ test: (path: string) => boolean; Skeleton: PageSk
     { test: (p) => p === "/portfolio", Skeleton: PortfolioPageSkeleton },
     { test: (p) => p.startsWith("/portfolio/"), Skeleton: ProjectDetailSkeleton },
     { test: (p) => p === "/vacature", Skeleton: VacaturePageSkeleton },
+    { test: (p) => p.startsWith("/vacature/"), Skeleton: VacatureRoleDetailSkeleton },
     { test: (p) => p === "/privacy" || p === "/cookies", Skeleton: LegalPageSkeleton },
   ];
 

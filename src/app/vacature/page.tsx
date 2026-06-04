@@ -1,7 +1,9 @@
 import PageHero from "@/components/layout/PageHero";
 import PageSection from "@/components/layout/PageSection";
+import VacatureWhyJoin from "@/components/careers/VacatureWhyJoin";
+import VacatureOpeningsGrid from "@/components/careers/VacatureOpeningsGrid";
+import VacatureApplyBand from "@/components/careers/VacatureApplyBand";
 import { PAGE_SECTION_PY } from "@/lib/theme/section-spacing";
-import { VacatureIntro, VacatureOpenings } from "@/components/careers/VacatureClient";
 import { careersPageContent } from "@/lib/content/careers-page";
 
 export const metadata = {
@@ -21,12 +23,17 @@ export default function CareersPage() {
         titleGradientLine={hero.titleGradientLine}
         subtitle={hero.subtitle}
       />
-      <PageSection index={0} tone="white" previousTone="light-green" py={PAGE_SECTION_PY}>
-        <VacatureIntro />
+      <VacatureWhyJoin sectionIndex={0} />
+      <PageSection
+        index={1}
+        tone="dark-green"
+        previousTone="white"
+        py={PAGE_SECTION_PY}
+        ambient="dark-band"
+      >
+        <VacatureOpeningsGrid />
       </PageSection>
-      <PageSection index={1} tone="white" previousTone="white" py={PAGE_SECTION_PY}>
-        <VacatureOpenings />
-      </PageSection>
+      <VacatureApplyBand sectionIndex={2} />
     </>
   );
 }
