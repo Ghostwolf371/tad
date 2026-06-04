@@ -494,6 +494,14 @@ html.lenis, html.lenis body {
     0 0 60px -10px rgba(0, 227, 87, 0.4);
 }
 
+/* ===== LAUNCH SCREEN — hold the page (and its entrance animations) until the intro reveals it ===== */
+body.is-launching {
+  overflow: hidden;
+}
+body.is-launching main {
+  display: none;
+}
+
 /* ===== COOKIE CONSENT ENTRANCE ===== */
 @keyframes cookie-in {
   from { opacity: 0; transform: translateY(12px); }
