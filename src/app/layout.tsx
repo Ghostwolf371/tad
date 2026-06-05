@@ -48,17 +48,23 @@ export const metadata: Metadata = {
       "A Suriname-based digital agency building world-class products, brands and experiences.",
     url: "https://tad.sr",
     siteName: "TAD",
+    locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "TAD — From now to next.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "TAD — From Now to Next",
     description:
       "A Suriname-based digital agency building world-class products, brands and experiences.",
-  },
-  icons: {
-    icon: "/brand/logomark.png",
-    apple: "/brand/logomark.png",
+    images: ["/og/og-image.jpg"],
   },
 };
 
