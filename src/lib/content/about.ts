@@ -48,24 +48,16 @@ export const aboutContent = {
       "Trade shows, launches, and the day-to-day in Paramaribo — the moments around the work we ship for clients.",
     slides: [
       {
-        src: "/about/tad-group-trade-show.jpg",
-        alt: "The TAD team at a trade show booth in Paramaribo",
-        caption: "Register & win — connecting with businesses at our booth.",
+        src: "/about/about-gallery-1.png",
+        alt: "Life at TAD — team moment in Paramaribo",
       },
       {
-        src: "/team/group-2.jpeg",
-        alt: "TAD team group photo",
-        caption: "The crew behind the builds.",
+        src: "/about/about-gallery-2.png",
+        alt: "Life at TAD — team at work",
       },
       {
-        src: "/team/group-3.jpeg",
-        alt: "TAD team at an event",
-        caption: "Out in the field, representing Suriname tech.",
-      },
-      {
-        src: "/about/about-hero-bg.jpg",
-        alt: "TAD workspace and creative environment",
-        caption: "Where strategy, design, and engineering come together.",
+        src: "/about/about-gallery-3.png",
+        alt: "Life at TAD — behind the scenes",
       },
     ],
   },

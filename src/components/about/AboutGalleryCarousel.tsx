@@ -9,9 +9,8 @@ import { aboutContent } from "@/lib/content/about";
 import { PAGE_SECTION_PY_AFTER_DARK } from "@/lib/theme/section-spacing";
 import { cn } from "@/lib/utils";
 
-/** Shared slide height — drives center + side peek scale */
-const SLIDE_HEIGHT =
-  "h-[min(62vh,34rem)] sm:h-[min(68vh,38rem)] lg:h-[min(74vh,44rem)]";
+/** Landscape frame — 3:2 matches gallery assets on mobile + desktop */
+const SLIDE_FRAME = "relative aspect-[3/2] w-full overflow-hidden";
 
 function slideAt(index: number, offset: number, length: number) {
   return (index + offset + length) % length;
@@ -134,9 +133,14 @@ export default function AboutGalleryCarousel({
             </p>
           </div>
 
-          <div className={cn("relative mt-10 sm:mt-12", SLIDE_HEIGHT)}>
-            <div className="flex h-full items-stretch justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-              <div className="hidden h-full w-[min(24vw,16rem)] shrink-0 sm:block lg:w-[min(22vw,18rem)]">
+          <div className="relative mt-10 w-full sm:mt-12">
+            <div className="flex items-stretch justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+              <div
+                className={cn(
+                  SLIDE_FRAME,
+                  "hidden w-[min(28vw,14rem)] shrink-0 sm:block lg:w-[min(24vw,16rem)]",
+                )}
+              >
                 <CarouselSlide
                   slide={previous}
                   variant="peek"
@@ -150,12 +154,31 @@ export default function AboutGalleryCarousel({
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="h-full min-w-0 flex-1 sm:max-w-none"
+                className={cn(SLIDE_FRAME, "relative min-w-0 flex-1")}
               >
                 <CarouselSlide slide={current} variant="center" />
+                <div className="absolute inset-0 z-10 flex sm:hidden">
+                  <button
+                    type="button"
+                    onClick={prev}
+                    className="h-full w-1/2 touch-manipulation"
+                    aria-label="Previous slide"
+                  />
+                  <button
+                    type="button"
+                    onClick={next}
+                    className="h-full w-1/2 touch-manipulation"
+                    aria-label="Next slide"
+                  />
+                </div>
               </motion.div>
 
-              <div className="hidden h-full w-[min(24vw,16rem)] shrink-0 sm:block lg:w-[min(22vw,18rem)]">
+              <div
+                className={cn(
+                  SLIDE_FRAME,
+                  "hidden w-[min(28vw,14rem)] shrink-0 sm:block lg:w-[min(24vw,16rem)]",
+                )}
+              >
                 <CarouselSlide
                   slide={upcoming}
                   variant="peek"
@@ -182,29 +205,6 @@ export default function AboutGalleryCarousel({
                 aria-current={i === index ? "true" : undefined}
               />
             ))}
-          </div>
-
-          {current.caption ? (
-            <p className="mx-auto mt-4 max-w-xl text-center text-sm leading-relaxed text-white/70 sm:text-base">
-              {current.caption}
-            </p>
-          ) : null}
-
-          <div className="mt-6 flex items-center justify-center gap-3 sm:hidden">
-            <button
-              type="button"
-              onClick={prev}
-              className="rounded-full border border-white/20 px-4 py-2 text-xs font-medium text-white/80 transition hover:border-white/35 hover:text-white"
-            >
-              Previous
-            </button>
-            <button
-              type="button"
-              onClick={next}
-              className="rounded-full border border-white/20 px-4 py-2 text-xs font-medium text-white/80 transition hover:border-white/35 hover:text-white"
-            >
-              Next
-            </button>
           </div>
         </div>
       </div>
