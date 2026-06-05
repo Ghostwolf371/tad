@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const AUTO_ENTER_MS = 7000;
+const AUTO_ENTER_MS = 10000;
 const STORAGE_KEY = "tad-launch-seen";
 
 type Star = {
@@ -85,6 +85,7 @@ export default function LaunchScreen() {
     let last = 0;
     let lastShoot = -1;
     let nextShoot = 0.8;
+    let seeded = false;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let stars: Star[] = [];
     const shooting: Shooting[] = [];
@@ -105,12 +106,25 @@ export default function LaunchScreen() {
     };
 
     const resize = () => {
-      w = canvas.offsetWidth;
-      h = canvas.offsetHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      seed();
+      const nw = canvas.offsetWidth;
+      const nh = canvas.offsetHeight;
+      if (nw === 0 || nh === 0) return;
+      // Re-seed only on a real width change, so a mobile address-bar toggle
+      // doesn't randomise (jump) the stars mid-launch.
+      const widthChanged = Math.abs(nw - w) > 1;
+      w = nw;
+      h = nh;
+      const bw = Math.round(w * dpr);
+      const bh = Math.round(h * dpr);
+      if (canvas.width !== bw || canvas.height !== bh) {
+        canvas.width = bw;
+        canvas.height = bh;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      if (!seeded || widthChanged) {
+        seed();
+        seeded = true;
+      }
     };
     resize();
     window.addEventListener("resize", resize);

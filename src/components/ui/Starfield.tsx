@@ -38,6 +38,7 @@ export default function Starfield({ className }: { className?: string }) {
     let lastShoot = -1;
     let nextShoot = 0.8;
     let visible = true;
+    let seeded = false;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let stars: Star[] = [];
     const shooting: Shooting[] = [];
@@ -57,13 +58,26 @@ export default function Starfield({ className }: { className?: string }) {
     };
 
     const resize = () => {
-      w = canvas.offsetWidth;
-      h = canvas.offsetHeight;
-      if (w === 0 || h === 0) return;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      seed();
+      const nw = canvas.offsetWidth;
+      const nh = canvas.offsetHeight;
+      if (nw === 0 || nh === 0) return;
+      // Only re-seed on a real width change (orientation / breakpoint). Mobile
+      // scrolling toggles the address bar and fires resize without changing the
+      // section size — re-seeding there made the stars jump (the "glitch").
+      const widthChanged = Math.abs(nw - w) > 1;
+      w = nw;
+      h = nh;
+      const bw = Math.round(w * dpr);
+      const bh = Math.round(h * dpr);
+      if (canvas.width !== bw || canvas.height !== bh) {
+        canvas.width = bw;
+        canvas.height = bh;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      if (!seeded || widthChanged) {
+        seed();
+        seeded = true;
+      }
     };
 
     const draw = (now: number) => {
