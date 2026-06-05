@@ -66,7 +66,7 @@ const disciplineChips = DISCIPLINES.map((label) => (
 export default function ServicesSection() {
   return (
     <section
-      className="relative isolate overflow-x-clip bg-white pt-6 pb-10 sm:py-20 lg:py-32"
+      className="relative isolate overflow-x-clip bg-white pt-10 pb-14 sm:py-24 lg:py-32"
       id="services"
     >
       <SectionGreenBleedUp />

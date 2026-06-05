@@ -8,7 +8,7 @@ const VIEWPORT = { once: true, amount: 0.08, margin: "0px 0px -48px 0px" } as co
 
 export default function AboutSection() {
   return (
-    <section className="relative bg-white pt-2 pb-10 sm:pt-8 sm:pb-20 lg:pt-12 lg:pb-32">
+    <section className="relative bg-white pt-6 pb-14 sm:pt-14 sm:pb-24 lg:pt-12 lg:pb-32">
       <div className="relative z-[2] mx-auto flex max-w-[90rem] flex-col items-center gap-10 px-5 sm:px-6 lg:flex-row lg:gap-16 lg:px-20">
         {/* Wordmark */}
         <motion.div
