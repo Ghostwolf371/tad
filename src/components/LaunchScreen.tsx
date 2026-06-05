@@ -91,15 +91,15 @@ export default function LaunchScreen() {
 
     const seed = () => {
       // Density scales with the viewport, capped for performance.
-      const count = Math.min(460, Math.max(160, Math.round((w * h) / 4600)));
+      const count = Math.min(210, Math.max(90, Math.round((w * h) / 11000)));
       stars = Array.from({ length: count }, () => ({
         x: Math.random(),
         y: Math.random(),
-        r: rand(0.3, 1.6),
-        base: rand(0.42, 1),
-        tw: rand(0.4, 2.1),
+        r: rand(0.3, 1.05),
+        base: rand(0.14, 0.46),
+        tw: rand(0.3, 1.5),
         ph: Math.random() * Math.PI * 2,
-        green: Math.random() < 0.16,
+        green: Math.random() < 0.14,
       }));
     };
 
@@ -126,14 +126,14 @@ export default function LaunchScreen() {
         const a = s.base * (0.32 + 0.68 * (0.5 + 0.5 * Math.sin(t * s.tw + s.ph)));
         const px = s.x * w;
         const py = s.y * h;
-        const col = s.green ? "150,255,190" : "255,255,255";
-        if (s.r > 1) {
-          const g = ctx.createRadialGradient(px, py, 0, px, py, s.r * 4.5);
-          g.addColorStop(0, `rgba(${col},${a * 0.45})`);
+        const col = s.green ? "150,255,190" : "225,240,255";
+        if (s.r > 0.85) {
+          const g = ctx.createRadialGradient(px, py, 0, px, py, s.r * 3);
+          g.addColorStop(0, `rgba(${col},${a * 0.18})`);
           g.addColorStop(1, `rgba(${col},0)`);
           ctx.fillStyle = g;
           ctx.beginPath();
-          ctx.arc(px, py, s.r * 4.5, 0, Math.PI * 2);
+          ctx.arc(px, py, s.r * 3, 0, Math.PI * 2);
           ctx.fill();
         }
         ctx.fillStyle = `rgba(${col},${a})`;
@@ -142,8 +142,8 @@ export default function LaunchScreen() {
         ctx.fill();
       }
 
-      // Spawn a shooting star roughly every ~3.8s
-      if (t - lastShoot > 3.8) {
+      // Spawn a shooting star occasionally (~every 7s) — a rare, quiet accent
+      if (t - lastShoot > 7) {
         lastShoot = t;
         const fromLeft = Math.random() < 0.5;
         shooting.push({
@@ -167,20 +167,20 @@ export default function LaunchScreen() {
         const cy = (ss.y + ss.vy * prog) * h;
         const tx = cx - ss.vx * w * 0.09;
         const ty = cy - ss.vy * h * 0.09;
-        const alpha = Math.sin(prog * Math.PI); // ease in/out
+        const alpha = 0.5 * Math.sin(prog * Math.PI); // ease in/out, dimmed
         const grad = ctx.createLinearGradient(tx, ty, cx, cy);
         grad.addColorStop(0, "rgba(180,255,210,0)");
-        grad.addColorStop(1, `rgba(255,255,255,${alpha})`);
+        grad.addColorStop(1, `rgba(235,245,255,${alpha})`);
         ctx.strokeStyle = grad;
-        ctx.lineWidth = 1.8;
+        ctx.lineWidth = 1.3;
         ctx.lineCap = "round";
         ctx.beginPath();
         ctx.moveTo(tx, ty);
         ctx.lineTo(cx, cy);
         ctx.stroke();
-        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        ctx.fillStyle = `rgba(235,245,255,${alpha})`;
         ctx.beginPath();
-        ctx.arc(cx, cy, 1.6, 0, Math.PI * 2);
+        ctx.arc(cx, cy, 1.3, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -237,6 +237,12 @@ export default function LaunchScreen() {
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_45%,transparent_35%,rgba(0,6,4,0.82)_100%)]"
+          />
+          {/* Calm zone behind the content — dims the stars so the logo and
+              headline stay clean and uncluttered. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_52%_46%_at_50%_44%,rgba(4,18,13,0.72)_0%,rgba(4,18,13,0.3)_46%,transparent_72%)]"
           />
 
           {/* Content */}
