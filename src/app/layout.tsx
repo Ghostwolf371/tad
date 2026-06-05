@@ -35,7 +35,9 @@ const montserratAlternates = Montserrat_Alternates({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tad.sr"),
+  // NOTE: points at the Vercel domain so social previews resolve while sharing
+  // that link. Switch back to "https://tad.sr" once the site is live there.
+  metadataBase: new URL("https://tad-next.vercel.app"),
   title: {
     default: "TAD — From Now to Next",
     template: "%s · TAD",
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
     title: "TAD — From Now to Next",
     description:
       "A Suriname-based digital agency building world-class products, brands and experiences.",
-    url: "https://tad.sr",
+    url: "https://tad-next.vercel.app",
     siteName: "TAD",
     locale: "en_US",
     type: "website",
