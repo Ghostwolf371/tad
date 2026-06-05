@@ -56,7 +56,7 @@ const cardVariants: Variants = {
 const disciplineChips = DISCIPLINES.map((label) => (
   <span
     key={label}
-    className="flex items-center gap-10 font-mono text-[11px] uppercase tracking-widest text-swamp/40"
+    className="flex items-center gap-10 font-mono text-[11px] uppercase tracking-widest text-swamp/70"
   >
     {label}
     <span className="h-1 w-1 rounded-full bg-malachite" aria-hidden />
@@ -84,6 +84,7 @@ export default function ServicesSection() {
               as="h2"
               lines={["Services engineered", "for growth."]}
               accentLastWord
+              accentClassName="text-malachite-700"
               delay={0.05}
               className="mt-5 text-4xl font-semibold leading-[1.05] tracking-normal text-swamp sm:text-5xl lg:text-6xl"
             />

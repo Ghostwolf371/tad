@@ -35,9 +35,9 @@ export default function Logo({
         alt="TAD logo"
         width={s.fullImg.w}
         height={s.fullImg.h}
+        sizes="240px"
         className={cn("shrink-0 object-contain", s.full)}
         priority
-        unoptimized
       />
     </span>
   );

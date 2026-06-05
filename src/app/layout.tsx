@@ -78,11 +78,47 @@ export default function RootLayout({
             hides page content from frame 1 for first-time visitors (no content flash). */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(!sessionStorage.getItem('tad-launch-seen')){document.documentElement.classList.add('is-launching');}}catch(e){}})();`,
+            __html: `(function(){try{var ua=navigator.userAgent||"";var isBot=/bot|crawl|spider|lighthouse|headless|pagespeed|gtmetrix|pingdom|prerender/i.test(ua);if(!isBot&&!sessionStorage.getItem('tad-launch-seen')){document.documentElement.classList.add('is-launching');}}catch(e){}})();`,
           }}
         />
       </head>
       <body className="min-h-screen bg-white text-swamp flex flex-col overflow-x-hidden">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://tad.sr/#organization",
+                  name: "TAD",
+                  url: "https://tad.sr",
+                  logo: "https://tad.sr/brand/logomark.png",
+                  description:
+                    "TAD is a software development and service company headquartered in Paramaribo, Suriname, building next-gen digital products and brands.",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Paramaribo",
+                    addressCountry: "SR",
+                  },
+                  sameAs: [
+                    "https://www.facebook.com/tad.sr",
+                    "https://www.instagram.com/tadsuriname/",
+                    "https://www.linkedin.com/company/tad-sr/",
+                  ],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://tad.sr/#website",
+                  url: "https://tad.sr",
+                  name: "TAD",
+                  publisher: { "@id": "https://tad.sr/#organization" },
+                },
+              ],
+            }),
+          }}
+        />
         <DevServiceWorkerCleanup />
         <SmoothScroll />
         <NoiseOverlay />

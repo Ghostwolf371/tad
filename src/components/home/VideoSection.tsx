@@ -153,11 +153,11 @@ export default function VideoSection() {
                     <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
                     <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
                   </div>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-swamp/46">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-swamp/70">
                     TAD launch reel
                   </span>
                 </div>
-                <span className="hidden rounded-full border border-swamp/10 bg-white/80 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-swamp/48 sm:inline-flex">
+                <span className="hidden rounded-full border border-swamp/10 bg-white/80 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-swamp/70 sm:inline-flex">
                   Paramaribo
                 </span>
               </div>
@@ -170,8 +170,7 @@ export default function VideoSection() {
                   src="/videos/tad-commercial.mp4"
                   muted={isMuted}
                   playsInline
-                  preload="metadata"
-                  autoPlay={!reduceMotion}
+                  preload="none"
                   loop={!reduceMotion}
                   onVolumeChange={(event) => setIsMuted(event.currentTarget.muted)}
                   onPlay={() => {

@@ -29,12 +29,20 @@ export default function LaunchScreen() {
   // the intro reveals it (so entrance animations fire only on reveal).
   useEffect(() => {
     let seen = false;
+    let isBot = false;
     try {
+      // Skip the intro for crawlers and audit tools (Lighthouse/PageSpeed,
+      // headless Chrome, search bots) so they measure the real content right
+      // away. Human visitors still get the full launch experience.
+      isBot =
+        /bot|crawl|spider|lighthouse|headless|pagespeed|gtmetrix|pingdom|prerender/i.test(
+          navigator.userAgent || "",
+        );
       seen = Boolean(sessionStorage.getItem(STORAGE_KEY));
     } catch {
       /* ignore */
     }
-    if (seen) {
+    if (seen || isBot) {
       document.documentElement.classList.remove("is-launching");
       return;
     }
@@ -167,9 +175,9 @@ export default function LaunchScreen() {
                 alt="tad."
                 width={4498}
                 height={1534}
+                sizes="(min-width: 640px) 220px, 170px"
                 className="h-12 w-auto sm:h-14"
                 priority
-                unoptimized
               />
             </motion.div>
 

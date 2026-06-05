@@ -59,7 +59,6 @@ export default function Footer() {
                 width={48}
                 height={48}
                 className="h-10 w-auto"
-                unoptimized
               />
               <TadWordmark theme="dark" size="lg" />
             </Link>
@@ -91,7 +90,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-          <p className="text-xs text-white/40 tracking-normal font-mono">
+          <p className="text-xs text-white/60 tracking-normal font-mono">
             © {new Date().getFullYear()} TAD N.V. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
@@ -132,9 +131,9 @@ function FooterCol({
 }) {
   return (
     <div>
-      <h4 className="text-xs uppercase tracking-normal text-white/40 mb-5 font-mono">
+      <h2 className="text-xs uppercase tracking-normal text-white/60 mb-5 font-mono">
         {title}
-      </h4>
+      </h2>
       <ul className="flex flex-col gap-3 text-sm">
         {items.map((item) => (
           <li key={item.href}>

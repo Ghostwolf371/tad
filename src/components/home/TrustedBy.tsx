@@ -183,6 +183,7 @@ export default function TrustedBy() {
             as="h2"
             lines={["Brands that trust us to build their digital future"]}
             accentLastWord
+            accentClassName="text-malachite-700"
             className="mt-6 text-3xl font-semibold leading-[1.08] tracking-normal text-swamp sm:text-4xl lg:text-5xl"
           />
         </div>

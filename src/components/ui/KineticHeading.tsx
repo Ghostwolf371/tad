@@ -7,8 +7,11 @@ type Props = {
   /** Each array item is one visual line. */
   lines: string[];
   trigger?: "mount" | "inView";
-  /** Wrap the last word of the last line in text-malachite. */
+  /** Wrap the last word of the last line in the accent colour. */
   accentLastWord?: boolean;
+  /** Accent colour class for the last word (default text-malachite). Use a darker
+   *  shade (e.g. text-malachite-700) on light backgrounds for contrast. */
+  accentClassName?: string;
   /** Wrap the last word of the last line in brand-gradient-text. Wins over accentLastWord. */
   gradientLastWord?: boolean;
   delay?: number;
@@ -32,6 +35,7 @@ export default function KineticHeading({
   lines,
   trigger = "inView",
   accentLastWord = false,
+  accentClassName = "text-malachite",
   gradientLastWord = false,
   delay = 0,
   className,
@@ -45,7 +49,7 @@ export default function KineticHeading({
       const words = line.split(" ");
       const lastWord = words.pop() ?? "";
       const lead = words.join(" ");
-      const wordClass = gradientLastWord ? "brand-gradient-text" : "text-malachite";
+      const wordClass = gradientLastWord ? "brand-gradient-text" : accentClassName;
       return (
         <>
           {lead ? `${lead} ` : null}

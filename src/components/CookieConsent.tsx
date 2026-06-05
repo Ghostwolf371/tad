@@ -63,7 +63,7 @@ export default function CookieConsent() {
         <p className="mt-1.5 text-[13px] leading-snug text-white/70 sm:mt-3 sm:text-[15px] sm:leading-relaxed">
           We use cookies to give you the best web experience possible. You can
           accept all or{" "}
-          <Link href="/cookies" className="text-malachite underline-offset-2 hover:underline">
+          <Link href="/cookies" className="text-malachite underline underline-offset-2">
             tweak your preferences
           </Link>
           .

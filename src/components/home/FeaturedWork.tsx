@@ -154,10 +154,9 @@ function FeaturedMediaCard({
           src={mobileSrc}
           alt={project.title}
           fill
-          unoptimized
-          sizes="100vw"
-          quality={85}
-          priority={index < 5}
+          sizes="(min-width: 640px) 50vw, 100vw"
+          quality={75}
+          loading="lazy"
           className={cn(
             CARD_IMAGE_CLASS[size],
             hasDistinctMobileArt && "sm:hidden",
@@ -168,14 +167,13 @@ function FeaturedMediaCard({
           alt=""
           aria-hidden
           fill
-          unoptimized={isLarge}
           sizes={
             isLarge
               ? "(min-width: 1536px) 1280px, (min-width: 1024px) 90vw, 100vw"
               : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           }
           quality={isLarge ? 92 : 75}
-          priority={index < 5}
+          loading="lazy"
           className={cn(
             CARD_IMAGE_CLASS[size],
             hasDistinctMobileArt ? "hidden sm:block" : "block",
