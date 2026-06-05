@@ -185,7 +185,7 @@ export default function LaunchScreen() {
               {...fade(0.2)}
               className="mt-10 inline-flex items-center font-mono text-xs font-medium uppercase tracking-[0.42em] text-white/55"
             >
-              Our Website
+              Our New Home
             </motion.span>
 
             <h1
@@ -202,8 +202,8 @@ export default function LaunchScreen() {
               {...fade(0.9)}
               className="mt-7 max-w-md text-base leading-8 text-white/60 sm:text-lg"
             >
-              We&apos;ve rebuilt tad.sr from the ground up — refined, faster, and
-              designed around what matters most.
+              Every pixel, rethought. Every second, faster. The new tad.sr is
+              here.
             </motion.p>
 
             <motion.button
