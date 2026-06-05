@@ -83,7 +83,8 @@ export default function LaunchScreen() {
     let h = 0;
     let start = 0;
     let last = 0;
-    let lastShoot = -2;
+    let lastShoot = -1;
+    let nextShoot = 0.8;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let stars: Star[] = [];
     const shooting: Shooting[] = [];
@@ -142,9 +143,10 @@ export default function LaunchScreen() {
         ctx.fill();
       }
 
-      // Spawn a shooting star occasionally (~every 7s) — a rare, quiet accent
-      if (t - lastShoot > 7) {
+      // Spawn shooting stars on a lively but varied cadence (~every 0.9–2.2s)
+      if (t - lastShoot > nextShoot) {
         lastShoot = t;
+        nextShoot = rand(0.9, 2.2);
         const fromLeft = Math.random() < 0.5;
         shooting.push({
           x: fromLeft ? rand(0.05, 0.35) : rand(0.65, 0.95),
