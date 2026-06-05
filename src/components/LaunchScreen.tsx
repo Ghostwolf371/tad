@@ -8,14 +8,16 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const AUTO_ENTER_MS = 7000;
 const STORAGE_KEY = "tad-launch-seen";
 
-/** Flowing aurora blobs drawn on canvas. */
-const BLOBS = [
-  { color: "0,227,87", x: 0.24, y: 0.32, r: 0.42, sx: 0.16, sy: 0.11, ph: 0 },
-  { color: "1,242,173", x: 0.74, y: 0.3, r: 0.4, sx: 0.13, sy: 0.17, ph: 1.7 },
-  { color: "0,184,160", x: 0.62, y: 0.74, r: 0.46, sx: 0.1, sy: 0.14, ph: 3.1 },
-  { color: "0,227,87", x: 0.32, y: 0.78, r: 0.36, sx: 0.18, sy: 0.09, ph: 4.4 },
-  { color: "1,242,173", x: 0.5, y: 0.52, r: 0.3, sx: 0.12, sy: 0.16, ph: 2.2 },
-];
+type Star = {
+  x: number;
+  y: number;
+  r: number;
+  base: number;
+  tw: number;
+  ph: number;
+  green: boolean;
+};
+type Shooting = { x: number; y: number; vx: number; vy: number; life: number; dur: number };
 
 export default function LaunchScreen() {
   const reduceMotion = useReducedMotion();
@@ -68,7 +70,7 @@ export default function LaunchScreen() {
     setShow(false);
   };
 
-  // Animated aurora gradient.
+  // Twinkling starfield + occasional shooting stars (Rolls-Royce "Starlight").
   useEffect(() => {
     if (!show || reduceMotion) return;
     const canvas = canvasRef.current;
@@ -80,7 +82,26 @@ export default function LaunchScreen() {
     let w = 0;
     let h = 0;
     let start = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    let last = 0;
+    let lastShoot = -2;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let stars: Star[] = [];
+    const shooting: Shooting[] = [];
+    const rand = (a: number, b: number) => a + Math.random() * (b - a);
+
+    const seed = () => {
+      // Density scales with the viewport, capped for performance.
+      const count = Math.min(460, Math.max(160, Math.round((w * h) / 4600)));
+      stars = Array.from({ length: count }, () => ({
+        x: Math.random(),
+        y: Math.random(),
+        r: rand(0.3, 1.6),
+        base: rand(0.42, 1),
+        tw: rand(0.4, 2.1),
+        ph: Math.random() * Math.PI * 2,
+        green: Math.random() < 0.16,
+      }));
+    };
 
     const resize = () => {
       w = canvas.offsetWidth;
@@ -88,6 +109,7 @@ export default function LaunchScreen() {
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seed();
     };
     resize();
     window.addEventListener("resize", resize);
@@ -95,22 +117,73 @@ export default function LaunchScreen() {
     const draw = (now: number) => {
       if (!start) start = now;
       const t = (now - start) / 1000;
+      const dt = last ? (now - last) / 1000 : 0;
+      last = now;
       ctx.clearRect(0, 0, w, h);
-      ctx.globalCompositeOperation = "lighter";
-      const base = Math.min(w, h);
-      for (const b of BLOBS) {
-        const cx = (b.x + Math.sin(t * b.sx + b.ph) * 0.2) * w;
-        const cy = (b.y + Math.cos(t * b.sy + b.ph) * 0.2) * h;
-        const rad = b.r * base;
-        const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
-        g.addColorStop(0, `rgba(${b.color},0.46)`);
-        g.addColorStop(1, `rgba(${b.color},0)`);
-        ctx.fillStyle = g;
+
+      // Stars
+      for (const s of stars) {
+        const a = s.base * (0.32 + 0.68 * (0.5 + 0.5 * Math.sin(t * s.tw + s.ph)));
+        const px = s.x * w;
+        const py = s.y * h;
+        const col = s.green ? "150,255,190" : "255,255,255";
+        if (s.r > 1) {
+          const g = ctx.createRadialGradient(px, py, 0, px, py, s.r * 4.5);
+          g.addColorStop(0, `rgba(${col},${a * 0.45})`);
+          g.addColorStop(1, `rgba(${col},0)`);
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(px, py, s.r * 4.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.fillStyle = `rgba(${col},${a})`;
         ctx.beginPath();
-        ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+        ctx.arc(px, py, s.r, 0, Math.PI * 2);
         ctx.fill();
       }
-      ctx.globalCompositeOperation = "source-over";
+
+      // Spawn a shooting star roughly every ~3.8s
+      if (t - lastShoot > 3.8) {
+        lastShoot = t;
+        const fromLeft = Math.random() < 0.5;
+        shooting.push({
+          x: fromLeft ? rand(0.05, 0.35) : rand(0.65, 0.95),
+          y: rand(0.05, 0.4),
+          vx: (fromLeft ? 1 : -1) * rand(0.5, 0.8),
+          vy: rand(0.32, 0.5),
+          life: 0,
+          dur: rand(0.9, 1.4),
+        });
+      }
+      for (let i = shooting.length - 1; i >= 0; i--) {
+        const ss = shooting[i];
+        ss.life += dt;
+        const prog = ss.life / ss.dur;
+        if (prog >= 1) {
+          shooting.splice(i, 1);
+          continue;
+        }
+        const cx = (ss.x + ss.vx * prog) * w;
+        const cy = (ss.y + ss.vy * prog) * h;
+        const tx = cx - ss.vx * w * 0.09;
+        const ty = cy - ss.vy * h * 0.09;
+        const alpha = Math.sin(prog * Math.PI); // ease in/out
+        const grad = ctx.createLinearGradient(tx, ty, cx, cy);
+        grad.addColorStop(0, "rgba(180,255,210,0)");
+        grad.addColorStop(1, `rgba(255,255,255,${alpha})`);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.8;
+        ctx.lineCap = "round";
+        ctx.beginPath();
+        ctx.moveTo(tx, ty);
+        ctx.lineTo(cx, cy);
+        ctx.stroke();
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 1.6, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
       raf = requestAnimationFrame(draw);
     };
     raf = requestAnimationFrame(draw);
@@ -149,22 +222,21 @@ export default function LaunchScreen() {
           role="dialog"
           aria-label="Welcome"
         >
-          {/* Slowly panning brand gradient base (dynamic, Apple-like) */}
-          <div className="launch-gradient pointer-events-none absolute inset-0" aria-hidden />
-          {/* Aurora canvas (blurred for a soft, flowing look) */}
+          {/* Deep brand-night base (subtle, keeps the stars feeling premium) */}
+          <div
+            className="launch-gradient pointer-events-none absolute inset-0 opacity-[0.28]"
+            aria-hidden
+          />
+          {/* Twinkling starfield + shooting stars (sharp — no blur) */}
           <canvas
             ref={canvasRef}
-            className="absolute inset-0 h-full w-full [filter:blur(64px)_saturate(125%)]"
+            className="absolute inset-0 h-full w-full"
             aria-hidden
           />
-          {/* Vignette + subtle grid */}
+          {/* Vignette for depth (darker edges make the starfield read) */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_50%,transparent_30%,rgba(0,8,6,0.7)_100%)]"
-          />
-          <div
-            aria-hidden
-            className="grid-pattern pointer-events-none absolute inset-0 opacity-[0.4] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_45%,transparent_35%,rgba(0,6,4,0.82)_100%)]"
           />
 
           {/* Content */}
