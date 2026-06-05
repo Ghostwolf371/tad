@@ -7,6 +7,7 @@ import type { CSSProperties } from "react";
 import HomeSection from "@/components/home/HomeSection";
 import { ButtonLink } from "@/components/ui/Button";
 import KineticHeading from "@/components/ui/KineticHeading";
+import Magnetic from "@/components/ui/Magnetic";
 import Parallax from "@/components/ui/Parallax";
 import Reveal from "@/components/ui/Reveal";
 import { projects, type Project } from "@/data/projects";
@@ -136,6 +137,7 @@ function FeaturedMediaCard({
       />
       <Link
         href={`/portfolio/${project.slug}`}
+        data-cursor="view"
         className={cn(
           "relative block w-full overflow-hidden transform-gpu will-change-transform",
           CARD_SHELL[size],
@@ -367,15 +369,17 @@ export default function FeaturedWork() {
         </div>
 
         <Reveal delay={0.4} className="flex justify-center pt-2 sm:pt-4">
-          <ButtonLink
-            href="/portfolio"
-            size="lg"
-            variant="primary"
-            className="group min-w-[14rem] justify-center"
-          >
-            See full portfolio
-            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </ButtonLink>
+          <Magnetic strength={0.4} className="inline-flex">
+            <ButtonLink
+              href="/portfolio"
+              size="lg"
+              variant="primary"
+              className="group min-w-[14rem] justify-center"
+            >
+              See full portfolio
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </ButtonLink>
+          </Magnetic>
         </Reveal>
       </div>
     </HomeSection>

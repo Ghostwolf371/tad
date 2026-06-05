@@ -11,6 +11,7 @@ import WhatsAppRobot from "@/components/home/WhatsAppRobot";
 import PageLoadGate from "@/components/skeletons/PageLoadGate";
 import CookieConsent from "@/components/CookieConsent";
 import LaunchScreen from "@/components/LaunchScreen";
+import CustomCursor from "@/components/ui/CustomCursor";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -139,6 +140,7 @@ export default function RootLayout({
         <WhatsAppRobot />
         <CookieConsent />
         <LaunchScreen />
+        <CustomCursor />
       </body>
     </html>
   );

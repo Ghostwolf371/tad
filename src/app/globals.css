@@ -509,6 +509,48 @@ html.is-launching main {
   display: none;
 }
 
+/* ===== ANIMATED LINK UNDERLINE — wipes in from the left on hover/focus ===== */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .link-underline::after {
+    transition: none;
+  }
+}
+
+/* ===== CUSTOM CURSOR — hide the native cursor while the custom one is active === */
+html.has-custom-cursor,
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor [role="button"] {
+  cursor: none;
+}
+/* Keep a real caret where the user actually types. */
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor select,
+html.has-custom-cursor [contenteditable="true"] {
+  cursor: auto;
+}
+
 /* Slowly panning brand gradient behind the launch aurora (Apple-like motion) */
 @keyframes launch-gradient-pan {
   0% {

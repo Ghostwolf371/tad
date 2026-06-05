@@ -167,13 +167,13 @@ export default function OverlayMenu({ open, onClose, pathname }: OverlayMenuProp
                     </p>
                     <a
                       href={site.phoneHref}
-                      className="text-base font-medium text-white transition-colors hover:text-malachite focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-malachite/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-green sm:text-xl"
+                      className="link-underline inline-block w-fit text-base font-medium text-white transition-colors hover:text-malachite focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-malachite/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-green sm:text-xl"
                     >
                       {site.phone}
                     </a>
                     <a
                       href={`mailto:${site.email}`}
-                      className="text-base font-medium text-white transition-colors hover:text-malachite focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-malachite/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-green sm:text-xl"
+                      className="link-underline inline-block w-fit text-base font-medium text-white transition-colors hover:text-malachite focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-malachite/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-green sm:text-xl"
                     >
                       {site.email}
                     </a>

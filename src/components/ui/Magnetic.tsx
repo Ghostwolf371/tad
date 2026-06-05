@@ -1,6 +1,11 @@
 "use client";
 
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
 type Props = {
@@ -11,12 +16,15 @@ type Props = {
 
 export default function Magnetic({ children, strength = 0.35, className }: Props) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const sx = useSpring(x, { stiffness: 220, damping: 18, mass: 0.4 });
   const sy = useSpring(y, { stiffness: 220, damping: 18, mass: 0.4 });
 
+  // Touch devices never fire mousemove, so the element simply stays put.
   const onMove = (e: React.MouseEvent) => {
+    if (reduce) return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -34,9 +42,9 @@ export default function Magnetic({ children, strength = 0.35, className }: Props
   return (
     <motion.div
       ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{ x: sx, y: sy }}
+      onMouseMove={reduce ? undefined : onMove}
+      onMouseLeave={reduce ? undefined : onLeave}
+      style={reduce ? undefined : { x: sx, y: sy }}
       className={className}
     >
       {children}
