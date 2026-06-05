@@ -68,8 +68,8 @@ export const aboutContent = {
       "Trade shows, the office, and the moments around the work — a look at life inside the bureau.",
     images: [
       {
-        src: "/about/about-photo-gallery-1.webp",
-        alt: "The TAD team gathered in Paramaribo",
+        src: "/about/about-photo-gallery-2.webp",
+        alt: "The TAD team at SEOGS 2025 in Paramaribo",
         layout: "hero",
       },
       {
@@ -78,8 +78,8 @@ export const aboutContent = {
         layout: "landscape",
       },
       {
-        src: "/about/about-photo-gallery-2.webp",
-        alt: "TAD team at a trade show booth",
+        src: "/about/about-photo-gallery-1.webp",
+        alt: "The TAD team with production gear in the studio",
         layout: "landscape",
       },
       {
@@ -89,7 +89,7 @@ export const aboutContent = {
       },
       {
         src: "/about/about-photo-gallery-4.webp",
-        alt: "TAD team at a conference",
+        alt: "TAD team at a trade show booth",
         layout: "landscape",
       },
       {
