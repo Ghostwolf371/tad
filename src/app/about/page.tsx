@@ -5,7 +5,8 @@ import { aboutContent } from "@/lib/content/about";
 import AboutCultureSection from "@/components/about/AboutCultureSection";
 import AboutMissionVisionSection from "@/components/about/AboutMissionVisionSection";
 import AboutGalleryCarousel from "@/components/about/AboutGalleryCarousel";
-import AboutTeamSection from "@/components/about/AboutTeamSection";
+import AboutPhotoGallery from "@/components/about/AboutPhotoGallery";
+// import AboutTeamSection from "@/components/about/AboutTeamSection";
 import { PAGE_SECTION_PY } from "@/lib/theme/section-spacing";
 
 export const metadata = {
@@ -57,7 +58,9 @@ export default function AboutPage() {
       <AboutMissionVisionSection sectionIndex={1} />
       <AboutCultureSection sectionIndex={2} tone="white" grid={false} edgeTop={false} />
       <AboutGalleryCarousel sectionIndex={3} />
-      <AboutTeamSection sectionIndex={4} previousTone="dark-green" />
+      <AboutPhotoGallery sectionIndex={4} previousTone="dark-green" />
+      {/* Temporarily hidden — restore when team section returns */}
+      {/* <AboutTeamSection sectionIndex={4} previousTone="dark-green" /> */}
     </>
   );
 }

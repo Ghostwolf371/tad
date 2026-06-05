@@ -61,6 +61,54 @@ export const aboutContent = {
       },
     ],
   },
+  photoGallery: {
+    eyebrow: "Gallery",
+    title: "Studio, events, and everyday TAD",
+    description:
+      "Trade shows, the office, and the moments around the work — a look at life inside the bureau.",
+    images: [
+      {
+        src: "/about/about-photo-gallery-1.jpg",
+        alt: "The TAD team gathered in Paramaribo",
+        layout: "hero",
+      },
+      {
+        src: "/about/about-photo-gallery-5.jpg",
+        alt: "The TAD team at a group gathering",
+        layout: "landscape",
+      },
+      {
+        src: "/about/about-photo-gallery-2.jpg",
+        alt: "TAD team at a trade show booth",
+        layout: "landscape",
+      },
+      {
+        src: "/about/about-photo-gallery-3.jpg",
+        alt: "TAD team collaborating at an event",
+        layout: "landscape",
+      },
+      {
+        src: "/about/about-photo-gallery-4.jpg",
+        alt: "TAD team at a conference",
+        layout: "landscape",
+      },
+      {
+        src: "/about/about-photo-gallery-6.jpg",
+        alt: "TAD team members at an event",
+        layout: "square",
+      },
+      {
+        src: "/about/about-photo-gallery-7.jpg",
+        alt: "TAD team at a networking event",
+        layout: "square",
+      },
+      {
+        src: "/about/about-photo-gallery-8.jpg",
+        alt: "TAD team members together",
+        layout: "square",
+      },
+    ],
+  },
   team: {
     eyebrow: "Meet the team",
     title: "Developers, designers, and marketing",

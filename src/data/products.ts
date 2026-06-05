@@ -171,7 +171,7 @@ export const products: Product[] = [
       "Export-friendly invoice records",
     ],
     externalHref: "https://tad.sr/",
-    palette: { primary: "#16A34A", secondary: "#BBF7D0", text: "#001e1c" },
+    palette: { primary: "#00e357", secondary: "#01f2ad", text: "#f5fff8" },
   },
   {
     id: "vendor-plus",

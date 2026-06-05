@@ -14,6 +14,9 @@ import {
   PRODUCT_ICONS,
   PRODUCT_LABELS,
   PRODUCT_MOCKUP_VARIANT,
+  isGreenProductCard,
+  productMockupBandStyle,
+  productTitleClassName,
 } from "@/components/products/product-visuals";
 import { ButtonLink } from "@/components/ui/Button";
 import { heroTitleLines } from "@/lib/hero-title-lines";
@@ -36,8 +39,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const label = PRODUCT_LABELS[product.id] ?? product.tags[0];
   const mockupVariant = PRODUCT_MOCKUP_VARIANT[product.id] ?? "flex-pos";
   const titleLines = heroTitleLines(product.heading);
-  const greenCard =
-    product.id === "hr-plus" || product.id === "invoice-plus" || product.id === "whatsapp-ai";
+  const greenCard = isGreenProductCard(product.id);
 
   const accentVars = {
     "--product-primary": product.palette.primary,
@@ -104,14 +106,21 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
           <div
             className={cn(
               "lg:order-2",
-              "flex items-center justify-center rounded-xl border p-5 sm:p-6",
+              "flex items-center justify-center overflow-hidden rounded-xl border p-5 sm:p-6",
               greenCard
-                ? "border-white/20 bg-[#F8F7F2]"
+                ? "border-white/10"
                 : "border-swamp/8 bg-bone-50/80",
             )}
+            style={greenCard ? productMockupBandStyle(product, true) : undefined}
           >
             <div className="h-[18.5rem] w-full max-w-[40rem] sm:h-[19.5rem]">
-              <ProductMockup variant={mockupVariant} className="size-full" />
+              <ProductMockup
+                variant={mockupVariant}
+                presentation="browser"
+                theme={greenCard ? "dark" : "light"}
+                compact={greenCard}
+                className="size-full"
+              />
             </div>
           </div>
 
@@ -140,7 +149,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             <h2
               className={cn(
                 "mt-5 text-3xl font-semibold leading-[1.08] tracking-normal sm:text-4xl",
-                greenCard ? "text-white" : "text-swamp",
+                productTitleClassName(product.id, greenCard),
               )}
             >
               {product.name}

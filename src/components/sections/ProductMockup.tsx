@@ -294,16 +294,38 @@ function BouwPlusMockup() {
   );
 }
 
-function InvoicePlusMockup() {
+function InvoicePlusMockup({ dark = false }: MockupBodyProps) {
   const sk = useSk();
+  const tone = dark ? "dark" : "light";
 
   return (
-    <Canvas className="bg-gradient-to-br from-bone-50 via-white to-green-50/40 p-2.5">
+    <Canvas
+      className={cn(
+        "p-2.5",
+        dark
+          ? DARK_CANVAS_CLASS
+          : "bg-gradient-to-br from-bone-50 via-white to-green-50/40",
+      )}
+    >
       <div className="flex h-full gap-2">
-        <div className="flex min-w-0 flex-1 flex-col rounded-xl border border-swamp/[0.08] bg-white p-2 shadow-sm">
+        <div
+          className={cn(
+            "flex min-w-0 flex-1 flex-col rounded-xl border p-2 shadow-sm",
+            dark
+              ? "border-white/10 bg-[#0a1814]"
+              : "border-swamp/[0.08] bg-white",
+          )}
+        >
           <div className="mb-2 flex items-center justify-between">
-            <div className={sk("light", "h-1.5 w-20 rounded-full")} />
-            <span className="rounded-md bg-malachite/15 px-1.5 py-0.5 font-mono text-[6px] font-semibold text-malachite-800">
+            <div className={sk(tone, "h-1.5 w-20 rounded-full")} />
+            <span
+              className={cn(
+                "rounded-md px-1.5 py-0.5 font-mono text-[6px] font-semibold",
+                dark
+                  ? "bg-malachite/20 text-malachite"
+                  : "bg-malachite/15 text-malachite-800",
+              )}
+            >
               DRAFT
             </span>
           </div>
@@ -311,17 +333,29 @@ function InvoicePlusMockup() {
             {[0, 1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="flex items-center gap-2 rounded-lg border border-swamp/[0.06] bg-bone-50/70 px-2 py-1.5"
+                className={cn(
+                  "flex items-center gap-2 rounded-lg border px-2 py-1.5",
+                  dark
+                    ? "border-white/[0.06] bg-white/[0.04]"
+                    : "border-swamp/[0.06] bg-bone-50/70",
+                )}
               >
-                <div className={sk("light", "h-1.5 w-6 rounded-full")} />
-                <div className={sk("light", "h-1.5 flex-1 rounded-full")} />
-                <div className={sk(i === 2 ? "accent" : "light", "h-1.5 w-8 rounded-full")} />
+                <div className={sk(tone, "h-1.5 w-6 rounded-full")} />
+                <div className={sk(tone, "h-1.5 flex-1 rounded-full")} />
+                <div className={sk(i === 2 ? "accent" : tone, "h-1.5 w-8 rounded-full")} />
               </div>
             ))}
           </div>
-          <div className="mt-auto rounded-lg border border-malachite/20 bg-malachite/10 p-2">
+          <div
+            className={cn(
+              "mt-auto rounded-lg border p-2",
+              dark
+                ? "border-malachite/30 bg-gradient-to-r from-malachite/25 to-spring/10"
+                : "border-malachite/20 bg-malachite/10",
+            )}
+          >
             <div className="flex items-center justify-between">
-              <div className={sk("light", "h-1.5 w-12 rounded-full")} />
+              <div className={sk(tone, "h-1.5 w-12 rounded-full")} />
               <div className={sk("accent", "h-2 w-10 rounded-full")} />
             </div>
           </div>
@@ -600,7 +634,7 @@ const BODIES: Record<
 > = {
   "flex-pos": FlexPosMockup,
   "bouw-plus": () => <BouwPlusMockup />,
-  "invoice-plus": () => <InvoicePlusMockup />,
+  "invoice-plus": InvoicePlusMockup,
   "vendor-plus": () => <VendorPlusMockup />,
   "whatsapp-ai": WhatsAppAiMockup,
 };

@@ -184,6 +184,7 @@ function StandardPageSkeleton({
       | "grid-2"
       | "grid-3"
       | "team-grid"
+      | "photo-gallery-grid"
       | "culture-pillars"
       | "gallery-carousel"
       | "split-mockup"
@@ -263,6 +264,41 @@ function StandardPageSkeleton({
                     <SkeletonBar className="mt-5 h-4 w-3/4 rounded-md" animated={false} />
                     <SkeletonBar className="mt-2 h-3 w-1/2" animated={false} />
                   </SkeletonCard>
+                ))}
+              </div>
+            </>
+          )}
+          {section.layout === "photo-gallery-grid" && (
+            <>
+              <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
+                <SectionHeaderSkeleton />
+                <SkeletonBar className="h-3 w-48 lg:ml-auto" animated={false} />
+              </div>
+              <div className="mt-10 grid grid-cols-6 gap-3 sm:gap-4 lg:gap-5">
+                <SkeletonBar
+                  className="col-span-6 aspect-[16/10] w-full rounded-2xl sm:aspect-[3/2] lg:aspect-[21/9]"
+                  animated={false}
+                />
+                {Array.from({ length: 2 }, (_, j) => (
+                  <SkeletonBar
+                    key={`landscape-top-${j}`}
+                    className="col-span-3 aspect-[3/2] w-full rounded-2xl"
+                    animated={false}
+                  />
+                ))}
+                {Array.from({ length: 2 }, (_, j) => (
+                  <SkeletonBar
+                    key={`landscape-bottom-${j}`}
+                    className="col-span-3 aspect-[3/2] w-full rounded-2xl"
+                    animated={false}
+                  />
+                ))}
+                {Array.from({ length: 3 }, (_, j) => (
+                  <SkeletonBar
+                    key={`square-${j}`}
+                    className="col-span-2 aspect-square w-full rounded-2xl"
+                    animated={false}
+                  />
                 ))}
               </div>
             </>
@@ -400,7 +436,7 @@ export function AboutPageSkeleton() {
         { layout: "grid-2" },
         { layout: "culture-pillars" },
         { layout: "gallery-carousel", tone: "dark-green" },
-        { layout: "team-grid", tone: "white" },
+        { layout: "photo-gallery-grid", tone: "white" },
       ]}
     />
   );
