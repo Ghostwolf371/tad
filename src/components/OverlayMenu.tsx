@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { ButtonLink } from "./ui/Button";
 import { InstagramIcon, LinkedInIcon, FacebookIcon } from "./icons/Social";
 import { site } from "@/lib/content/site";
@@ -21,9 +22,15 @@ export const NAV = [
 const EASE = [0.215, 0.61, 0.355, 1] as const;
 
 const SOCIALS = [
+  { href: site.social.facebook, label: "Facebook", Icon: FacebookIcon },
   { href: site.social.instagram, label: "Instagram", Icon: InstagramIcon },
   { href: site.social.linkedin, label: "LinkedIn", Icon: LinkedInIcon },
-  { href: site.social.facebook, label: "Facebook", Icon: FacebookIcon },
+] as const;
+
+const CONTACTS = [
+  { Icon: Phone, label: "Call Us", value: site.phone, href: site.phoneHref },
+  { Icon: Mail, label: "Email Us", value: site.email, href: `mailto:${site.email}` },
+  { Icon: MapPin, label: "Find Us", value: site.location, href: undefined },
 ] as const;
 
 type OverlayMenuProps = {
@@ -78,10 +85,10 @@ export default function OverlayMenu({ open, onClose, pathname }: OverlayMenuProp
             {/* Green radial-glow accents */}
             <div
               aria-hidden
-              className="pointer-events-none absolute -left-1/4 -top-1/4 h-[60vh] w-[60vh]"
+              className="pointer-events-none absolute -left-1/4 top-0 h-[70vh] w-[70vh]"
               style={{
                 background:
-                  "radial-gradient(closest-side, rgba(0,227,87,0.22), transparent)",
+                  "radial-gradient(closest-side, rgba(0,227,87,0.20), transparent)",
               }}
             />
             <div
@@ -89,11 +96,21 @@ export default function OverlayMenu({ open, onClose, pathname }: OverlayMenuProp
               className="pointer-events-none absolute -bottom-1/4 -right-1/4 h-[55vh] w-[55vh]"
               style={{
                 background:
-                  "radial-gradient(closest-side, rgba(1,242,173,0.16), transparent)",
+                  "radial-gradient(closest-side, rgba(1,242,173,0.14), transparent)",
               }}
             />
 
-            <div className="relative flex h-full max-h-full flex-col justify-between gap-5 overflow-y-auto p-6 sm:gap-10 sm:p-10 lg:p-14">
+            {/* Giant faint wordmark (desktop) */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0 hidden select-none items-center justify-center lg:flex"
+            >
+              <span className="text-[27vw] font-extrabold leading-none tracking-tighter text-white/[0.03]">
+                TAD
+              </span>
+            </span>
+
+            <div className="relative flex h-full max-h-full flex-col gap-8 overflow-y-auto p-6 sm:p-10 lg:p-14">
               {/* Eyebrow */}
               <motion.p
                 initial={{ opacity: 0 }}
@@ -104,11 +121,11 @@ export default function OverlayMenu({ open, onClose, pathname }: OverlayMenuProp
                 Menu
               </motion.p>
 
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+              <div className="flex flex-1 flex-col gap-10 lg:grid lg:grid-cols-2 lg:items-center lg:gap-0">
                 {/* LEFT: nav links */}
                 <nav
                   aria-label="Primary"
-                  className="flex flex-col gap-0.5 sm:gap-1"
+                  className="flex flex-col gap-0.5 sm:gap-1 lg:pr-16"
                 >
                   {NAV.map((item, i) => {
                     const active =
@@ -131,13 +148,13 @@ export default function OverlayMenu({ open, onClose, pathname }: OverlayMenuProp
                           onClick={onClose}
                           aria-current={active ? "page" : undefined}
                           className={cn(
-                            "group inline-flex items-center gap-3 rounded-md py-1 font-semibold leading-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-malachite/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-green sm:py-1.5",
+                            "group flex w-fit items-center gap-3 rounded-lg px-3 py-1 font-semibold leading-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-malachite/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-green sm:py-1.5 lg:-mx-3 lg:px-4 lg:py-2",
                             active
-                              ? "text-malachite"
-                              : "text-white hover:text-malachite",
+                              ? "text-malachite lg:bg-white/[0.05]"
+                              : "text-white hover:text-malachite lg:hover:bg-white/[0.04]",
                           )}
                           style={{
-                            fontSize: "clamp(1.3rem, 0.85rem + 2vw, 2.75rem)",
+                            fontSize: "clamp(1.3rem, 0.85rem + 2vw, 2.6rem)",
                           }}
                         >
                           <span
@@ -154,32 +171,102 @@ export default function OverlayMenu({ open, onClose, pathname }: OverlayMenuProp
                   })}
                 </nav>
 
-                {/* RIGHT: contact block */}
+                {/* RIGHT: rich contact (desktop) */}
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.28, duration: 0.45, ease: EASE }}
-                  className="flex flex-col gap-4 sm:gap-7 lg:items-end lg:text-right"
+                  className="hidden h-full flex-col justify-center gap-10 border-white/10 lg:flex lg:border-l lg:pl-16"
                 >
-                  <div className="flex flex-col gap-2 sm:gap-3">
+                  <div>
+                    <h3 className="flex items-center gap-2 text-2xl font-semibold text-white">
+                      Get In Touch
+                      <ArrowUpRight className="h-5 w-5 text-malachite" />
+                    </h3>
+                    <div className="mt-7 flex flex-col gap-5">
+                      {CONTACTS.map(({ Icon, label, value, href }) => {
+                        const inner = (
+                          <>
+                            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-white/15 text-white/80 transition-colors group-hover:border-malachite/50 group-hover:text-malachite">
+                              <Icon className="h-5 w-5" strokeWidth={1.6} />
+                            </span>
+                            <span className="min-w-0">
+                              <span className="block text-xs uppercase tracking-[0.12em] text-white/40">
+                                {label}
+                              </span>
+                              <span className="block text-lg font-medium leading-snug text-white transition-colors group-hover:text-malachite">
+                                {value}
+                              </span>
+                            </span>
+                          </>
+                        );
+                        return href ? (
+                          <a
+                            key={label}
+                            href={href}
+                            className="group flex items-center gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-malachite/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-green"
+                          >
+                            {inner}
+                          </a>
+                        ) : (
+                          <div key={label} className="group flex items-center gap-4">
+                            {inner}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="flex items-center gap-2 text-2xl font-semibold text-white">
+                      Social Links
+                      <ArrowUpRight className="h-5 w-5 text-malachite" />
+                    </h3>
+                    <div className="mt-5 flex flex-wrap gap-x-8 gap-y-3">
+                      {SOCIALS.map(({ href, label, Icon }) => (
+                        <a
+                          key={label}
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group inline-flex items-center gap-2.5 text-white/80 transition-colors hover:text-malachite focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-malachite/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-green"
+                        >
+                          <Icon className="h-5 w-5" />
+                          <span className="link-underline text-base font-medium">
+                            {label}
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* RIGHT: compact contact (mobile / tablet) */}
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.28, duration: 0.45, ease: EASE }}
+                  className="flex flex-col gap-5 lg:hidden"
+                >
+                  <div className="flex flex-col gap-2">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-malachite">
                       Get in touch
                     </p>
                     <a
                       href={site.phoneHref}
-                      className="link-underline inline-block w-fit text-base font-medium text-white transition-colors hover:text-malachite focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-malachite/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-green sm:text-xl"
+                      className="link-underline inline-block w-fit text-base font-medium text-white transition-colors hover:text-malachite sm:text-xl"
                     >
                       {site.phone}
                     </a>
                     <a
                       href={`mailto:${site.email}`}
-                      className="link-underline inline-block w-fit text-base font-medium text-white transition-colors hover:text-malachite focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-malachite/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-green sm:text-xl"
+                      className="link-underline inline-block w-fit text-base font-medium text-white transition-colors hover:text-malachite sm:text-xl"
                     >
                       {site.email}
                     </a>
                   </div>
 
-                  <div className="flex items-center gap-3 lg:justify-end">
+                  <div className="flex items-center gap-3">
                     {SOCIALS.map(({ href, label, Icon }) => (
                       <a
                         key={label}
@@ -187,7 +274,7 @@ export default function OverlayMenu({ open, onClose, pathname }: OverlayMenuProp
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={label}
-                        className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white transition-colors hover:border-malachite/50 hover:text-malachite focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-malachite/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-green sm:h-11 sm:w-11"
+                        className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white transition-colors hover:border-malachite/50 hover:text-malachite sm:h-11 sm:w-11"
                       >
                         <Icon className="h-5 w-5" />
                       </a>
