@@ -44,13 +44,13 @@ export default function Starfield({ className }: { className?: string }) {
     const rand = (a: number, b: number) => a + Math.random() * (b - a);
 
     const seed = () => {
-      const count = Math.min(150, Math.max(45, Math.round((w * h) / 15000)));
+      const count = Math.min(220, Math.max(70, Math.round((w * h) / 10000)));
       stars = Array.from({ length: count }, () => ({
         x: Math.random(),
         y: Math.random(),
-        r: rand(0.3, 1),
-        base: rand(0.12, 0.42),
-        tw: rand(0.3, 1.4),
+        r: rand(0.4, 1.5),
+        base: rand(0.4, 0.92),
+        tw: rand(0.4, 1.7),
         ph: Math.random() * Math.PI * 2,
         green: Math.random() < 0.16,
       }));
@@ -74,10 +74,19 @@ export default function Starfield({ className }: { className?: string }) {
       ctx.clearRect(0, 0, w, h);
 
       for (const s of stars) {
-        const a = s.base * (0.3 + 0.7 * (0.5 + 0.5 * Math.sin(t * s.tw + s.ph)));
+        const a = s.base * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * s.tw + s.ph)));
         const px = s.x * w;
         const py = s.y * h;
-        const col = s.green ? "150,255,190" : "220,238,255";
+        const col = s.green ? "160,255,200" : "235,245,255";
+        if (s.r > 0.95) {
+          const g = ctx.createRadialGradient(px, py, 0, px, py, s.r * 3.5);
+          g.addColorStop(0, `rgba(${col},${a * 0.4})`);
+          g.addColorStop(1, `rgba(${col},0)`);
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(px, py, s.r * 3.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
         ctx.fillStyle = `rgba(${col},${a})`;
         ctx.beginPath();
         ctx.arc(px, py, s.r, 0, Math.PI * 2);
