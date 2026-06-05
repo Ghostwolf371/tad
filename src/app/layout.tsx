@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, JetBrains_Mono, Montserrat_Alternates } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -79,21 +80,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${jetbrainsMono.variable} ${montserratAlternates.variable}`}
     >
       <head>
         {/* Decide BEFORE first paint whether the launch screen shows this session.
             Prevents the launcher from flashing on refresh once it's been seen, and
             hides page content from frame 1 for first-time visitors (no content flash). */}
-        <script
+        <Script
+          id="tad-launch-gate"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var ua=navigator.userAgent||"";var isBot=/bot|crawl|spider|lighthouse|headless|pagespeed|gtmetrix|pingdom|prerender/i.test(ua);if(!isBot&&!sessionStorage.getItem('tad-launch-seen')){document.documentElement.classList.add('is-launching');}}catch(e){}})();`,
           }}
         />
-      </head>
-      <body className="min-h-screen bg-white text-swamp flex flex-col overflow-x-hidden">
-        <script
+        <Script
+          id="tad-json-ld"
           type="application/ld+json"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -128,6 +132,8 @@ export default function RootLayout({
             }),
           }}
         />
+      </head>
+      <body className="min-h-screen bg-white text-swamp flex flex-col overflow-x-hidden">
         <DevServiceWorkerCleanup />
         <SmoothScroll />
         <NoiseOverlay />

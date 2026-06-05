@@ -1,28 +1,38 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
-// Module-level flag: true on the very first render (full page load), false for
-// every client-side navigation afterwards. App Router re-mounts this template on
-// each navigation, so we use it to skip the curtain on first load (it would
-// otherwise clash with the launch screen).
-let firstRender = true;
+// Skip the route curtain on the very first page load (clashes with launch screen).
+// Must be module-level so it survives template remounts on client navigations.
+let isFirstPageLoad = true;
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const reduce = useReducedMotion();
-  const skip = firstRender || reduce;
-  firstRender = false;
+  // Always false on SSR + first client render so hydration matches server HTML.
+  const [showCurtain, setShowCurtain] = useState(false);
+
+  useEffect(() => {
+    if (isFirstPageLoad) {
+      isFirstPageLoad = false;
+      return;
+    }
+    if (!reduce) setShowCurtain(true);
+    // Run once per template mount — remounts happen on client navigations.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
       {children}
-      {!skip && (
+      {showCurtain && (
         <motion.div
           aria-hidden
           className="pointer-events-none fixed inset-0 z-[150] bg-canvas-green"
           initial={{ y: 0 }}
           animate={{ y: "-100%" }}
           transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+          onAnimationComplete={() => setShowCurtain(false)}
         />
       )}
     </>
