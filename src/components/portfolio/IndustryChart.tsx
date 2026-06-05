@@ -129,7 +129,7 @@ function PortfolioMixDonut({
 function getIndustryRows(): IndustryRow[] {
   const map: Record<string, number> = {};
   projects.forEach((p) => {
-    const industry = p.tags[p.tags.length - 1] || "Other";
+    const industry = p.industry || "Other";
     map[industry] = (map[industry] || 0) + 1;
   });
   return Object.entries(map)
@@ -168,9 +168,9 @@ export default function IndustryChart() {
             hint: stats.deliveredHint,
           },
           {
-            label: "Industries",
+            label: "Sectors",
             value: String(rows.length),
-            hint: "Distinct client verticals",
+            hint: "Distinct client industries",
           },
           {
             label: "Leading sector",
@@ -204,9 +204,9 @@ export default function IndustryChart() {
               activeLabel={activeLabel}
               onHover={setActiveLabel}
             />
-            <p className="mt-4 max-w-[220px] text-center text-xs leading-relaxed text-white/55">
+            <p className="mt-4 max-w-[240px] text-center text-xs leading-relaxed text-white/55">
               <span className="font-semibold text-white/80">{PORTFOLIO_DELIVERED_COUNT}</span>{" "}
-              total delivered · chart reflects our {featuredCount} featured case studies below
+              total delivered · chart shows {featuredCount} featured case studies by industry
             </p>
           </div>
 
@@ -247,7 +247,7 @@ export default function IndustryChart() {
           <div className="border-b border-white/10 px-6 py-5 sm:px-8">
             <p className="label-tech-on-dark text-white/60">Sector breakdown</p>
             <p className="mt-2 text-sm text-white/65">
-              Ranked by project count — experience that transfers across verticals.
+              Ranked by industry — what clients do, not the platform type we built for them.
             </p>
           </div>
 

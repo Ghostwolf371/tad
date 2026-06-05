@@ -92,7 +92,7 @@ export function SkeletonSection({
 }: SkeletonSectionProps) {
   const bg =
     tone === "dark-green"
-      ? "bg-section-dark-green"
+      ? "bg-canvas-green"
       : tone === "light-green"
         ? "bg-section-mint"
         : "bg-white";
@@ -246,7 +246,7 @@ export function PageCTASkeleton({ green = false }: { green?: boolean }) {
     <section
       className={cn(
         "relative isolate overflow-x-clip",
-        green ? "bg-section-dark-green" : "bg-white",
+        green ? "bg-canvas-green" : "bg-white",
         green ? HOME_SECTION_PY_AFTER_DARK : CTA_SECTION_PY,
       )}
       aria-hidden

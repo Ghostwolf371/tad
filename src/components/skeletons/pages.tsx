@@ -470,42 +470,17 @@ export function ServicesPageSkeleton() {
           ))}
         </div>
       </SkeletonSection>
-      <SkeletonSection tone="dark-green">
-        <SectionHeaderSkeleton dark />
-        <SkeletonBar tone="dark" className="mt-4 h-4 max-w-2xl" animated={false} />
+      <SkeletonSection tone="white" className="bg-[#FEFEFE]">
+        <SectionHeaderSkeleton />
+        <SkeletonBar className="mt-4 h-4 max-w-2xl" animated={false} />
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {Array.from({ length: 4 }, (_, i) => (
-            <SkeletonDarkCard key={i} className="p-5 sm:p-6">
-              <SkeletonBar tone="dark" className="h-10 w-10 rounded-xl" animated={false} />
-              <SkeletonBar tone="dark" className="mt-5 h-3 w-20" animated={false} />
-              <SkeletonBar tone="dark" className="mt-3 h-5 w-3/4 rounded-md" animated={false} />
-              <SkeletonBar tone="dark" className="mt-4 h-3 w-full" animated={false} />
-              <SkeletonBar tone="dark" className="mt-5 h-8 w-28 rounded-lg" animated={false} />
-            </SkeletonDarkCard>
-          ))}
-        </div>
-      </SkeletonSection>
-      <SkeletonSection tone="white">
-        <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
-          <SectionHeaderSkeleton />
-          <SkeletonBar className="h-4 w-full max-w-sm lg:ml-auto" animated={false} />
-        </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {Array.from({ length: 3 }, (_, i) => (
-            <SkeletonCard key={i} className="overflow-hidden p-0">
-              <div className="border-b border-swamp/8 bg-bone-50/60 p-6">
-                <SkeletonBar className="h-12 w-12 rounded-xl" animated={false} />
-                <SkeletonBar className="mt-5 h-3 w-16" animated={false} />
-                <SkeletonBar className="mt-3 h-6 w-4/5 rounded-lg" animated={false} />
-                <SkeletonBar className="mt-3 h-4 w-full" animated={false} />
-              </div>
-              <div className="space-y-3 p-6">
-                <SkeletonBar className="h-8 w-36 rounded-full" animated={false} />
-                {Array.from({ length: 4 }, (_, j) => (
-                  <SkeletonBar key={j} className="h-3 w-full" animated={false} />
-                ))}
-                <SkeletonBar className="mt-4 h-11 w-full rounded-full" animated={false} />
-              </div>
+            <SkeletonCard key={i} className="p-5 sm:p-6">
+              <SkeletonBar className="h-10 w-10 rounded-xl" animated={false} />
+              <SkeletonBar className="mt-5 h-3 w-20" animated={false} />
+              <SkeletonBar className="mt-3 h-5 w-3/4 rounded-md" animated={false} />
+              <SkeletonBar className="mt-4 h-3 w-full" animated={false} />
+              <SkeletonBar className="mt-5 h-8 w-28 rounded-lg" animated={false} />
             </SkeletonCard>
           ))}
         </div>

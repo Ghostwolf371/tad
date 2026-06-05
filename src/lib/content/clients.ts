@@ -73,7 +73,7 @@ export const clientLogos: readonly ClientLogo[] = [
     aspect: SMART,
   },
   {
-    name: "Fernandes",
+    name: "Fernandes Group",
     slug: "fernandes",
     src: "/clients/fernandes-hq.webp",
     mark: "/clients/fernandes-pill.webp",

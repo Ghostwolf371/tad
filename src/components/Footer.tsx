@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin, ArrowUp } from "lucide-react";
 import { InstagramIcon, LinkedInIcon, FacebookIcon } from "./icons/Social";
+import GreenBandAtmosphere from "@/components/ui/GreenBandAtmosphere";
 import TadWordmark from "@/components/ui/TadWordmark";
 import { services } from "@/data/services";
 import { products } from "@/data/products";
@@ -45,11 +46,12 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-white/10 bg-canvas-green text-white">
+    <footer className="relative isolate overflow-hidden border-t border-white/10 bg-canvas-green text-white">
+      <GreenBandAtmosphere starfield={false} />
       {/* Top decorative line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-malachite/30 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 z-[2] h-px bg-gradient-to-r from-transparent via-malachite/30 to-transparent" />
 
-      <div className="mx-auto max-w-[90rem] px-5 py-16 sm:px-6 sm:py-20 lg:px-20">
+      <div className="relative z-[2] mx-auto max-w-[90rem] px-5 py-16 sm:px-6 sm:py-20 lg:px-20">
         <div className="grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-5 flex flex-col gap-6">
             <Link href="/" aria-label="TAD home" className="inline-flex w-fit items-center gap-3">

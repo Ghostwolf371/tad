@@ -308,14 +308,7 @@ export default function FeaturedWork() {
       edgeTop
       edgeBottom
       py={HOME_SECTION_PY_BEFORE_WHITE}
-      backgroundClassName="bg-canvas-green"
-      starfield
     >
-      <div
-        aria-hidden
-        className="glow-bloom pointer-events-none absolute left-1/2 top-1/2 -z-[1] h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 opacity-60"
-      />
-
       <Reveal>
         <div className="max-w-2xl">
           <div className="flex items-center gap-3">

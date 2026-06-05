@@ -16,6 +16,8 @@ export type Product = {
   features: string[];
   externalHref: string;
   palette: { primary: string; secondary: string; text: string };
+  /** Brands or organizers that have used the product — shown on detail pages */
+  clientExamples?: string[];
 };
 
 export const products: Product[] = [
@@ -286,6 +288,14 @@ export const products: Product[] = [
     ],
     externalHref: "https://tad.sr/",
     palette: { primary: "#00e357", secondary: "#9CF4C2", text: "#001e1c" },
+    clientExamples: [
+      "Heineken",
+      "Parbo Bier",
+      "Desi Swag",
+      "Big Entertainment",
+      "Tour de Su",
+      "Escon",
+    ],
   },
   {
     id: "live-fotos",

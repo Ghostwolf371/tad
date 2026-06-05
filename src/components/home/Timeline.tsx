@@ -106,17 +106,11 @@ export default function Timeline() {
   return (
     <HomeSection
       tone="dark-green"
-      backgroundClassName="bg-canvas-green"
       edgeTop
       edgeBottom
       className="overflow-x-clip"
       py={HOME_SECTION_PY_BEFORE_WHITE}
     >
-      <div
-        aria-hidden
-        className="glow-bloom pointer-events-none absolute left-1/2 top-1/3 -z-[0] h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2"
-      />
-
       <div className="relative z-[1] grid gap-8 lg:grid-cols-[0.82fr_1fr] lg:items-end">
         <div>
           <span className="label-tech-on-dark text-malachite">TAD process</span>

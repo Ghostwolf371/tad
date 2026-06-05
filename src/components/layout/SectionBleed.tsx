@@ -1,3 +1,4 @@
+import GreenBandAtmosphere from "@/components/ui/GreenBandAtmosphere";
 import { isGreenBandSurface } from "@/lib/theme/green-band";
 import { SECTION_EDGE_FROM_CLASS } from "@/lib/theme/section-colors";
 import { cn } from "@/lib/utils";
@@ -30,7 +31,7 @@ const edgeFadeTop =
 
 /** Soft cap on dark bands — solid green at top, no light bleed from above */
 const edgeFadeTopDark =
-  "pointer-events-none absolute inset-x-0 top-0 z-[1] h-8 bg-gradient-to-b from-section-dark-green to-transparent sm:h-14 lg:h-20";
+  "pointer-events-none absolute inset-x-0 top-0 z-[1] h-8 bg-gradient-to-b from-canvas-green to-transparent sm:h-14 lg:h-20";
 
 const edgeFadeBottom =
   "pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-10 bg-gradient-to-t to-transparent sm:h-20 lg:h-28";
@@ -45,7 +46,7 @@ function backgroundClass(tone: SectionTone, mintVariant?: "subtle" | "vivid"): s
     case "bone":
       return "section-band bg-bone-50";
     case "dark-green":
-      return "bg-section-dark-green";
+      return "bg-canvas-green";
     default:
       return "bg-white";
   }
@@ -86,13 +87,11 @@ export default function SectionFade({
           backgroundClassName ?? backgroundClass(tone, mintVariant),
         )}
       />
-      {greenBand && (
+      {greenBand && tone === "dark-green" && <GreenBandAtmosphere />}
+      {greenBand && tone !== "dark-green" && (
         <div
           aria-hidden
-          className={cn(
-            "section-green-band-glow absolute inset-0 z-[1]",
-            tone === "dark-green" ? "opacity-90" : "opacity-100",
-          )}
+          className="section-green-band-glow absolute inset-0 z-[1] opacity-100"
         />
       )}
       {edgeTop && (

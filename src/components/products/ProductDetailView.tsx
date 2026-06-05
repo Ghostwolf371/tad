@@ -185,6 +185,38 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             </ul>
           </div>
         </article>
+
+        {product.clientExamples && product.clientExamples.length > 0 && (
+          <div
+            className={cn(
+              surfaceCardClassName("mt-10 p-6 sm:mt-12 sm:p-8"),
+              "border-swamp/[0.08] bg-[#FEFEFE]",
+            )}
+          >
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+              <div className="max-w-md shrink-0">
+                <span className="label-tech text-malachite-700">Examples</span>
+                <h2 className="mt-3 text-2xl font-semibold tracking-normal text-swamp sm:text-[1.65rem]">
+                  Trusted at live events
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-swamp/70">
+                  Organizers and brands across Suriname use {product.name} for entrance control
+                  and attendee check-in at:
+                </p>
+              </div>
+              <ul className="flex flex-1 flex-wrap gap-2.5 sm:gap-3">
+                {product.clientExamples.map((name) => (
+                  <li
+                    key={name}
+                    className="rounded-full border border-swamp/10 bg-bone-50/80 px-4 py-2 text-sm font-medium text-swamp shadow-sm"
+                  >
+                    {name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
       </PageSection>
 
       <PageSection

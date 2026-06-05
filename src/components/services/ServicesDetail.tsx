@@ -24,7 +24,7 @@ export default function ServicesDetail({ sectionIndex = 0 }: ServicesDetailProps
       index={sectionIndex}
       tone="white"
       previousTone="light-green"
-      nextSectionTone="dark-green"
+      nextSectionTone="white"
       py={PAGE_SECTION_PY}
     >
       <HomeSectionHeader

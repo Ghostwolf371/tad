@@ -33,12 +33,10 @@ export default function ProductsSection() {
   return (
     <HomeSection
       tone="dark-green"
-      backgroundClassName="bg-canvas-green"
       edgeTop
       edgeBottom
       id="products"
       py={HOME_SECTION_PY_BEFORE_WHITE}
-      starfield
     >
       <div className="relative z-[2]">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">

@@ -44,7 +44,7 @@ const CLIENT_THEME: Record<
     border: "rgba(30,182,236,0.3)",
     chip: "rgba(30,182,236,0.1)",
   },
-  Fernandes: {
+  "Fernandes Group": {
     glow: "rgba(187,42,45,0.2)",
     tint: "rgba(187,42,45,0.08)",
     border: "rgba(187,42,45,0.3)",

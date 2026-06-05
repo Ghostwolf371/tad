@@ -159,7 +159,7 @@ export default function PageHero({
       {nextSectionTone === "dark-green" ? (
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-20 bg-gradient-to-t from-section-dark-green via-section-dark-green/45 to-transparent sm:h-28 lg:h-36"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-20 bg-gradient-to-t from-canvas-green via-canvas-green/45 to-transparent sm:h-28 lg:h-36"
         />
       ) : (
         <div

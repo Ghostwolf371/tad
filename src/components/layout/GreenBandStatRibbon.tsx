@@ -20,7 +20,8 @@ export default function GreenBandStatRibbon({ stats, className }: GreenBandStatR
       className={cn(
         "grid overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] backdrop-blur-sm",
         stats.length === 2 && "sm:grid-cols-2",
-        stats.length >= 3 && "sm:grid-cols-3",
+        stats.length === 3 && "sm:grid-cols-3",
+        stats.length >= 4 && "sm:grid-cols-2 lg:grid-cols-4",
         className,
       )}
     >

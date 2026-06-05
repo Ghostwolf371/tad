@@ -18,5 +18,5 @@ export const SECTION_EDGE_FROM_CLASS = {
   white: "from-white",
   bone: "from-bone-50",
   "light-green": "from-section-mint",
-  "dark-green": "from-section-dark-green",
+  "dark-green": "from-canvas-green",
 } as const;

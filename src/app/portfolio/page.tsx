@@ -54,9 +54,9 @@ export default function PortfolioPage() {
       >
         <HomeSectionHeader
           variant="dark"
-          eyebrow="Industries"
-          title="Clients by industry"
-          description="Where our work lands — from retail and hospitality to fintech, aviation, and beyond. Every project is tagged by sector so you can see how experience transfers across verticals."
+          eyebrow="Sectors"
+          title="Industries we serve"
+          description="Healthcare, real estate, distribution, agriculture, media, and more — classified by what each client does. Online retail is how many projects are delivered, not an industry on its own."
           className="max-w-3xl"
           titleClassName="leading-[1.04]"
         />

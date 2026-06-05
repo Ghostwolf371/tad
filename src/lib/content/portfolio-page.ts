@@ -12,9 +12,9 @@ export const portfolioPageContent = {
   stats: {
     deliveredLabel: "Delivered",
     deliveredHint: "Projects shipped across sectors",
-    mixTitle: "Portfolio mix",
-    mixSubtitle: "Where client work clusters",
+    mixTitle: "Sector share",
+    mixSubtitle: "Industries we serve",
     mixDescription:
-      "Sector share across the featured work on this page — hover the chart or breakdown to see how each vertical shows up in the showcase.",
+      "Each project is classified by what the client does — not how they sell online. Hover the chart or breakdown to explore sector distribution across featured case studies.",
   },
 } as const;

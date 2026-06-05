@@ -13,6 +13,8 @@ export type Project = {
   heading: string;
   descr: string;
   tags: string[];
+  /** Primary client vertical — drives portfolio industry chart. */
+  industry: string;
   /** Filter group for portfolio grid */
   portfolioCategory: PortfolioCategory;
   link: string;
@@ -57,15 +59,18 @@ function caseFromDescr(descr: string, title: string) {
   };
 }
 
-export const projects: Project[] = [
+type ProjectEntry = Omit<Project, "caseStudy">;
+
+const projectList: ProjectEntry[] = [
   {
     id: 1,
     slug: "kings-enterprises",
     title: "King's Enterprises N.V.",
     heading: "All Hail The King",
     descr:
-      "King's Enterprises N.V. is Suriname's largest specialist in the field of alcoholic beverages and Duty-Free stores. With their extensive sales network and strategic location, they can offer products to everyone. Their daily activities consist of retail, wholesale, distribution, E-commerce and duty free.",
-    tags: ["Website", "Marketing", "E-Commerce"],
+      "King's Enterprises N.V. is Suriname's largest spirits and duty-free distributor — retail, wholesale, and travel-retail across Suriname, Guyana, and Trinidad, plus cosmetics, tobacco, and luxury goods.",
+    tags: ["Website", "E-Commerce", "Distribution"],
+    industry: "Distribution & Retail",
     portfolioCategory: "e-commerce",
     link: "https://www.kings.sr",
     image: "/projects/kings-enterprises.svg",
@@ -73,10 +78,6 @@ export const projects: Project[] = [
     featuredImageMobile: "/projects/screenshots/kings-enterprises-home-featured-mobile.webp",
     portfolioScreenshot: "/projects/screenshots/kings-enterprises.webp",
     palette: { primary: "#FEE15B", secondary: "#FFFF92", text: "#171717" },
-    caseStudy: caseFromDescr(
-      "King's Enterprises N.V. is Suriname's largest specialist in the field of alcoholic beverages and Duty-Free stores.",
-      "King's Enterprises"
-    ),
   },
   {
     id: 2,
@@ -84,8 +85,9 @@ export const projects: Project[] = [
     title: "Smart Connexxionz",
     heading: "The Ultimate Gadget Pleasure",
     descr:
-      "Smart Connexxionz is the first end-to-end gadgets ecommerce platform in Suriname. It is a smart solution that allows people to discover, try and buy the latest gadgets.",
-    tags: ["Website", "Marketing", "E-Commerce"],
+      "Smart Connexxionz is a Suriname electronics retailer selling phones, laptops, TVs, and accessories through Paramaribo-area stores and an online shop — with delivery, hire-purchase, and repair services.",
+    tags: ["Website", "E-Commerce", "Electronics"],
+    industry: "Electronics Retail",
     portfolioCategory: "e-commerce",
     link: "https://www.smartconnexxionz.com/",
     image: "/projects/smart-connexxionz.svg",
@@ -93,10 +95,6 @@ export const projects: Project[] = [
     featuredImageMobile: "/projects/screenshots/smart-connexxionz-home-featured-mobile.webp",
     portfolioScreenshot: "/projects/screenshots/smart-connexxionz.webp",
     palette: { primary: "#1EB6EC", secondary: "#9BE2FE", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "The first end-to-end gadgets ecommerce platform in Suriname.",
-      "Smart Connexxionz"
-    ),
   },
   {
     id: 3,
@@ -104,17 +102,14 @@ export const projects: Project[] = [
     title: "Queens Hotel",
     heading: "The Luxurious Experience",
     descr:
-      "Queens Hotel allows people to create and confirm bookings online effortlessly. This experience upsells potential guests with attractive packages including tickets, tours and activities.",
-    tags: ["Website", "Marketing", "Hospitality"],
+      "Queens Hotel is a centrally located Paramaribo hotel with standard rooms through executive suites, on-site dining, conference facilities, and online booking for stays and packages.",
+    tags: ["Website", "Booking", "Hospitality"],
+    industry: "Hospitality",
     portfolioCategory: "website",
     link: "https://www.queenshotelsuriname.com",
     image: "/projects/queens-hotel.svg",
     portfolioScreenshot: "/projects/screenshots/queens-hotel-homepage.webp",
     palette: { primary: "#72000A", secondary: "#320005", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Online bookings and upsell packages for tours, tickets, and activities.",
-      "Queens Hotel"
-    ),
   },
   {
     id: 4,
@@ -122,8 +117,9 @@ export const projects: Project[] = [
     title: "Trustbank Amanah",
     heading: "Confidence Is The Key",
     descr:
-      "Trustbank Amanah has grown substantially since its inception in 1989. It now provides Islamic banking services, aiming to transform the financial landscape in Suriname, the Caribbean, and Latin America, with aspirations to become a regional financial hub.",
-    tags: ["Website", "Marketing", "Fintech"],
+      "Trustbank Amanah's digital onboarding portal lets customers apply online for giro and savings accounts, business accounts, personal loans, mortgages, and SME financing.",
+    tags: ["Custom Software", "Digital Onboarding", "Banking"],
+    industry: "Banking & Finance",
     portfolioCategory: "custom-software",
     link: "https://mijneaanvraag.trustbankamanah.com",
     image: "/projects/trustbank-amanah.svg",
@@ -132,10 +128,6 @@ export const projects: Project[] = [
     portfolioScreenshot: "/projects/screenshots/trustbank-amanah.webp",
     featured: true,
     palette: { primary: "#041C2C", secondary: "#B8956B", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Islamic banking services transforming the financial landscape in Suriname and beyond.",
-      "Trustbank Amanah"
-    ),
   },
   {
     id: 5,
@@ -143,8 +135,9 @@ export const projects: Project[] = [
     title: "The Coffee Box",
     heading: "Serve Joy With Us",
     descr:
-      "The Coffee Box is Suriname's premier grill and café — an international kitchen and specialty coffee experience with two Paramaribo locations, event programming, and a brand-forward digital presence.",
-    tags: ["Website", "Brand", "Hospitality"],
+      "The Coffee Box is a Paramaribo grill café and specialty coffee brand serving international kitchen dishes, tapas, and lounge experiences across multiple locations with events and evening programming.",
+    tags: ["Website", "Brand", "Food & Beverage"],
+    industry: "Food & Beverage",
     portfolioCategory: "website",
     link: "https://www.thecoffeeboxsu.com/",
     image: "/projects/elegant-interiors.svg",
@@ -153,10 +146,6 @@ export const projects: Project[] = [
     portfolioScreenshot: "/projects/screenshots/the-coffee-box-home-desktop.webp",
     featured: true,
     palette: { primary: "#1B4332", secondary: "#E8A87C", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Grill café and specialty coffee brand with bilingual menus, lounge experiences, and multi-location storytelling.",
-      "The Coffee Box"
-    ),
   },
   {
     id: 6,
@@ -164,17 +153,14 @@ export const projects: Project[] = [
     title: "Devinas Enterprises",
     heading: "Your Total Office",
     descr:
-      "Devina's Enterprises is Suriname's full-service office supplier — e-commerce for machines, furniture, supplies, and telecom with category browsing, cart checkout, and bilingual storefront experiences.",
-    tags: ["Website", "E-Commerce", "Retail"],
+      "Devina's Enterprises is a Paramaribo office supplier selling furniture, machines, paper goods, computers, safes, and telecom equipment through an online catalog — operating since 1994.",
+    tags: ["Website", "E-Commerce", "Office Supplies"],
+    industry: "Office Supplies",
     portfolioCategory: "e-commerce",
     link: "https://www.nvdevinas.com/",
     image: "/projects/arrowtrade.svg",
     portfolioScreenshot: "/projects/screenshots/devinas-enterprises-home-desktop.webp",
     palette: { primary: "#003B71", secondary: "#E2231A", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Office supplies and equipment e-commerce with featured products, categories, and account checkout flows.",
-      "Devinas Enterprises"
-    ),
   },
   {
     id: 7,
@@ -182,8 +168,9 @@ export const projects: Project[] = [
     title: "HJ Express",
     heading: "Serving All Generations",
     descr:
-      "HJ Express is a Suriname retail and wholesale destination for household goods, coffee, cacao, tea, and everyday essentials — with competitive pricing, newsletter updates, and free shipping on wholesale orders.",
+      "HJ Express is a Suriname retail and wholesale store for household goods, cleaning products, coffee, cacao, and tea — with competitive pricing and free shipping on wholesale orders.",
     tags: ["Website", "E-Commerce", "Retail"],
+    industry: "Retail & Wholesale",
     portfolioCategory: "e-commerce",
     link: "https://www.hjexpress.sr/en",
     image: "/projects/hj-express.svg",
@@ -192,10 +179,6 @@ export const projects: Project[] = [
     portfolioScreenshot: "/projects/screenshots/hj-express-home-desktop.webp",
     featured: true,
     palette: { primary: "#1E4A7A", secondary: "#5B9BD5", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Retail and wholesale e-commerce for household, coffee, and grocery categories across Suriname.",
-      "HJ Express"
-    ),
   },
   {
     id: 8,
@@ -203,17 +186,14 @@ export const projects: Project[] = [
     title: "Digital World",
     heading: "Premium Tech For Modern Living",
     descr:
-      "Digital World brings premium personal and home technology to Suriname — from audio and smart home to drones, camping gear, and wellness electronics, with unbeatable prices and hands-on customer support.",
+      "Digital World is a Suriname electronics retailer offering audio systems, TVs, smart-home devices, drones, camping gear, and wellness electronics with competitive pricing and customer support.",
     tags: ["Website", "E-Commerce", "Electronics"],
+    industry: "Electronics Retail",
     portfolioCategory: "e-commerce",
     link: "https://www.digitalworld.sr/en",
     image: "/projects/digital-world.svg",
     portfolioScreenshot: "/projects/screenshots/digital-world-home-desktop.webp",
     palette: { primary: "#C41E3A", secondary: "#F4A4B0", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Premium consumer electronics and smart-home retail with bilingual storefront and category-led discovery.",
-      "Digital World"
-    ),
   },
   {
     id: 9,
@@ -221,17 +201,14 @@ export const projects: Project[] = [
     title: "Elegant Interiors N.V.",
     heading: "Spaces That Inspire",
     descr:
-      "Elegant Interiors crafts bespoke kitchens, bathrooms, wall furniture, and office furnishings for Suriname — combining premium materials, portfolio showcases, and lead capture for residential and commercial clients.",
-    tags: ["Website", "Marketing", "Interiors"],
+      "Elegant Interiors N.V. designs and supplies custom kitchens, bathroom furniture, wall units, walk-in closets, and office furnishings in Suriname with project portfolios and lead capture.",
+    tags: ["Website", "Marketing", "Interior Design"],
+    industry: "Interior Design",
     portfolioCategory: "website",
     link: "https://www.elegantinteriorsnv.com/",
     image: "/projects/elegant-interiors.svg",
     portfolioScreenshot: "/projects/screenshots/elegant-interiors.webp",
     palette: { primary: "#1C1C1C", secondary: "#C9A961", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Interior solutions brand site with service lines, project gallery, and conversion-focused contact flows.",
-      "Elegant Interiors N.V."
-    ),
   },
   {
     id: 10,
@@ -239,17 +216,14 @@ export const projects: Project[] = [
     title: "Sranan Fowru",
     heading: "Honest Surinamese Chicken",
     descr:
-      "Sranan Fowru is Suriname's leading locally raised chicken brand — from farm to table with strict food-safety standards, nationwide branches, product catalog, recipes, and a story rooted in local pride since 1999.",
-    tags: ["Website", "Marketing", "Food"],
-    portfolioCategory: "website",
+      "Sranan Fowru is Suriname's market-leading locally raised chicken brand, operating nationwide branches since 1999 with certified food-safety standards, fresh poultry products, and recipes.",
+    tags: ["Website", "E-Commerce", "Food & Agriculture"],
+    industry: "Food & Agriculture",
+    portfolioCategory: "e-commerce",
     link: "https://srananfowru.sr/",
     image: "/projects/sranan-fowru.svg",
     portfolioScreenshot: "/projects/screenshots/sranan-fowru.webp",
     palette: { primary: "#00843D", secondary: "#E2231A", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "National poultry brand platform highlighting quality, certifications, products, and community recipes.",
-      "Sranan Fowru"
-    ),
   },
   {
     id: 11,
@@ -257,17 +231,14 @@ export const projects: Project[] = [
     title: "Arrow Trade N.V.",
     heading: "Quality Delivered Daily",
     descr:
-      "Arrow Trade N.V. connects international FMCG, hospitality, and food-service suppliers with Suriname and the region — distributing coffee, syrups, frozen goods, dairy, and non-food essentials to retail and HORECA partners.",
+      "Arrow Trade N.V. distributes FMCG and hospitality supplies in Suriname — importing international food, beverage, dairy, frozen, and non-food products for retail and HORECA customers.",
     tags: ["Website", "E-Commerce", "Distribution"],
-    portfolioCategory: "website",
+    industry: "Distribution",
+    portfolioCategory: "e-commerce",
     link: "https://arrowtradenv.com/",
     image: "/projects/arrowtrade.svg",
     portfolioScreenshot: "/projects/screenshots/arrowtrade.webp",
     palette: { primary: "#0D9488", secondary: "#99D4CF", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "B2B retail and distribution storefront showcasing brands, popular products, and supplier relationships.",
-      "Arrow Trade N.V."
-    ),
   },
   {
     id: 12,
@@ -275,17 +246,14 @@ export const projects: Project[] = [
     title: "Apotheek Mac Donald",
     heading: "Your Trusted Healthcare Partner",
     descr:
-      "Apotheek Mac Donald is a Suriname pharmacy brand with an online presence for healthcare products, services, and trusted guidance for patients and families.",
+      "Apotheek Mac Donald is a Paramaribo pharmacy offering prescription handling, pharmaceutical advice, medicine delivery, eyewear, and an in-house API healthcare product line.",
     tags: ["Website", "Marketing", "Healthcare"],
+    industry: "Healthcare",
     portfolioCategory: "website",
     link: "https://www.apotheekmacdonald.sr/",
     image: "/projects/helix-earth.svg",
     portfolioScreenshot: "/projects/screenshots/apotheek-mac-donald-home-desktop.webp",
     palette: { primary: "#0B6E4F", secondary: "#7DD3A8", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Pharmacy brand site connecting patients to products, care, and local healthcare expertise.",
-      "Apotheek Mac Donald"
-    ),
   },
   {
     id: 13,
@@ -293,17 +261,14 @@ export const projects: Project[] = [
     title: "Pan American Group",
     heading: "Regional Business Leadership",
     descr:
-      "Pan American Group presents its corporate portfolio, services, and regional presence through a polished marketing site built for partners and stakeholders.",
-    tags: ["Website", "Marketing", "Corporate"],
+      "Pan American Group is a Suriname holding company spanning automotive sales, real-estate development, and infrastructure engineering — roads, ports, mining, and marine works.",
+    tags: ["Website", "Marketing", "Conglomerate"],
+    industry: "Automotive & Construction",
     portfolioCategory: "website",
     link: "https://www.panamericangroup.sr/",
     image: "/projects/helix-earth.svg",
     portfolioScreenshot: "/projects/screenshots/pan-american-group-home-desktop.webp",
     palette: { primary: "#1E3A5F", secondary: "#C9A227", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Corporate group website highlighting services, leadership, and regional operations.",
-      "Pan American Group"
-    ),
   },
   {
     id: 14,
@@ -311,17 +276,14 @@ export const projects: Project[] = [
     title: "Health Invest",
     heading: "Investing In Better Care",
     descr:
-      "Health Invest connects patients and partners to healthcare investment, services, and programs through a clear digital platform tailored to Suriname.",
+      "Health Investment and Development N.V. invests in and develops healthcare businesses in Suriname — medical centers, equipment distribution, consultancy, and logistics for the care sector.",
     tags: ["Website", "Marketing", "Healthcare"],
+    industry: "Healthcare",
     portfolioCategory: "website",
     link: "https://healthinvest.sr/",
     image: "/projects/helix-earth.svg",
     portfolioScreenshot: "/projects/screenshots/health-invest-home-desktop.webp",
     palette: { primary: "#00695C", secondary: "#4DB6AC", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Healthcare investment and services platform with patient-focused storytelling.",
-      "Health Invest"
-    ),
   },
   {
     id: 15,
@@ -329,17 +291,14 @@ export const projects: Project[] = [
     title: "Shasvien Trucks",
     heading: "Heavy-Duty Solutions On The Road",
     descr:
-      "Shasvien Trucks (STMS) showcases commercial vehicles, parts, and fleet services for Suriname — helping businesses move goods with reliable equipment and support.",
-    tags: ["Website", "Marketing", "Automotive"],
-    portfolioCategory: "website",
+      "Shasvien Trucks and Maintenance Services N.V. (STMS) installs and maintains fuel-station equipment, bulk fuel storage tanks, fuel transport, and bunkering services in Suriname.",
+    tags: ["Website", "E-Commerce", "Energy"],
+    industry: "Energy & Industrial",
+    portfolioCategory: "e-commerce",
     link: "https://stms.sr/",
     image: "/projects/helix-earth.svg",
     portfolioScreenshot: "/projects/screenshots/shasvien-trucks-home-desktop.webp",
     palette: { primary: "#B91C1C", secondary: "#F87171", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Commercial truck and fleet services site with inventory, brands, and lead capture.",
-      "Shasvien Trucks"
-    ),
   },
   {
     id: 16,
@@ -347,17 +306,14 @@ export const projects: Project[] = [
     title: "Troytec",
     heading: "Engineering That Performs",
     descr:
-      "Troytec delivers industrial and technical solutions in Guyana with a web presence that explains capabilities, projects, and how clients can engage their team.",
-    tags: ["Website", "Marketing", "Industrial"],
+      "TroyTec is a Guyana-based media production company specializing in videography, photography, drone aerial footage, graphic design, and wide-format printing for events and corporate clients.",
+    tags: ["Website", "Marketing", "Media"],
+    industry: "Media Production",
     portfolioCategory: "website",
     link: "https://troytecgy.com/",
     image: "/projects/troytec.svg",
     portfolioScreenshot: "/projects/screenshots/troytec-home-desktop.webp",
     palette: { primary: "#1D4ED8", secondary: "#93C5FD", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Industrial engineering brand site with service lines and project credibility.",
-      "Troytec"
-    ),
   },
   {
     id: 17,
@@ -365,17 +321,14 @@ export const projects: Project[] = [
     title: "Interdeco Kitchens",
     heading: "Kitchens Crafted To Inspire",
     descr:
-      "Interdeco Kitchens markets premium kitchen and interior solutions internationally — portfolio galleries, product lines, and consultation flows for residential and trade clients.",
-    tags: ["Website", "Marketing", "Interiors"],
+      "Interdeco Kitchens is a Suriname interior firm offering custom kitchens, bathroom vanities, wardrobes, and full-home design from showroom consultation through installation.",
+    tags: ["Website", "Marketing", "Interior Design"],
+    industry: "Interior Design",
     portfolioCategory: "website",
     link: "https://interdecokitchens.com/",
     image: "/projects/elegant-interiors.svg",
     portfolioScreenshot: "/projects/screenshots/interdeco-home-desktop.webp",
     palette: { primary: "#292524", secondary: "#D6D3D1", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Kitchen and interior brand site with project showcases and lead generation.",
-      "Interdeco Kitchens"
-    ),
   },
   {
     id: 18,
@@ -383,17 +336,14 @@ export const projects: Project[] = [
     title: "Rashiv Vastgoed",
     heading: "Real Estate With Clarity",
     descr:
-      "Rashiv Vastgoed is a Netherlands-based real estate firm with a bilingual site for listings, services, and investor-ready property storytelling.",
+      "Rashiv Onroerendgoed Mij N.V. has developed housing and land projects across Suriname since 1998 — listing homes, commercial plots, and subdivision projects for sale and brokerage.",
     tags: ["Website", "Marketing", "Real Estate"],
+    industry: "Real Estate",
     portfolioCategory: "website",
     link: "https://www.rashivvastgoed.nl/",
     image: "/projects/rashiv.svg",
     portfolioScreenshot: "/projects/screenshots/rashiv-home-desktop.webp",
     palette: { primary: "#128BC0", secondary: "#60D3F7", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Real estate platform highlighting listings, services, and brand trust.",
-      "Rashiv Vastgoed"
-    ),
   },
   {
     id: 19,
@@ -401,17 +351,14 @@ export const projects: Project[] = [
     title: "Unistone & More",
     heading: "Stone Surfaces That Last",
     descr:
-      "Unistone & More presents natural stone, countertops, and surfacing products with inspiration galleries and paths for designers and homeowners to request quotes.",
-    tags: ["Website", "Marketing", "Construction"],
-    portfolioCategory: "website",
+      "Uni Stone & More is a Wanica showroom and online store for ceramic, porcelain, and natural-stone tiles plus building and installation materials with expert project guidance.",
+    tags: ["Website", "E-Commerce", "Building Materials"],
+    industry: "Building Materials",
+    portfolioCategory: "e-commerce",
     link: "https://www.unistoneandmore.com/",
     image: "/projects/suriname-natural-stone.svg",
     portfolioScreenshot: "/projects/screenshots/unistone-home-desktop.webp",
     palette: { primary: "#57534E", secondary: "#A8A29E", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Natural stone and surfacing catalog with project inspiration and lead capture.",
-      "Unistone & More"
-    ),
   },
   {
     id: 20,
@@ -419,17 +366,14 @@ export const projects: Project[] = [
     title: "Orange Suriname",
     heading: "Experience Suriname",
     descr:
-      "Orange Travel & Jungle Tours promotes Suriname adventures — curated tours, jungle experiences, and booking paths for international and local travelers.",
-    tags: ["Website", "Marketing", "Travel"],
+      "Orange Travel & Jungle Tours offers 55+ Suriname day trips, multi-day tours, car and bike rentals, and custom itineraries covering jungle, cultural, and coastal experiences.",
+    tags: ["Website", "Booking", "Travel"],
+    industry: "Travel & Tourism",
     portfolioCategory: "website",
     link: "https://www.orangesuriname.com/",
     image: "/projects/helix-earth.svg",
     portfolioScreenshot: "/projects/screenshots/orange-suriname-home-desktop.webp",
     palette: { primary: "#EA580C", secondary: "#FDBA74", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Tourism and jungle adventure brand site with packages and discovery content.",
-      "Orange Suriname"
-    ),
   },
   {
     id: 21,
@@ -437,17 +381,14 @@ export const projects: Project[] = [
     title: "MD Pharma Wholesale",
     heading: "Pharmaceutical Supply At Scale",
     descr:
-      "MD Pharma Wholesale serves pharmacies and healthcare partners in Suriname with product catalogs, ordering flows, and B2B positioning on the web.",
+      "MD Pharma Wholesale N.V. distributes certified medicines and pharmaceutical products to healthcare providers across Suriname with secure distribution and professional support.",
     tags: ["Website", "E-Commerce", "Healthcare"],
+    industry: "Healthcare",
     portfolioCategory: "e-commerce",
     link: "https://mdpharmawholesale.sr/",
     image: "/projects/helix-earth.svg",
     portfolioScreenshot: "/projects/screenshots/md-pharma-home-desktop.webp",
     palette: { primary: "#0369A1", secondary: "#7DD3FC", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Pharmaceutical wholesale platform for catalog discovery and B2B ordering.",
-      "MD Pharma Wholesale"
-    ),
   },
   {
     id: 22,
@@ -455,17 +396,14 @@ export const projects: Project[] = [
     title: "Westland Valley",
     heading: "Land With Vision",
     descr:
-      "Westland Valley markets land development and investment opportunities with storytelling, visuals, and inquiry flows for buyers exploring regional projects.",
-    tags: ["Website", "Marketing", "Real Estate"],
+      "Westland Valley is a fourth-generation Surinamese family farm cultivating organic tomatoes, bell peppers, chili peppers, and cucumbers using modern agricultural techniques.",
+    tags: ["Website", "Marketing", "Agriculture"],
+    industry: "Agriculture",
     portfolioCategory: "website",
     link: "https://westland-valley.com/",
     image: "/projects/helix-earth.svg",
     portfolioScreenshot: "/projects/screenshots/westland-valley-home-desktop.webp",
     palette: { primary: "#166534", secondary: "#86EFAC", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Land development and investment site with project highlights and lead capture.",
-      "Westland Valley"
-    ),
   },
   {
     id: 23,
@@ -473,17 +411,14 @@ export const projects: Project[] = [
     title: "Amaurens Design",
     heading: "Design That Defines Spaces",
     descr:
-      "Amaurens Design showcases interior and creative design work — portfolio-driven pages, service positioning, and contact paths for residential and commercial clients.",
-    tags: ["Website", "Marketing", "Interiors"],
+      "Amaurens Design is the creative studio of Mirella Amautan in French Guiana — handcrafted art, Tembe-inspired décor, jewelry, carnival costumes, and cultural workshops rooted in Maroon heritage.",
+    tags: ["Website", "Marketing", "Arts & Culture"],
+    industry: "Arts & Culture",
     portfolioCategory: "website",
     link: "https://amaurensdesign.com/",
     image: "/projects/elegant-interiors.svg",
     portfolioScreenshot: "/projects/screenshots/amaurens-design-home-desktop.webp",
     palette: { primary: "#4C1D95", secondary: "#C4B5FD", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Interior design studio site with portfolio galleries and consultation CTAs.",
-      "Amaurens Design"
-    ),
   },
   {
     id: 24,
@@ -491,17 +426,14 @@ export const projects: Project[] = [
     title: "Philadelphia Church of God",
     heading: "Faith, Community, Purpose",
     descr:
-      "Philadelphia Church of God (Suriname & Dutch Guiana) shares ministry updates, events, and resources through a welcoming site for members and visitors.",
+      "Philadelphia Church of God (Seventh Day) is a Christ-centered, Sabbath-keeping congregation in Philadelphia, Pennsylvania — sharing service times, events, youth ministry, and Bible-study resources.",
     tags: ["Website", "Marketing", "Nonprofit"],
+    industry: "Nonprofit",
     portfolioCategory: "website",
     link: "https://pcogsd.org/",
     image: "/projects/helix-earth.svg",
     portfolioScreenshot: "/projects/screenshots/philadelphia-church-home-desktop.webp",
     palette: { primary: "#1E40AF", secondary: "#93C5FD", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Church and community site with events, ministry content, and engagement paths.",
-      "Philadelphia Church of God"
-    ),
   },
   {
     id: 25,
@@ -509,8 +441,9 @@ export const projects: Project[] = [
     title: "Welink CRM",
     heading: "Real Estate, One Dashboard",
     descr:
-      "Welink CRM gives real estate teams a mobile-first workspace to track listings, purchases, and client updates — with dashboards, filters, and WhatsApp-ready deal cards built for agents on the move.",
-    tags: ["Custom Software", "Mobile App", "CRM"],
+      "Welink CRM is a mobile app for WeLink Real Estate agents in Suriname to manage property listings, purchase pipelines, client updates, and field deal tracking.",
+    tags: ["Custom Software", "Mobile App", "Real Estate"],
+    industry: "Real Estate",
     portfolioCategory: "custom-software",
     link: "#",
     image: "/projects/helix-earth.svg",
@@ -518,10 +451,6 @@ export const projects: Project[] = [
     portfolioPresentation: "composite",
     portfolioScreenshot: "/projects/screenshots/welink-crm-portfolio.webp",
     palette: { primary: "#E85D26", secondary: "#FDBA74", text: "#171717" },
-    caseStudy: caseFromDescr(
-      "Mobile CRM for real estate teams — object tracking, purchase pipelines, and field updates in one app.",
-      "Welink CRM"
-    ),
   },
   {
     id: 26,
@@ -529,8 +458,9 @@ export const projects: Project[] = [
     title: "Fitness Pro",
     heading: "Gym Life In Your Pocket",
     descr:
-      "Fitness Pro is a member app for Pro-Fitness — QR check-in at the door, class promos, notifications, and capacity insights so members stay engaged between visits.",
+      "Fitness Pro is a gym management dashboard and member app for Pro-Fitness N.V. in Suriname — membership management, class scheduling, QR check-in, and operational insights.",
     tags: ["Custom Software", "Mobile App", "Fitness"],
+    industry: "Fitness & Wellness",
     portfolioCategory: "custom-software",
     link: "https://profitnessnv.sr/",
     image: "/projects/helix-earth.svg",
@@ -538,12 +468,13 @@ export const projects: Project[] = [
     portfolioPresentation: "composite",
     portfolioScreenshot: "/projects/screenshots/fitness-pro-portfolio.webp",
     palette: { primary: "#DC2626", secondary: "#FCA5A5", text: "#FFFFFF" },
-    caseStudy: caseFromDescr(
-      "Gym member portal with QR check-in, promos, and in-app notifications for Pro-Fitness.",
-      "Fitness Pro"
-    ),
   },
 ];
+
+export const projects: Project[] = projectList.map((entry) => ({
+  ...entry,
+  caseStudy: caseFromDescr(entry.descr, entry.title),
+}));
 
 export const featuredProjects = projects.filter((p) => p.featured);
 

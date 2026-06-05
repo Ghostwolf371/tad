@@ -1,7 +1,7 @@
+import GreenBandAtmosphere from "@/components/ui/GreenBandAtmosphere";
 import { isGreenBandTone } from "@/lib/theme/green-band";
 import { HOME_SECTION_PY } from "@/lib/theme/section-spacing";
 import { cn } from "@/lib/utils";
-import Starfield from "@/components/ui/Starfield";
 
 export type HomeSectionTone = "white" | "light" | "dark-green";
 export type HomeSectionTextVariant = "light" | "dark";
@@ -27,13 +27,13 @@ type HomeSectionProps = {
 export const HOME_SECTION_BACKGROUND_CLASS: Record<HomeSectionTone, string> = {
   white: "bg-white",
   light: "section-hero-tint",
-  "dark-green": "bg-section-dark-green",
+  "dark-green": "bg-canvas-green",
 };
 
 export const HOME_SECTION_EDGE_FROM_CLASS: Record<HomeSectionTone, string> = {
   white: "from-white",
   light: "from-section-mint",
-  "dark-green": "from-section-dark-green",
+  "dark-green": "from-canvas-green",
 };
 
 export const HOME_SECTION_TEXT_CONTEXT: Record<
@@ -85,10 +85,11 @@ export default function HomeSection({
   maxWidth = "7xl",
   containerPadding = "default",
   backgroundClassName,
-  starfield = false,
+  starfield: starfieldProp,
 }: HomeSectionProps) {
   const textVariant = HOME_SECTION_TEXT_CONTEXT[tone];
   const onSaturatedGreen = isGreenBandTone(tone);
+  const starfield = starfieldProp ?? tone === "dark-green";
 
   return (
     <section
@@ -110,11 +111,11 @@ export default function HomeSection({
           backgroundClassName ?? HOME_SECTION_BACKGROUND_CLASS[tone],
         )}
       />
-      {onSaturatedGreen && (
-        <div aria-hidden className="section-green-band-glow absolute inset-0 z-[1] opacity-90" />
+      {onSaturatedGreen && tone === "dark-green" && (
+        <GreenBandAtmosphere starfield={starfield} />
       )}
-      {starfield && (
-        <Starfield className="pointer-events-none absolute inset-0 z-[1] h-full w-full" />
+      {onSaturatedGreen && tone !== "dark-green" && (
+        <div aria-hidden className="section-green-band-glow absolute inset-0 z-[1] opacity-90" />
       )}
       {edgeTop && (
         <div

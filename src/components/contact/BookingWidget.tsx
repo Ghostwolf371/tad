@@ -37,6 +37,8 @@ export default function BookingWidget() {
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [hoveredTime, setHoveredTime] = useState<string | null>(null);
+  const [serviceInterest, setServiceInterest] = useState("");
+  const [otherDetails, setOtherDetails] = useState("");
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
@@ -284,15 +286,52 @@ export default function BookingWidget() {
                     </div>
                     <div className="space-y-1.5">
                       <label htmlFor="service-interest" className="text-sm font-medium text-swamp/80">What do you need help with?</label>
-                      <select id="service-interest" name="service" required className="w-full rounded-lg border border-swamp/12 bg-bone-50/35 px-4 py-2.5 text-sm text-swamp outline-none transition focus:border-malachite/45 focus:bg-white focus:ring-2 focus:ring-malachite/15">
+                      <select
+                        id="service-interest"
+                        name="service"
+                        required
+                        value={serviceInterest}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          setServiceInterest(value);
+                          if (value !== "other") setOtherDetails("");
+                        }}
+                        className="w-full rounded-lg border border-swamp/12 bg-bone-50/35 px-4 py-2.5 text-sm text-swamp outline-none transition focus:border-malachite/45 focus:bg-white focus:ring-2 focus:ring-malachite/15"
+                      >
                         <option value="">Select a service...</option>
                         <option value="web">Web Development</option>
                         <option value="ecommerce">E-Commerce</option>
                         <option value="mobile">Mobile App</option>
                         <option value="marketing">Digital Marketing</option>
                         <option value="other">Other</option>
-	                      </select>
+                      </select>
                     </div>
+                    <AnimatePresence>
+                      {serviceInterest === "other" && (
+                        <motion.div
+                          key="other-details"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-1.5 overflow-hidden"
+                        >
+                          <label htmlFor="other-details" className="text-sm font-medium text-swamp/80">
+                            Tell us what you&apos;re looking for
+                          </label>
+                          <textarea
+                            id="other-details"
+                            name="otherDetails"
+                            required
+                            rows={3}
+                            value={otherDetails}
+                            onChange={(e) => setOtherDetails(e.target.value)}
+                            placeholder="Describe your project, goals, or what you need help with..."
+                            className="w-full resize-none rounded-lg border border-swamp/12 bg-bone-50/35 px-4 py-2.5 text-sm text-swamp outline-none transition placeholder:text-swamp/35 focus:border-malachite/45 focus:bg-white focus:ring-2 focus:ring-malachite/15"
+                          />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                     <div className="space-y-1.5">
                       <label htmlFor="budget-range" className="text-sm font-medium text-swamp/80">Estimated Budget</label>
                       <select id="budget-range" name="budget" className="w-full rounded-lg border border-swamp/12 bg-bone-50/35 px-4 py-2.5 text-sm text-swamp outline-none transition focus:border-malachite/45 focus:bg-white focus:ring-2 focus:ring-malachite/15">

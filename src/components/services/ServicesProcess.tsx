@@ -6,11 +6,7 @@ import { SERVICES_PROCESS_STEPS, servicesPageContent } from "@/lib/content/servi
 import PageSection from "@/components/layout/PageSection";
 import { PAGE_SECTION_PY } from "@/lib/theme/section-spacing";
 import HomeSectionHeader from "@/components/home/HomeSectionHeader";
-import {
-  greenBandDeliverableClassName,
-  greenBandIconWellClassName,
-  greenBandPanelCardClassName,
-} from "@/lib/theme/green-band-surfaces";
+import { surfaceCardInteractiveClassName } from "@/lib/theme/surfaces";
 import { cn } from "@/lib/utils";
 
 const STEP_ICONS: LucideIcon[] = [Compass, PenTool, Code2, Rocket];
@@ -30,44 +26,44 @@ function ProcessStepCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className={cn(
-        greenBandPanelCardClassName(
-          "group relative flex h-full flex-col overflow-hidden transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-malachite/35 hover:bg-white/10 hover:shadow-[0_20px_40px_rgba(0,0,0,0.35)]",
-        ),
+      className={surfaceCardInteractiveClassName(
+        "group relative flex h-full flex-col overflow-hidden p-5 sm:p-6",
       )}
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute right-4 top-4 z-0 font-mono text-6xl font-bold leading-none text-white/[0.06] sm:text-7xl"
+        className="pointer-events-none absolute right-4 top-4 z-0 font-mono text-6xl font-bold leading-none text-swamp/[0.06] sm:text-7xl"
       >
         {step.when}
       </span>
 
       <div className="relative flex items-center gap-3">
-        <div className={greenBandIconWellClassName()}>
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-malachite/25 bg-malachite/10 text-malachite-700 transition-colors duration-300 group-hover:border-malachite/40 group-hover:bg-malachite/15">
           <Icon className="h-5 w-5" strokeWidth={1.75} />
         </div>
         <div className="flex min-w-0 items-center gap-3">
-          <span className="h-px w-8 shrink-0 bg-malachite" aria-hidden />
-          <span className="label-tech-on-dark text-malachite">{step.when}</span>
+          <span className="h-px w-8 shrink-0 bg-malachite-700" aria-hidden />
+          <span className="label-tech text-malachite-700">{step.when}</span>
         </div>
       </div>
 
-      <h3 className="relative mt-5 text-lg font-semibold leading-snug tracking-normal text-white sm:mt-6 xl:text-xl">
+      <h3 className="relative mt-5 text-lg font-semibold leading-snug tracking-normal text-swamp sm:mt-6 xl:text-xl">
         {step.title}
       </h3>
-      <p className="relative mt-3 flex-1 text-sm leading-relaxed text-white/75">{step.text}</p>
+      <p className="relative mt-3 flex-1 text-sm leading-relaxed text-swamp/75">{step.text}</p>
 
       <div className="relative mt-5 sm:mt-6">
-        <span className={greenBandDeliverableClassName}>{step.deliverable}</span>
+        <span className="label-tech inline-flex w-fit items-center rounded-lg border border-malachite/20 bg-malachite/8 px-3 py-2 text-malachite-700">
+          {step.deliverable}
+        </span>
       </div>
 
       <div
         aria-hidden
         className={cn(
           "relative mt-5 h-px w-full sm:mt-6",
-          "bg-gradient-to-r from-malachite/35 via-white/10 to-transparent",
-          "transition-opacity duration-300 group-hover:from-malachite/55",
+          "bg-gradient-to-r from-malachite/30 via-swamp/8 to-transparent",
+          "transition-opacity duration-300 group-hover:from-malachite/50",
         )}
       />
     </motion.article>
@@ -84,14 +80,12 @@ export default function ServicesProcess({ sectionIndex = 1 }: ServicesProcessPro
   return (
     <PageSection
       index={sectionIndex}
-      tone="dark-green"
+      tone="white"
       previousTone="white"
-      nextSectionTone="white"
       py={PAGE_SECTION_PY}
-      ambient="dark-band"
+      className="bg-[#FEFEFE]"
     >
       <HomeSectionHeader
-        variant="dark"
         eyebrow={process.eyebrow}
         title={process.title}
         description={process.description}
@@ -103,7 +97,7 @@ export default function ServicesProcess({ sectionIndex = 1 }: ServicesProcessPro
       <ol className="relative mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
         <div
           aria-hidden
-          className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-[4.5rem] hidden h-px bg-gradient-to-r from-transparent via-malachite/25 to-transparent lg:block"
+          className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-[4.5rem] hidden h-px bg-gradient-to-r from-transparent via-malachite/20 to-transparent lg:block"
         />
         {SERVICES_PROCESS_STEPS.map((step, i) => (
           <li key={step.title} className="relative min-w-0">
