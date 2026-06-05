@@ -19,21 +19,11 @@ export default function Template({ children }: { children: React.ReactNode }) {
       {!skip && (
         <motion.div
           aria-hidden
-          className="pointer-events-none fixed inset-0 z-[150] flex items-center justify-center bg-canvas-green"
+          className="pointer-events-none fixed inset-0 z-[150] bg-canvas-green"
           initial={{ y: 0 }}
           animate={{ y: "-100%" }}
           transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-        >
-          <motion.span
-            className="brand-gradient-text text-2xl font-semibold tracking-tight"
-            initial={{ opacity: 0.9 }}
-            animate={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          >
-            tad
-            <span className="text-malachite">.</span>
-          </motion.span>
-        </motion.div>
+        />
       )}
     </>
   );
