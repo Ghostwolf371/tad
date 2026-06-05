@@ -39,7 +39,11 @@ export default function Starfield({ className }: { className?: string }) {
     let nextShoot = 0.8;
     let visible = true;
     let seeded = false;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let dpr = 1;
+    // Safari caps canvas dimensions/area far lower than Chrome. Dark sections
+    // can be very tall, so a retina buffer (e.g. 2300px * 2) overflowed and
+    // Safari rendered nothing. Keep every side under this and scale dpr down.
+    const MAX_SIDE = 4000;
     let stars: Star[] = [];
     const shooting: Shooting[] = [];
     const rand = (a: number, b: number) => a + Math.random() * (b - a);
@@ -67,13 +71,14 @@ export default function Starfield({ className }: { className?: string }) {
       const widthChanged = Math.abs(nw - w) > 1;
       w = nw;
       h = nh;
+      dpr = Math.min(window.devicePixelRatio || 1, 2, MAX_SIDE / Math.max(w, h));
       const bw = Math.round(w * dpr);
       const bh = Math.round(h * dpr);
       if (canvas.width !== bw || canvas.height !== bh) {
         canvas.width = bw;
         canvas.height = bh;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       if (!seeded || widthChanged) {
         seed();
         seeded = true;
@@ -155,6 +160,11 @@ export default function Starfield({ className }: { className?: string }) {
 
     resize();
     window.addEventListener("resize", resize);
+    // ResizeObserver re-runs once the canvas actually has a size (Safari can lay
+    // out after the effect) and on any later size change — more reliable than
+    // window resize for an element whose height comes from its content.
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
 
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -173,6 +183,7 @@ export default function Starfield({ className }: { className?: string }) {
     return () => {
       cancelAnimationFrame(raf);
       io.disconnect();
+      ro.disconnect();
       window.removeEventListener("resize", resize);
     };
   }, [reduce]);
