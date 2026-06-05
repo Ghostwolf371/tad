@@ -7,7 +7,7 @@ export const site = {
   location: "Ring Center Plaza, Unit 17, Paramaribo, Suriname",
   locationShort: "Ring Center Plaza, Unit 17",
   social: {
-    instagram: "https://www.instagram.com/tadsuriname/",
+    instagram: "https://www.instagram.com/tad_nv/",
     linkedin: "https://www.linkedin.com/company/tad-sr/",
     facebook: "https://www.facebook.com/tad.sr",
   },

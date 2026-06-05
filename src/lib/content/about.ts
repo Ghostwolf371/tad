@@ -48,15 +48,15 @@ export const aboutContent = {
       "Trade shows, launches, and the day-to-day in Paramaribo — the moments around the work we ship for clients.",
     slides: [
       {
-        src: "/about/about-gallery-1.png",
+        src: "/about/about-gallery-1.webp",
         alt: "Life at TAD — team moment in Paramaribo",
       },
       {
-        src: "/about/about-gallery-2.png",
+        src: "/about/about-gallery-2.webp",
         alt: "Life at TAD — team at work",
       },
       {
-        src: "/about/about-gallery-3.png",
+        src: "/about/about-gallery-3.webp",
         alt: "Life at TAD — behind the scenes",
       },
     ],
@@ -68,42 +68,42 @@ export const aboutContent = {
       "Trade shows, the office, and the moments around the work — a look at life inside the bureau.",
     images: [
       {
-        src: "/about/about-photo-gallery-1.jpg",
+        src: "/about/about-photo-gallery-1.webp",
         alt: "The TAD team gathered in Paramaribo",
         layout: "hero",
       },
       {
-        src: "/about/about-photo-gallery-5.jpg",
+        src: "/about/about-photo-gallery-5.webp",
         alt: "The TAD team at a group gathering",
         layout: "landscape",
       },
       {
-        src: "/about/about-photo-gallery-2.jpg",
+        src: "/about/about-photo-gallery-2.webp",
         alt: "TAD team at a trade show booth",
         layout: "landscape",
       },
       {
-        src: "/about/about-photo-gallery-3.jpg",
+        src: "/about/about-photo-gallery-3.webp",
         alt: "TAD team collaborating at an event",
         layout: "landscape",
       },
       {
-        src: "/about/about-photo-gallery-4.jpg",
+        src: "/about/about-photo-gallery-4.webp",
         alt: "TAD team at a conference",
         layout: "landscape",
       },
       {
-        src: "/about/about-photo-gallery-6.jpg",
+        src: "/about/about-photo-gallery-6.webp",
         alt: "TAD team members at an event",
         layout: "square",
       },
       {
-        src: "/about/about-photo-gallery-7.jpg",
+        src: "/about/about-photo-gallery-7.webp",
         alt: "TAD team at a networking event",
         layout: "square",
       },
       {
-        src: "/about/about-photo-gallery-8.jpg",
+        src: "/about/about-photo-gallery-8.webp",
         alt: "TAD team members together",
         layout: "square",
       },
@@ -125,7 +125,7 @@ export const aboutContent = {
       { name: "Azaad Ramkisoen", role: "Designer" },
     ],
   },
-  storyImage: "/about/tad-group-trade-show.jpg",
+  storyImage: "/about/tad-group-trade-show.webp",
   careers: {
     eyebrow: "Careers",
     title: "Join the team",

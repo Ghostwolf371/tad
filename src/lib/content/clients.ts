@@ -12,7 +12,7 @@ export type ClientLogo = {
   aspect?: number;
   /** Force the icon to be fully rounded (marquee) */
   round?: boolean;
-    /** Pill badge overrides — use trimmed *-pill.png marks */
+    /** Pill badge overrides — use trimmed *-pill.webp marks */
   pill?: {
     mark?: string;
     darkBg?: boolean;
@@ -32,7 +32,7 @@ export const clientLogos: readonly ClientLogo[] = [
   {
     name: "Heineken",
     slug: "heineken",
-    src: "/clients/heineken-hq.png",
+    src: "/clients/heineken-hq.webp",
     mark: "/clients/heineken-mark.svg",
     icon: clientIcon("heineken"),
     aspect: 1,
@@ -40,50 +40,50 @@ export const clientLogos: readonly ClientLogo[] = [
   {
     name: "Parbo Bier",
     slug: "parbo-bier",
-    src: "/clients/parbo-hq.png",
-    mark: "/clients/parbo.png",
+    src: "/clients/parbo-hq.webp",
+    mark: "/clients/parbo.webp",
     icon: clientIcon("parbo-bier"),
     aspect: WIDE,
   },
   {
     name: "Telesur",
     slug: "telesur",
-    src: "/clients/telesur-hq.png",
-    mark: "/clients/telesur.png",
+    src: "/clients/telesur-hq.webp",
+    mark: "/clients/telesur.webp",
     icon: clientIcon("telesur"),
     aspect: WIDE,
   },
   {
     name: "King's Enterprises",
     slug: "kings-enterprises",
-    src: "/clients/kings-crown.png",
-    mark: "/clients/kings-crown.png",
+    src: "/clients/kings-crown.webp",
+    mark: "/clients/kings-crown.webp",
     icon: clientIcon("kings-enterprises"),
     aspect: 1,
     pill: {
-      mark: "/clients/kings-crown.png",
+      mark: "/clients/kings-crown.webp",
     },
   },
   {
     name: "Smart Connexxionz",
     slug: "smart-connexxionz",
-    src: "/clients/smart-hq.png",
-    mark: "/clients/smart-connexxionz.png",
+    src: "/clients/smart-hq.webp",
+    mark: "/clients/smart-connexxionz.webp",
     icon: clientIcon("smart-connexxionz"),
     aspect: SMART,
   },
   {
     name: "Fernandes",
     slug: "fernandes",
-    src: "/clients/fernandes-hq.png",
-    mark: "/clients/fernandes-pill.png",
+    src: "/clients/fernandes-hq.webp",
+    mark: "/clients/fernandes-pill.webp",
     icon: clientIcon("fernandes"),
     aspect: 1,
   },
   {
     name: "Trustbank Amanah",
     slug: "trustbank-amanah",
-    src: "/clients/trustbank-hq.png",
+    src: "/clients/trustbank-hq.webp",
     mark: "/clients/trustbank-mark.svg",
     icon: clientIcon("trustbank-amanah"),
     aspect: WIDE,
@@ -105,15 +105,15 @@ export const clientLogos: readonly ClientLogo[] = [
   {
     name: "Digital World",
     slug: "digital-world",
-    src: "/clients/digital-world-hq.png",
-    mark: "/clients/digital-world.png",
+    src: "/clients/digital-world-hq.webp",
+    mark: "/clients/digital-world.webp",
     icon: clientIcon("digital-world"),
     aspect: WIDE,
   },
   {
     name: "Maze",
     slug: "maze",
-    src: "/clients/maze-hq.png",
+    src: "/clients/maze-hq.webp",
     mark: "/clients/maze-mark.svg",
     icon: clientIcon("maze"),
     aspect: WIDE,
@@ -125,16 +125,16 @@ export const clientLogos: readonly ClientLogo[] = [
   {
     name: "Queens Hotel",
     slug: "queens-hotel",
-    src: "/clients/queens-hq.png",
-    mark: "/clients/queens.png",
+    src: "/clients/queens-hq.webp",
+    mark: "/clients/queens.webp",
     icon: clientIcon("queens-hotel"),
     aspect: WIDE,
   },
   {
     name: "Chuck E. Cheese",
     slug: "chuck-e-cheese",
-    src: "/clients/chuck-hq.png",
-    mark: "/clients/chuck-e-cheese.png",
+    src: "/clients/chuck-hq.webp",
+    mark: "/clients/chuck-e-cheese.webp",
     icon: clientIcon("chuck-e-cheese"),
     aspect: WIDE,
     round: true,

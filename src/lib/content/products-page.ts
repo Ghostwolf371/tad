@@ -13,6 +13,7 @@ export const productsPageContent = {
     title: "Built by TAD, ready to deploy",
     description:
       "In-house software for retail, HR, and sales — configure it for your team and scale when you are ready.",
-    footnote: "PayZa · HR Plus · WhatsApp AI · Bouw+ · Invoice+ · Vendor+ — deploy-ready products from the same team that ships client work.",
+    footnote:
+      "PayZa · HR Plus · WhatsApp AI · Bouw+ · Invoice+ · Vendor+ · Gatekeepr · Live Fotos — deploy-ready products from the same team that ships client work.",
   },
 } as const;

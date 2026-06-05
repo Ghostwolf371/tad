@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og/og-image.jpg",
+        url: "/og/og-image.webp",
         width: 1200,
         height: 630,
         alt: "TAD — From now to next.",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: "TAD — From Now to Next",
     description:
       "A Suriname-based digital agency building world-class products, brands and experiences.",
-    images: ["/og/og-image.jpg"],
+    images: ["/og/og-image.webp"],
   },
 };
 
@@ -107,7 +107,7 @@ export default function RootLayout({
                   "@id": "https://tad.sr/#organization",
                   name: "TAD",
                   url: "https://tad.sr",
-                  logo: "https://tad.sr/brand/logomark.png",
+                  logo: "https://tad.sr/brand/logomark.webp",
                   description:
                     "TAD is a software development and service company headquartered in Paramaribo, Suriname, building next-gen digital products and brands.",
                   address: {
@@ -117,7 +117,7 @@ export default function RootLayout({
                   },
                   sameAs: [
                     "https://www.facebook.com/tad.sr",
-                    "https://www.instagram.com/tadsuriname/",
+                    "https://www.instagram.com/tad_nv/",
                     "https://www.linkedin.com/company/tad-sr/",
                   ],
                 },

@@ -13,10 +13,10 @@ const SERVICES = services.map((s) => ({
   href: s.href,
 }));
 
-const PRODUCTS = [
-  { label: "All products", href: "/products" },
-  ...products.map((p) => ({ label: p.name, href: `/products/${p.slug}` })),
-];
+const PRODUCTS = products.map((p) => ({
+  label: p.name,
+  href: `/products/${p.slug}`,
+}));
 
 const COMPANY = [
   { label: "About", href: "/about" },
@@ -32,7 +32,7 @@ const LEGAL = [
 ];
 
 const SOCIAL = [
-  { label: "Instagram", href: "https://www.instagram.com/tadsuriname/", Icon: InstagramIcon },
+  { label: "Instagram", href: "https://www.instagram.com/tad_nv/", Icon: InstagramIcon },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/tad-sr/", Icon: LinkedInIcon },
   { label: "Facebook", href: "https://www.facebook.com/tad.sr", Icon: FacebookIcon },
 ];
@@ -54,7 +54,7 @@ export default function Footer() {
           <div className="lg:col-span-5 flex flex-col gap-6">
             <Link href="/" aria-label="TAD home" className="inline-flex w-fit items-center gap-3">
               <Image
-                src="/brand/logomark.png"
+                src="/brand/logomark.webp"
                 alt=""
                 width={48}
                 height={48}

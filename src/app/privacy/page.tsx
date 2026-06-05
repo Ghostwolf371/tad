@@ -20,14 +20,13 @@ export default function PrivacyPage() {
         titleGradientLine={hero.titleGradientLine}
       />
 
-      <PageSection index={0} maxWidth="3xl">
-        <LegalProse
-          intro={privacyPolicy.intro}
-          sections={privacyPolicy.sections}
-          showToc
-          showInfographic
-          lastUpdated="2026-05-25"
-        />
+      <PageSection
+        index={0}
+        tone="light-green"
+        maxWidth="7xl"
+        py="pb-24 sm:pb-32 lg:pb-36"
+      >
+        <LegalProse intro={privacyPolicy.intro} sections={privacyPolicy.sections} showToc />
       </PageSection>
     </>
   );

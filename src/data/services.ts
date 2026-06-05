@@ -25,7 +25,7 @@ export const services: Service[] = [
       "Marketing integrations",
     ],
     icon: "ShoppingBag",
-    image: "/services/e-commerce.png",
+    image: "/services/e-commerce.webp",
     href: "/services#e-commerce",
   },
   {
@@ -42,7 +42,7 @@ export const services: Service[] = [
       "Performance & SEO foundations",
     ],
     icon: "Globe",
-    image: "/services/web-development.png",
+    image: "/services/web-development.webp",
     href: "/services#web-development",
   },
   {
@@ -59,7 +59,7 @@ export const services: Service[] = [
       "App store launch support",
     ],
     icon: "Smartphone",
-    image: "/services/mobile-development.png",
+    image: "/services/mobile-development.webp",
     href: "/services#mobile-development",
   },
   {
@@ -76,7 +76,7 @@ export const services: Service[] = [
       "Campaign analytics",
     ],
     icon: "Megaphone",
-    image: "/services/digital-marketing.png",
+    image: "/services/digital-marketing.webp",
     href: "/services#digital-marketing",
   },
 ];

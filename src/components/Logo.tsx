@@ -31,7 +31,7 @@ export default function Logo({
   const content = (
     <span className={cn("inline-flex items-center", className)}>
       <Image
-        src="/brand/logo-full.png"
+        src="/brand/logo-full.webp"
         alt="TAD logo"
         width={s.fullImg.w}
         height={s.fullImg.h}

@@ -282,7 +282,7 @@ const SHOWCASE_FEATURED = {
   name: "King's Enterprises N.V.",
   status: "Delivered",
   tags: ["E-Commerce", "Web", "Brand"],
-  image: "/projects/screenshots/kings-enterprises-home-v2.jpg",
+  image: "/projects/screenshots/kings-enterprises-home-v2.webp",
   tint: "#FEE15B",
   url: "kings.sr",
 } as const;
@@ -292,14 +292,14 @@ const SHOWCASE_HIGHLIGHTS = [
     name: "Smart Connexxionz",
     status: "Delivered",
     tags: ["E-Commerce", "Mobile"],
-    image: "/projects/screenshots/smart-connexxionz.png",
+    image: "/projects/screenshots/smart-connexxionz.webp",
     tint: "#1EB6EC",
   },
   {
     name: "Queens Hotel",
     status: "Delivered",
     tags: ["Hospitality", "Web"],
-    image: "/projects/screenshots/queens-hotel-homepage.png",
+    image: "/projects/screenshots/queens-hotel-homepage.webp",
     tint: "#72000A",
   },
 ] as const;
@@ -542,8 +542,8 @@ const PHONE_PROJECT = {
     "End-to-end store for discovering, trying, and buying the latest gadgets in Suriname.",
   highlightName: "King's Enterprises",
   highlightMeta: "E-commerce · Delivered",
-  highlightImage: "/projects/screenshots/kings-enterprises-home-v2.jpg",
-  storeImage: "/projects/screenshots/smart-connexxionz.png",
+  highlightImage: "/projects/screenshots/kings-enterprises-home-v2.webp",
+  storeImage: "/projects/screenshots/smart-connexxionz.webp",
 } as const;
 
 function PhoneTopChrome() {

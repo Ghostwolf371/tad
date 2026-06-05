@@ -7,7 +7,7 @@ const PREVIEW = {
   client: "King's Enterprises N.V.",
   status: "Delivered",
   growth: "+92% traffic",
-  image: "/projects/screenshots/kings-enterprises-home-v2.jpg",
+  image: "/projects/screenshots/kings-enterprises-home-v2.webp",
 } as const;
 
 /** Compact portfolio preview for hero on viewports below lg (replaces hidden 3D showcase). */

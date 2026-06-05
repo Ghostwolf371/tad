@@ -776,16 +776,21 @@ export function VacatureRoleDetailSkeleton() {
 
 export function LegalPageSkeleton() {
   return (
-    <div className="bg-white" aria-busy>
+    <div className="section-hero-tint" aria-busy>
       <PageHeroSkeleton titleLines={2} subtitle={false} />
-      <SkeletonSection maxWidth="3xl">
-        <div className="grid gap-8 lg:grid-cols-[12rem_1fr]">
-          <div className="hidden space-y-2 lg:block">
-            {Array.from({ length: 6 }, (_, i) => (
-              <SkeletonBar key={i} className="h-3 w-full" animated={false} />
-            ))}
-          </div>
-          <SkeletonProse paragraphs={5} />
+      <SkeletonSection maxWidth="7xl" tone="light-green">
+        <div className="grid gap-8 lg:grid-cols-[16rem_1fr] lg:gap-10">
+          <SkeletonCard className="hidden p-5 lg:block">
+            <SkeletonBar className="h-3 w-24" animated={false} />
+            <div className="mt-4 space-y-2">
+              {Array.from({ length: 8 }, (_, i) => (
+                <SkeletonBar key={i} className="h-3 w-full" animated={false} />
+              ))}
+            </div>
+          </SkeletonCard>
+          <SkeletonCard className="p-6 sm:p-8 lg:p-10">
+            <SkeletonProse paragraphs={5} />
+          </SkeletonCard>
         </div>
       </SkeletonSection>
     </div>

@@ -21,7 +21,9 @@ export type ProductMockupVariant =
   | "bouw-plus"
   | "invoice-plus"
   | "vendor-plus"
-  | "whatsapp-ai";
+  | "whatsapp-ai"
+  | "gatekeepr"
+  | "live-fotos";
 
 /** Match service frame height for consistent product rows */
 export const PRODUCT_MOCKUP_HEIGHT = "h-[16.5rem]";
@@ -53,9 +55,16 @@ const PATHS: Record<ProductMockupVariant, string> = {
   "invoice-plus": "invoice-plus",
   "vendor-plus": "vendor-plus",
   "whatsapp-ai": "whatsapp",
+  gatekeepr: "gatekeepr",
+  "live-fotos": "fotos",
 };
 
-function Chrome({ path, dark }: { path: string; dark?: boolean }) {
+const CHROME_URLS: Partial<Record<ProductMockupVariant, string>> = {
+  "live-fotos": "fotos.tad.sr",
+};
+
+function Chrome({ path, dark, url }: { path: string; dark?: boolean; url?: string }) {
+  const address = url ?? `app.tad.sr/${path}`;
   return (
     <div
       className={cn(
@@ -70,7 +79,7 @@ function Chrome({ path, dark }: { path: string; dark?: boolean }) {
       <span className="h-[6px] w-[6px] rounded-full bg-[#28c840]" />
       {dark ? (
         <span className="ml-1 min-w-0 flex-1 truncate rounded bg-white/[0.06] px-1.5 py-0.5 font-mono text-[7px] text-white/45">
-          app.tad.sr/{path}
+          {address}
         </span>
       ) : (
         <span
@@ -79,7 +88,7 @@ function Chrome({ path, dark }: { path: string; dark?: boolean }) {
             "bg-swamp/[0.04] text-swamp/40",
           )}
         >
-          app.tad.sr/{path}
+          {address}
         </span>
       )}
     </div>
@@ -626,6 +635,251 @@ function WhatsAppAiMockup({ dark = false }: { dark?: boolean }) {
   );
 }
 
+/** Gatekeepr — event check-in queue + attendance stats */
+function GatekeeprMockup({ dark = false }: MockupBodyProps) {
+  const sk = useSk();
+  const tone = dark ? "dark" : "light";
+
+  return (
+    <Canvas
+      className={cn(
+        "p-2.5",
+        dark
+          ? DARK_CANVAS_CLASS
+          : "bg-gradient-to-br from-bone-50 via-white to-green-50/40",
+      )}
+    >
+      <div className="flex h-full gap-2">
+        <div
+          className={cn(
+            "flex min-w-0 flex-[1.15] flex-col rounded-xl border p-2 shadow-sm",
+            dark
+              ? "border-white/10 bg-[#0a1814]"
+              : "border-swamp/[0.08] bg-white",
+          )}
+        >
+          <div className="mb-2 flex items-center justify-between">
+            <div className={sk(tone, "h-1.5 w-16 rounded-full")} />
+            <span
+              className={cn(
+                "rounded-md px-1.5 py-0.5 text-[6px] font-semibold",
+                dark
+                  ? "bg-malachite/20 text-malachite"
+                  : "bg-malachite/15 text-malachite-800",
+              )}
+            >
+              LIVE
+            </span>
+          </div>
+          <div className="space-y-1.5">
+            {[
+              { checked: true, label: "Admitted" },
+              { checked: true, label: "Admitted" },
+              { checked: false, label: "Pending" },
+              { checked: true, label: "Admitted" },
+            ].map((row, i) => (
+              <div
+                key={i}
+                className={cn(
+                  "flex items-center gap-2 rounded-lg border px-2 py-1.5",
+                  dark
+                    ? "border-white/[0.06] bg-white/[0.04]"
+                    : "border-swamp/[0.06] bg-bone-50/70",
+                )}
+              >
+                <div
+                  className={cn(
+                    "flex size-4 shrink-0 items-center justify-center rounded-md text-[7px] font-bold",
+                    row.checked
+                      ? "bg-malachite/25 text-malachite"
+                      : dark
+                        ? "border border-white/10 bg-white/[0.04] text-white/35"
+                        : "border border-swamp/10 bg-white text-swamp/35",
+                  )}
+                >
+                  {row.checked ? "✓" : "·"}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className={sk(tone, "h-1.5 w-full max-w-[8rem] rounded-full")} />
+                  <div className={sk(tone, "mt-1 h-1 w-2/3 rounded-full")} />
+                </div>
+                <div
+                  className={cn(
+                    "rounded px-1.5 py-0.5 text-[5px] font-semibold uppercase tracking-wide",
+                    row.checked
+                      ? dark
+                        ? "bg-malachite/15 text-malachite"
+                        : "bg-malachite/10 text-malachite-800"
+                      : dark
+                        ? "text-white/35"
+                        : "text-swamp/35",
+                  )}
+                >
+                  {row.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
+          <div
+            className={cn(
+              "flex flex-1 flex-col items-center justify-center rounded-xl border p-2 text-center",
+              dark
+                ? "border-white/10 bg-[#0f1f18]"
+                : "border-swamp/[0.08] bg-bone-50/80",
+            )}
+          >
+            <div
+              className={cn(
+                "mb-2 grid size-14 grid-cols-3 gap-0.5 rounded-md border p-1",
+                dark ? "border-white/10 bg-white/[0.04]" : "border-swamp/10 bg-white",
+              )}
+            >
+              {Array.from({ length: 9 }).map((_, i) => (
+                <div
+                  key={i}
+                  className={cn(
+                    "rounded-[2px]",
+                    i % 3 === 1
+                      ? "bg-malachite/70"
+                      : dark
+                        ? "bg-white/[0.08]"
+                        : "bg-swamp/10",
+                  )}
+                />
+              ))}
+            </div>
+            <p
+              className={cn(
+                "text-[6px] font-semibold uppercase tracking-wider",
+                dark ? "text-malachite" : "text-malachite-800",
+              )}
+            >
+              Scan to check in
+            </p>
+          </div>
+          <div
+            className={cn(
+              "rounded-xl border p-2",
+              dark
+                ? "border-malachite/30 bg-gradient-to-r from-malachite/25 to-spring/10"
+                : "border-malachite/20 bg-malachite/10",
+            )}
+          >
+            <div className="flex items-end justify-between gap-2">
+              <div>
+                <p className={cn("text-[5px] font-medium", dark ? "text-white/45" : "text-swamp/45")}>
+                  Checked in
+                </p>
+                <p className={cn("text-[11px] font-bold leading-none", dark ? "text-white" : "text-swamp")}>
+                  248
+                </p>
+              </div>
+              <div className="text-right">
+                <p className={cn("text-[5px] font-medium", dark ? "text-white/45" : "text-swamp/45")}>
+                  Expected
+                </p>
+                <p className={cn("text-[9px] font-semibold", dark ? "text-malachite" : "text-malachite-800")}>
+                  312
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Canvas>
+  );
+}
+
+/** Live Fotos — live event photo grid */
+function LiveFotosMockup({ dark = false }: MockupBodyProps) {
+  const sk = useSk();
+  const tone = dark ? "dark" : "light";
+  const tileTones = [
+    "from-amber-300/80 to-orange-400/70",
+    "from-rose-300/75 to-pink-400/65",
+    "from-sky-300/70 to-blue-400/60",
+    "from-emerald-300/70 to-teal-400/60",
+    "from-violet-300/70 to-purple-400/60",
+    "from-amber-200/80 to-yellow-400/70",
+  ];
+
+  return (
+    <Canvas
+      className={cn(
+        "p-2.5",
+        dark
+          ? DARK_CANVAS_CLASS
+          : "bg-gradient-to-br from-[#fff8eb] via-white to-[#fef3c7]/40",
+      )}
+    >
+      <div
+        className={cn(
+          "flex h-full flex-col overflow-hidden rounded-xl border shadow-sm",
+          dark ? "border-white/10 bg-[#0a1814]" : "border-swamp/[0.08] bg-white",
+        )}
+      >
+        <div
+          className={cn(
+            "flex shrink-0 items-center justify-between border-b px-2.5 py-2",
+            dark ? "border-white/[0.08] bg-[#0f1f18]" : "border-swamp/[0.06] bg-bone-50/80",
+          )}
+        >
+          <div className={sk(tone, "h-1.5 w-20 rounded-full")} />
+          <span
+            className={cn(
+              "rounded-md px-1.5 py-0.5 text-[6px] font-semibold",
+              dark
+                ? "bg-malachite/20 text-malachite"
+                : "bg-amber-400/20 text-amber-700",
+            )}
+          >
+            LIVE
+          </span>
+        </div>
+
+        <div className="grid min-h-0 flex-1 grid-cols-3 gap-1.5 p-2">
+          {tileTones.map((gradient, i) => (
+            <div
+              key={i}
+              className={cn(
+                "relative min-h-[3.25rem] overflow-hidden rounded-lg bg-gradient-to-br",
+                gradient,
+                i === 0 && "col-span-2 row-span-2 min-h-[6.75rem]",
+              )}
+            >
+              {i === 1 && (
+                <span className="absolute right-1 top-1 rounded bg-black/35 px-1 py-0.5 text-[5px] font-semibold text-white">
+                  NEW
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div
+          className={cn(
+            "flex shrink-0 items-center justify-between border-t px-2.5 py-2",
+            dark ? "border-white/[0.08]" : "border-swamp/[0.06]",
+          )}
+        >
+          <div className={sk(tone, "h-1.5 w-16 rounded-full")} />
+          <span
+            className={cn(
+              "text-[5px] font-medium",
+              dark ? "text-malachite/80" : "text-amber-700/80",
+            )}
+          >
+            42 photos · updating
+          </span>
+        </div>
+      </div>
+    </Canvas>
+  );
+}
+
 type MockupBodyProps = { dark?: boolean };
 
 const BODIES: Record<
@@ -637,6 +891,8 @@ const BODIES: Record<
   "invoice-plus": InvoicePlusMockup,
   "vendor-plus": () => <VendorPlusMockup />,
   "whatsapp-ai": WhatsAppAiMockup,
+  gatekeepr: GatekeeprMockup,
+  "live-fotos": LiveFotosMockup,
 };
 
 export default function ProductMockup({
@@ -672,7 +928,11 @@ export default function ProductMockup({
             className,
           )}
         >
-          <Chrome path={PATHS["hr-plus"]} dark={isDark} />
+          <Chrome
+            path={PATHS["hr-plus"]}
+            url={CHROME_URLS["hr-plus"]}
+            dark={isDark}
+          />
           <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-[#0f1f18]">
             <HrPlusPreviewStage
               variant={compact ? "card" : "detail"}
@@ -700,7 +960,11 @@ export default function ProductMockup({
           className,
         )}
       >
-        <Chrome path={PATHS[variant]} dark={isDark} />
+        <Chrome
+          path={PATHS[variant]}
+          url={CHROME_URLS[variant]}
+          dark={isDark}
+        />
         <Body dark={isDark} />
       </div>
     </MockupAnimationProvider>

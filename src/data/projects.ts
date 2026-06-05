@@ -25,6 +25,8 @@ export type Project = {
   portfolioScreenshot?: string;
   /** Phone mockup for mobile web apps; default is desktop browser chrome. */
   portfolioFrame?: "browser" | "phone";
+  /** Full promo composite (logo + devices) — flat 16:9, no extra phone shells. */
+  portfolioPresentation?: "device" | "composite";
   /** Extra shots from Webflow portfolio detail pages */
   galleryImages?: string[];
   featured?: boolean;
@@ -67,9 +69,9 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://www.kings.sr",
     image: "/projects/kings-enterprises.svg",
-    featuredImage: "/projects/screenshots/kings-enterprises-home-promo.png",
-    featuredImageMobile: "/projects/screenshots/kings-enterprises-home-featured-mobile.png",
-    portfolioScreenshot: "/projects/screenshots/kings-enterprises.png",
+    featuredImage: "/projects/screenshots/kings-enterprises-home-promo.webp",
+    featuredImageMobile: "/projects/screenshots/kings-enterprises-home-featured-mobile.webp",
+    portfolioScreenshot: "/projects/screenshots/kings-enterprises.webp",
     palette: { primary: "#FEE15B", secondary: "#FFFF92", text: "#171717" },
     caseStudy: caseFromDescr(
       "King's Enterprises N.V. is Suriname's largest specialist in the field of alcoholic beverages and Duty-Free stores.",
@@ -87,9 +89,9 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://www.smartconnexxionz.com/",
     image: "/projects/smart-connexxionz.svg",
-    featuredImage: "/projects/screenshots/smart-connexxionz-home-promo.png",
-    featuredImageMobile: "/projects/screenshots/smart-connexxionz-home-featured-mobile.png",
-    portfolioScreenshot: "/projects/screenshots/smart-connexxionz.png",
+    featuredImage: "/projects/screenshots/smart-connexxionz-home-promo.webp",
+    featuredImageMobile: "/projects/screenshots/smart-connexxionz-home-featured-mobile.webp",
+    portfolioScreenshot: "/projects/screenshots/smart-connexxionz.webp",
     palette: { primary: "#1EB6EC", secondary: "#9BE2FE", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "The first end-to-end gadgets ecommerce platform in Suriname.",
@@ -107,7 +109,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://www.queenshotelsuriname.com",
     image: "/projects/queens-hotel.svg",
-    portfolioScreenshot: "/projects/screenshots/queens-hotel-homepage.png",
+    portfolioScreenshot: "/projects/screenshots/queens-hotel-homepage.webp",
     palette: { primary: "#72000A", secondary: "#320005", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Online bookings and upsell packages for tours, tickets, and activities.",
@@ -125,9 +127,9 @@ export const projects: Project[] = [
     portfolioCategory: "custom-software",
     link: "https://mijneaanvraag.trustbankamanah.com",
     image: "/projects/trustbank-amanah.svg",
-    featuredImage: "/projects/screenshots/trustbank-amanah-home-featured.png",
-    featuredImageMobile: "/projects/screenshots/trustbank-amanah-home-featured-mobile.png",
-    portfolioScreenshot: "/projects/screenshots/trustbank-amanah.png",
+    featuredImage: "/projects/screenshots/trustbank-amanah-home-featured.webp",
+    featuredImageMobile: "/projects/screenshots/trustbank-amanah-home-featured-mobile.webp",
+    portfolioScreenshot: "/projects/screenshots/trustbank-amanah.webp",
     featured: true,
     palette: { primary: "#041C2C", secondary: "#B8956B", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
@@ -146,9 +148,9 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://www.thecoffeeboxsu.com/",
     image: "/projects/elegant-interiors.svg",
-    featuredImage: "/projects/screenshots/the-coffee-box-home-featured.png",
-    featuredImageMobile: "/projects/screenshots/the-coffee-box-home-featured-mobile.png",
-    portfolioScreenshot: "/projects/screenshots/the-coffee-box-home-desktop.png",
+    featuredImage: "/projects/screenshots/the-coffee-box-home-featured.webp",
+    featuredImageMobile: "/projects/screenshots/the-coffee-box-home-featured-mobile.webp",
+    portfolioScreenshot: "/projects/screenshots/the-coffee-box-home-desktop.webp",
     featured: true,
     palette: { primary: "#1B4332", secondary: "#E8A87C", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
@@ -167,7 +169,7 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://www.nvdevinas.com/",
     image: "/projects/arrowtrade.svg",
-    portfolioScreenshot: "/projects/screenshots/devinas-enterprises-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/devinas-enterprises-home-desktop.webp",
     palette: { primary: "#003B71", secondary: "#E2231A", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Office supplies and equipment e-commerce with featured products, categories, and account checkout flows.",
@@ -185,9 +187,9 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://www.hjexpress.sr/en",
     image: "/projects/hj-express.svg",
-    featuredImage: "/projects/screenshots/hj-express-home-featured.png",
-    featuredImageMobile: "/projects/screenshots/hj-express-home-featured-mobile.png",
-    portfolioScreenshot: "/projects/screenshots/hj-express-home-desktop.png",
+    featuredImage: "/projects/screenshots/hj-express-home-featured.webp",
+    featuredImageMobile: "/projects/screenshots/hj-express-home-featured-mobile.webp",
+    portfolioScreenshot: "/projects/screenshots/hj-express-home-desktop.webp",
     featured: true,
     palette: { primary: "#1E4A7A", secondary: "#5B9BD5", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
@@ -206,7 +208,7 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://www.digitalworld.sr/en",
     image: "/projects/digital-world.svg",
-    portfolioScreenshot: "/projects/screenshots/digital-world-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/digital-world-home-desktop.webp",
     palette: { primary: "#C41E3A", secondary: "#F4A4B0", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Premium consumer electronics and smart-home retail with bilingual storefront and category-led discovery.",
@@ -224,7 +226,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://www.elegantinteriorsnv.com/",
     image: "/projects/elegant-interiors.svg",
-    portfolioScreenshot: "/projects/screenshots/elegant-interiors.png",
+    portfolioScreenshot: "/projects/screenshots/elegant-interiors.webp",
     palette: { primary: "#1C1C1C", secondary: "#C9A961", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Interior solutions brand site with service lines, project gallery, and conversion-focused contact flows.",
@@ -242,7 +244,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://srananfowru.sr/",
     image: "/projects/sranan-fowru.svg",
-    portfolioScreenshot: "/projects/screenshots/sranan-fowru.png",
+    portfolioScreenshot: "/projects/screenshots/sranan-fowru.webp",
     palette: { primary: "#00843D", secondary: "#E2231A", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "National poultry brand platform highlighting quality, certifications, products, and community recipes.",
@@ -260,7 +262,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://arrowtradenv.com/",
     image: "/projects/arrowtrade.svg",
-    portfolioScreenshot: "/projects/screenshots/arrowtrade.png",
+    portfolioScreenshot: "/projects/screenshots/arrowtrade.webp",
     palette: { primary: "#0D9488", secondary: "#99D4CF", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "B2B retail and distribution storefront showcasing brands, popular products, and supplier relationships.",
@@ -278,7 +280,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://www.apotheekmacdonald.sr/",
     image: "/projects/helix-earth.svg",
-    portfolioScreenshot: "/projects/screenshots/apotheek-mac-donald-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/apotheek-mac-donald-home-desktop.webp",
     palette: { primary: "#0B6E4F", secondary: "#7DD3A8", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Pharmacy brand site connecting patients to products, care, and local healthcare expertise.",
@@ -296,7 +298,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://www.panamericangroup.sr/",
     image: "/projects/helix-earth.svg",
-    portfolioScreenshot: "/projects/screenshots/pan-american-group-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/pan-american-group-home-desktop.webp",
     palette: { primary: "#1E3A5F", secondary: "#C9A227", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Corporate group website highlighting services, leadership, and regional operations.",
@@ -314,7 +316,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://healthinvest.sr/",
     image: "/projects/helix-earth.svg",
-    portfolioScreenshot: "/projects/screenshots/health-invest-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/health-invest-home-desktop.webp",
     palette: { primary: "#00695C", secondary: "#4DB6AC", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Healthcare investment and services platform with patient-focused storytelling.",
@@ -332,7 +334,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://stms.sr/",
     image: "/projects/helix-earth.svg",
-    portfolioScreenshot: "/projects/screenshots/shasvien-trucks-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/shasvien-trucks-home-desktop.webp",
     palette: { primary: "#B91C1C", secondary: "#F87171", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Commercial truck and fleet services site with inventory, brands, and lead capture.",
@@ -350,7 +352,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://troytecgy.com/",
     image: "/projects/troytec.svg",
-    portfolioScreenshot: "/projects/screenshots/troytec-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/troytec-home-desktop.webp",
     palette: { primary: "#1D4ED8", secondary: "#93C5FD", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Industrial engineering brand site with service lines and project credibility.",
@@ -368,7 +370,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://interdecokitchens.com/",
     image: "/projects/elegant-interiors.svg",
-    portfolioScreenshot: "/projects/screenshots/interdeco-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/interdeco-home-desktop.webp",
     palette: { primary: "#292524", secondary: "#D6D3D1", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Kitchen and interior brand site with project showcases and lead generation.",
@@ -386,7 +388,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://www.rashivvastgoed.nl/",
     image: "/projects/rashiv.svg",
-    portfolioScreenshot: "/projects/screenshots/rashiv-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/rashiv-home-desktop.webp",
     palette: { primary: "#128BC0", secondary: "#60D3F7", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Real estate platform highlighting listings, services, and brand trust.",
@@ -404,7 +406,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://www.unistoneandmore.com/",
     image: "/projects/suriname-natural-stone.svg",
-    portfolioScreenshot: "/projects/screenshots/unistone-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/unistone-home-desktop.webp",
     palette: { primary: "#57534E", secondary: "#A8A29E", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Natural stone and surfacing catalog with project inspiration and lead capture.",
@@ -422,7 +424,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://www.orangesuriname.com/",
     image: "/projects/helix-earth.svg",
-    portfolioScreenshot: "/projects/screenshots/orange-suriname-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/orange-suriname-home-desktop.webp",
     palette: { primary: "#EA580C", secondary: "#FDBA74", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Tourism and jungle adventure brand site with packages and discovery content.",
@@ -440,7 +442,7 @@ export const projects: Project[] = [
     portfolioCategory: "e-commerce",
     link: "https://mdpharmawholesale.sr/",
     image: "/projects/helix-earth.svg",
-    portfolioScreenshot: "/projects/screenshots/md-pharma-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/md-pharma-home-desktop.webp",
     palette: { primary: "#0369A1", secondary: "#7DD3FC", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Pharmaceutical wholesale platform for catalog discovery and B2B ordering.",
@@ -458,7 +460,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://westland-valley.com/",
     image: "/projects/helix-earth.svg",
-    portfolioScreenshot: "/projects/screenshots/westland-valley-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/westland-valley-home-desktop.webp",
     palette: { primary: "#166534", secondary: "#86EFAC", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Land development and investment site with project highlights and lead capture.",
@@ -476,7 +478,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://amaurensdesign.com/",
     image: "/projects/elegant-interiors.svg",
-    portfolioScreenshot: "/projects/screenshots/amaurens-design-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/amaurens-design-home-desktop.webp",
     palette: { primary: "#4C1D95", secondary: "#C4B5FD", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Interior design studio site with portfolio galleries and consultation CTAs.",
@@ -494,7 +496,7 @@ export const projects: Project[] = [
     portfolioCategory: "website",
     link: "https://pcogsd.org/",
     image: "/projects/helix-earth.svg",
-    portfolioScreenshot: "/projects/screenshots/philadelphia-church-home-desktop.png",
+    portfolioScreenshot: "/projects/screenshots/philadelphia-church-home-desktop.webp",
     palette: { primary: "#1E40AF", secondary: "#93C5FD", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Church and community site with events, ministry content, and engagement paths.",
@@ -513,11 +515,8 @@ export const projects: Project[] = [
     link: "#",
     image: "/projects/helix-earth.svg",
     portfolioFrame: "phone",
-    portfolioScreenshot: "/projects/screenshots/welink-crm-dashboard.png",
-    galleryImages: [
-      "/projects/screenshots/welink-crm-dashboard.png",
-      "/projects/screenshots/welink-crm-purchases.png",
-    ],
+    portfolioPresentation: "composite",
+    portfolioScreenshot: "/projects/screenshots/welink-crm-portfolio.webp",
     palette: { primary: "#E85D26", secondary: "#FDBA74", text: "#171717" },
     caseStudy: caseFromDescr(
       "Mobile CRM for real estate teams — object tracking, purchase pipelines, and field updates in one app.",
@@ -536,11 +535,8 @@ export const projects: Project[] = [
     link: "https://profitnessnv.sr/",
     image: "/projects/helix-earth.svg",
     portfolioFrame: "phone",
-    portfolioScreenshot: "/projects/screenshots/fitness-pro-home.png",
-    galleryImages: [
-      "/projects/screenshots/fitness-pro-home.png",
-      "/projects/screenshots/fitness-pro-checkin.png",
-    ],
+    portfolioPresentation: "composite",
+    portfolioScreenshot: "/projects/screenshots/fitness-pro-portfolio.webp",
     palette: { primary: "#DC2626", secondary: "#FCA5A5", text: "#FFFFFF" },
     caseStudy: caseFromDescr(
       "Gym member portal with QR check-in, promos, and in-app notifications for Pro-Fitness.",

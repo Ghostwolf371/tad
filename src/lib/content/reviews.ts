@@ -13,7 +13,7 @@ export const reviews: Review[] = [
     name: "Ramon B.",
     role: "Marketing Director",
     text: "Best digital partner in Suriname, hands down. Strategy, design and engineering under one roof.",
-    avatar: "/reviews/client-1.png",
+    avatar: "/reviews/client-1.webp",
   },
   {
     name: "Anika S.",
@@ -25,7 +25,7 @@ export const reviews: Review[] = [
     name: "Jermaine V.",
     role: "Product Lead",
     text: "Senior team that thinks like product owners. They challenge the brief in the right way.",
-    avatar: "/reviews/client-3.jpeg",
+    avatar: "/reviews/client-3.webp",
   },
   {
     name: "Indra K.",
@@ -37,7 +37,7 @@ export const reviews: Review[] = [
     name: "Liam W.",
     role: "CMO",
     text: "Their marketing engine took us from zero to a 100k+ audience in a year. Insane ROI.",
-    avatar: "/reviews/client-1.png",
+    avatar: "/reviews/client-1.webp",
   },
   {
     name: "Devika R.",

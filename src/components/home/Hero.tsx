@@ -118,7 +118,7 @@ export default function Hero() {
           className="relative flex w-full items-center justify-center lg:w-1/2"
         >
           <Image
-            src="/hero/hero-tad.png"
+            src="/hero/hero-tad.webp"
             alt="The TAD team collaborating on digital products"
             width={1920}
             height={1080}

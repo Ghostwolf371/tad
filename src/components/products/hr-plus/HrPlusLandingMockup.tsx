@@ -75,7 +75,7 @@ function MockupLogo({ small }: { small?: boolean }) {
 
   return (
     <Image
-      src="/brand/logomark.png"
+      src="/brand/logomark.webp"
       alt="TAD"
       width={mark}
       height={mark}

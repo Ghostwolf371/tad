@@ -265,7 +265,7 @@ export default function LaunchScreen() {
           <div className="relative z-10 flex flex-col items-center px-6 text-center">
             <motion.div {...fade(0.1)}>
               <Image
-                src="/brand/logo-full-white.png"
+                src="/brand/logo-full-white.webp"
                 alt="tad."
                 width={4498}
                 height={1534}

@@ -2,16 +2,13 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import {
+  COOKIE_CONSENT_CHANGED_EVENT,
+  readCookieConsent,
+  writeCookieConsent,
+  type CookieConsent,
+} from "@/lib/cookie-consent";
 import { cn } from "@/lib/utils";
-
-const STORAGE_KEY = "tad-cookie-consent";
-
-type Consent = {
-  necessary: true;
-  analytics: boolean;
-  marketing: boolean;
-  ts: number;
-};
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -20,24 +17,20 @@ export default function CookieConsent() {
   const [marketing, setMarketing] = useState(true);
 
   useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (!stored) {
-        // Small delay so it eases in after the page settles
-        const t = window.setTimeout(() => setVisible(true), 600);
-        return () => window.clearTimeout(t);
-      }
-    } catch {
-      setVisible(true);
+    if (!readCookieConsent()) {
+      const t = window.setTimeout(() => setVisible(true), 600);
+      return () => window.clearTimeout(t);
     }
   }, []);
 
-  const persist = useCallback((consent: Consent) => {
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
-    } catch {
-      /* ignore storage failures */
-    }
+  useEffect(() => {
+    const hideBanner = () => setVisible(false);
+    window.addEventListener(COOKIE_CONSENT_CHANGED_EVENT, hideBanner);
+    return () => window.removeEventListener(COOKIE_CONSENT_CHANGED_EVENT, hideBanner);
+  }, []);
+
+  const persist = useCallback((consent: CookieConsent) => {
+    writeCookieConsent(consent);
     setVisible(false);
   }, []);
 

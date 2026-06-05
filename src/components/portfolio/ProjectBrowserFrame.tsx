@@ -40,6 +40,10 @@ export default function ProjectBrowserFrame({
         : [];
 
   if (isPhone) {
+    const isComposite = project.portfolioPresentation === "composite";
+    const compositeSrc =
+      preview.kind === "screenshot" ? preview.src : phoneScreenshots[0];
+
     return (
       <div
         className={cn(
@@ -48,7 +52,19 @@ export default function ProjectBrowserFrame({
         )}
       >
         <div className={cn("relative min-h-0 overflow-hidden", aspectClassName)}>
-          {phoneScreenshots.length > 0 ? (
+          {isComposite && compositeSrc ? (
+            <Image
+              src={compositeSrc}
+              alt={project.title}
+              fill
+              priority={priority}
+              sizes="(max-width: 1024px) 100vw, 900px"
+              className={cn(
+                "object-contain",
+                interactive && "transition duration-500 group-hover:scale-[1.01]",
+              )}
+            />
+          ) : phoneScreenshots.length > 0 ? (
             <PortfolioPhoneMockup
               screenshots={phoneScreenshots}
               alt={project.title}

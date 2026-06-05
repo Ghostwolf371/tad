@@ -249,6 +249,82 @@ export const products: Product[] = [
     externalHref: "https://tad.sr/",
     palette: { primary: "#00e357", secondary: "#01f2ad", text: "#f5fff8" },
   },
+  {
+    id: "gatekeepr",
+    slug: "gatekeepr",
+    name: "Gatekeepr",
+    heading: "Gatekeepr",
+    descr:
+      "Event entrance and registration software — manage check-ins, attendee lists, and on-site access from one dashboard built for live events.",
+    longDescr:
+      "Gatekeepr streamlines event entry from registration through the door. Organizers configure events, track who has arrived, and run fast check-ins on laptops, tablets, or phones — without juggling spreadsheets or paper lists.",
+    idealFor:
+      "Event organizers, sports federations, and venues that need reliable entrance control and real-time attendance visibility.",
+    highlights: [
+      {
+        title: "Fast check-in",
+        description:
+          "Scan codes or search names to admit guests in seconds at busy entrances.",
+      },
+      {
+        title: "Live attendance",
+        description:
+          "See checked-in counts and remaining arrivals update as the event unfolds.",
+      },
+      {
+        title: "Organizer-ready",
+        description:
+          "Configure events, roles, and entry rules without a dedicated IT rollout.",
+      },
+    ],
+    tags: ["Events", "Registration", "Check-in"],
+    features: [
+      "Event registration and attendee management",
+      "On-site check-in from any device",
+      "Real-time attendance overview",
+      "Built for high-traffic event entrances",
+    ],
+    externalHref: "https://tad.sr/",
+    palette: { primary: "#00e357", secondary: "#9CF4C2", text: "#001e1c" },
+  },
+  {
+    id: "live-fotos",
+    slug: "live-fotos",
+    name: "Live Fotos",
+    heading: "Live Fotos",
+    descr:
+      "Live event photo delivery at fotos.tad.sr — guests and organizers get fresh shots from the floor while the event is still happening.",
+    longDescr:
+      "Live Fotos turns event photography into a live experience. Photographers upload from the venue, albums update in real time, and attendees can browse, share, and download without waiting days for a link.",
+    idealFor:
+      "Conferences, galas, sports events, and brand activations that want instant photo sharing during the program.",
+    highlights: [
+      {
+        title: "Live albums",
+        description:
+          "New photos appear in the gallery as they are captured on site.",
+      },
+      {
+        title: "Guest-friendly sharing",
+        description:
+          "Simple links and downloads so attendees can save and share moments quickly.",
+      },
+      {
+        title: "Organizer control",
+        description:
+          "Curate albums, highlight key shots, and keep brand-ready galleries in one place.",
+      },
+    ],
+    tags: ["Events", "Photography", "Live"],
+    features: [
+      "Real-time photo uploads during events",
+      "Public and private album links",
+      "Mobile-friendly browsing and downloads",
+      "Hosted at fotos.tad.sr",
+    ],
+    externalHref: "https://fotos.tad.sr",
+    palette: { primary: "#00e357", secondary: "#01f2ad", text: "#f5fff8" },
+  },
 ];
 
 export function getProductBySlug(slug: string) {

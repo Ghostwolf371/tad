@@ -1,9 +1,11 @@
 import {
   Bot,
   Building2,
+  Camera,
   FileText,
   PackageCheck,
   Store,
+  Ticket,
   type LucideIcon,
 } from "lucide-react";
 import type { CSSProperties } from "react";
@@ -17,6 +19,8 @@ export const PRODUCT_ICONS: Record<string, LucideIcon> = {
   "invoice-plus": FileText,
   "vendor-plus": PackageCheck,
   "whatsapp-ai": Bot,
+  gatekeepr: Ticket,
+  "live-fotos": Camera,
 };
 
 export const PRODUCT_MOCKUP_VARIANT: Record<string, ProductMockupVariant> = {
@@ -26,13 +30,16 @@ export const PRODUCT_MOCKUP_VARIANT: Record<string, ProductMockupVariant> = {
   "invoice-plus": "invoice-plus",
   "vendor-plus": "vendor-plus",
   "whatsapp-ai": "whatsapp-ai",
+  gatekeepr: "gatekeepr",
+  "live-fotos": "live-fotos",
 };
 
 export function isGreenProductCard(productId: string) {
   return (
     productId === "hr-plus" ||
     productId === "invoice-plus" ||
-    productId === "whatsapp-ai"
+    productId === "whatsapp-ai" ||
+    productId === "live-fotos"
   );
 }
 
@@ -62,4 +69,6 @@ export const PRODUCT_LABELS: Record<string, string> = {
   "invoice-plus": "Billing operations",
   "vendor-plus": "Vendor operations",
   "whatsapp-ai": "AI automation",
+  gatekeepr: "Event entrance",
+  "live-fotos": "Live photography",
 };
