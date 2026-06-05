@@ -83,8 +83,7 @@ export default function ServicesSection() {
             <KineticHeading
               as="h2"
               lines={["Services engineered", "for growth."]}
-              accentLastWord
-              accentClassName="text-malachite-700"
+              gradientLastWord
               delay={0.05}
               className="mt-5 text-4xl font-semibold leading-[1.05] tracking-normal text-swamp sm:text-5xl lg:text-6xl"
             />

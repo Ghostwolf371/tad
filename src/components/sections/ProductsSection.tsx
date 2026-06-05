@@ -51,7 +51,7 @@ export default function ProductsSection() {
             <KineticHeading
               as="h2"
               lines={["Proof we build", "for real operators."]}
-              accentLastWord
+              gradientLastWord
               delay={0.05}
               className="mt-4 text-3xl font-semibold leading-[1.08] tracking-normal text-white sm:mt-5 sm:text-4xl md:text-5xl lg:text-6xl"
             />

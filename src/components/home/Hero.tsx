@@ -78,7 +78,7 @@ export default function Hero() {
             className="text-5xl font-extrabold leading-[1.05] tracking-tight xl:text-7xl"
           >
             <span className="block">We build</span>
-            <span className="block text-malachite-700">out of the box</span>
+            <span className="block brand-gradient-text">out of the box</span>
             <span className="block">
               {word}
               <span
