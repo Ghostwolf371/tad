@@ -1,6 +1,7 @@
 import { isGreenBandTone } from "@/lib/theme/green-band";
 import { HOME_SECTION_PY } from "@/lib/theme/section-spacing";
 import { cn } from "@/lib/utils";
+import Starfield from "@/components/ui/Starfield";
 
 export type HomeSectionTone = "white" | "light" | "dark-green";
 export type HomeSectionTextVariant = "light" | "dark";
@@ -19,6 +20,8 @@ type HomeSectionProps = {
   containerPadding?: "default" | "none";
   /** Override base band color only (grid, glow, and content unchanged) */
   backgroundClassName?: string;
+  /** Render a subtle twinkling starfield behind the content (dark sections). */
+  starfield?: boolean;
 };
 
 export const HOME_SECTION_BACKGROUND_CLASS: Record<HomeSectionTone, string> = {
@@ -82,6 +85,7 @@ export default function HomeSection({
   maxWidth = "7xl",
   containerPadding = "default",
   backgroundClassName,
+  starfield = false,
 }: HomeSectionProps) {
   const textVariant = HOME_SECTION_TEXT_CONTEXT[tone];
   const onSaturatedGreen = isGreenBandTone(tone);
@@ -108,6 +112,9 @@ export default function HomeSection({
       />
       {onSaturatedGreen && (
         <div aria-hidden className="section-green-band-glow absolute inset-0 z-[1] opacity-90" />
+      )}
+      {starfield && (
+        <Starfield className="pointer-events-none absolute inset-0 z-[1] h-full w-full" />
       )}
       {edgeTop && (
         <div

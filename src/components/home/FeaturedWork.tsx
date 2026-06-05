@@ -307,6 +307,7 @@ export default function FeaturedWork() {
       edgeBottom
       py={HOME_SECTION_PY_BEFORE_WHITE}
       backgroundClassName="bg-canvas-green"
+      starfield
     >
       <div
         aria-hidden
